@@ -1,0 +1,28 @@
+---- sig_addSong Matches (27 in 7 files) ----
+Moc_myshowtablebutton.cpp (build-debug\debug):QT_MOC_LITERAL(4, 49, 11), // "sig_addSong"
+Moc_myshowtablebutton.cpp (build-debug\debug):    "sig_addPlayList\0sig_addSong\0sig_delPlayList\0"
+Moc_myshowtablebutton.cpp (build-debug\debug):        case 2: _t->sig_addSong(); break;
+Moc_myshowtablebutton.cpp (build-debug\debug):            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&myShowTableButton::sig_addSong)) {
+Moc_myshowtablebutton.cpp (build-debug\debug):void myShowTableButton::sig_addSong()
+Moc_mytablewidget.cpp (build-debug\debug):QT_MOC_LITERAL(7, 79, 17), // "sig_addSongFolder"
+Moc_mytablewidget.cpp (build-debug\debug):QT_MOC_LITERAL(8, 97, 11), // "sig_addSong"
+Moc_mytablewidget.cpp (build-debug\debug):    "sig_delIndex\0sig_addSongFolder\0"
+Moc_mytablewidget.cpp (build-debug\debug):    "sig_addSong\0sig_RowCountChange\0"
+Moc_mytablewidget.cpp (build-debug\debug):        case 5: _t->sig_addSongFolder(); break;
+Moc_mytablewidget.cpp (build-debug\debug):        case 6: _t->sig_addSong(); break;
+Moc_mytablewidget.cpp (build-debug\debug):            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&myTableWidget::sig_addSongFolder)) {
+Moc_mytablewidget.cpp (build-debug\debug):            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&myTableWidget::sig_addSong)) {
+Moc_mytablewidget.cpp (build-debug\debug):void myTableWidget::sig_addSongFolder()
+Moc_mytablewidget.cpp (build-debug\debug):void myTableWidget::sig_addSong()
+Myshowtablebutton.cpp (tablewidgetfiles):    connect(act_addsong,SIGNAL(triggered(bool)),this,SIGNAL(sig_addSong()));
+Myshowtablebutton.cpp (tablewidgetfiles):        disconnect(this,SIGNAL(sig_addSong()),f,SLOT(slot_addSong()));//添加歌曲
+Myshowtablebutton.cpp (tablewidgetfiles):    connect(this,SIGNAL(sig_addSong()),m_finalWid,SLOT(slot_addSong()));//添加歌曲
+Myshowtablebutton.h (tablewidgetfiles):    void sig_addSong();
+myTablePlayListFinal.cpp (tablewidgetfiles):    connect(m_Btntable,SIGNAL(sig_addSong()),this,SLOT(slot_addSong()));//添加歌曲
+myTablePlayListFinal.cpp (tablewidgetfiles):    connect(m_table,SIGNAL(sig_addSong()),this,SLOT(slot_addSong()));//添加歌曲
+myTablePlayListFinal.cpp (tablewidgetfiles):    connect(m_table,SIGNAL(sig_addSongFolder()),this,SLOT(slot_addSongFolder()));
+Mytablewidget.cpp (tablewidgetfiles):    connect(act_addsong,SIGNAL(triggered(bool)),this,SIGNAL(sig_addSong()));
+Mytablewidget.cpp (tablewidgetfiles):    connect(m_addWid->m_add,SIGNAL(clicked(bool)),this,SIGNAL(sig_addSong()));
+Mytablewidget.cpp (tablewidgetfiles):    connect(m_addWid->m_addFolder,SIGNAL(clicked(bool)),this,SIGNAL(sig_addSongFolder()));
+Mytablewidget.h (tablewidgetfiles):     void sig_addSongFolder();
+Mytablewidget.h (tablewidgetfiles):     void sig_addSong();
