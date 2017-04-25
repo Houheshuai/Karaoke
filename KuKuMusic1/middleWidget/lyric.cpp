@@ -62,7 +62,7 @@ void Lyric::changeLrcFileTime(int time, bool isadd)
 
     QStringList lines = all_text.split("\n");
     QRegExp rx("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");//这个是时间标签的格式[00:05.54]
-                                            //正则表达式d{2}表示匹配2个数字
+    //正则表达式d{2}表示匹配2个数字
     foreach(QString oneline, lines)
     {
         int pos = rx.indexIn(oneline, 0);
@@ -74,7 +74,8 @@ void Lyric::changeLrcFileTime(int time, bool isadd)
         QString setmsecondstr="00";
 
         while (pos != -1)
-        { //表示匹配成功
+        {
+            //表示匹配成功
             QString cap = rx.cap(0);//返回第0个表达式匹配的内容
             // 将时间标签转换为时间数值，以毫秒为单位
             QRegExp regexp;
@@ -98,9 +99,9 @@ void Lyric::changeLrcFileTime(int time, bool isadd)
             int setminutes=totalTime/60000;//分钟数
             int setsecond=(totalTime-minute*60000)/1000;//秒
             int setmsecond=((totalTime)%1000)/10; //毫秒
-/*
- * Change time format
-*/
+            /*
+             * Change time format
+            */
             setminutesstr=QString::number(setminutes);
             if(setminutes>=0&&setminutes<=9)
                 setminutesstr=QString::number(0)+setminutesstr;
@@ -123,7 +124,7 @@ void Lyric::changeLrcFileTime(int time, bool isadd)
             pos = rx.indexIn(oneline, pos);//匹配全部
         }
         if(!temp.isEmpty())
-          stream<<head.arg(setminutesstr).arg(setsecondstr).arg(setmsecondstr)<<temp<<("\r\n");//写入！！
+            stream<<head.arg(setminutesstr).arg(setsecondstr).arg(setmsecondstr)<<temp<<("\r\n");//写入！！
     }
     file.close();
 }
@@ -147,7 +148,7 @@ void Lyric::analyzeLrcContent(const QByteArray &KlcData,const QString filedir)//
         QString getLrcStr=strlist.value(1);
 
         QString time= getTimestr.remove("[").split(',').value(0);
-      //  QString maskdur=getTimestr.remove("[").split(',').value(1);
+        //  QString maskdur=getTimestr.remove("[").split(',').value(1);
         QStringList itemList= getLrcStr.split('<');
 
         QString lrctotalstr;

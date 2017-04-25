@@ -14,7 +14,6 @@
 #include <QDebug>
 #include <windows.h>
 
-
 #include"Global_ValueGather.h"
 #include"deskTopLrcWidget.h"
 #include"basewindow.h"
@@ -60,7 +59,7 @@ LyricLabel::LyricLabel(bool touch, QWidget *parent)
 
     QAction *colorHighLight = new QAction("高亮颜色", m_menu);
     connect(colorHighLight, SIGNAL(triggered(bool)), this, SLOT(changeHightLightColor()));
-   ///// submenu
+    // 歌词字体设置子菜单
     QActionGroup *actgroup=new QActionGroup(submenu);
     QAction *fontbig = new QAction("大", submenu);
     connect(fontbig, SIGNAL(triggered(bool)), this, SLOT(changeFont()));
@@ -81,7 +80,6 @@ LyricLabel::LyricLabel(bool touch, QWidget *parent)
     fontsmall->setCheckable(true);
 
     fontbig->setChecked(true);
-    ////
 
     m_menu->addAction(forwardSecond);
     m_menu->addAction(backSecond);
@@ -104,17 +102,19 @@ void LyricLabel::setCurLrcChangeTime(int time, bool isadding)
     if(m_lyric->m_lrcmap.isEmpty())
         return;
     QMap<qint64,QString> lrcmap;
-    foreach (qint64 key, m_lyric->m_lrcmap.keys()) {
+    foreach (qint64 key, m_lyric->m_lrcmap.keys())
+    {
         lrcmap.insert(key+time2,m_lyric->m_lrcmap.value(key));
     }
     QMap<qint64,QMap<qint64,qint64>> intervalmap;
-    foreach (qint64 key, m_lyric->m_lrcmap.keys()) {
+    foreach (qint64 key, m_lyric->m_lrcmap.keys())
+    {
         intervalmap.insert(key+time2,m_lyric->m_lrcintervalmap.value(key));
     }
 
     m_lyric->m_lrcmap=lrcmap;
     m_lyric->m_lrcintervalmap=intervalmap;
-   // m_lyric->changeLrcFileTime(time,isadding);
+    // m_lyric->changeLrcFileTime(time,isadding);
 }
 
 void LyricLabel::setForwardHalfSecond()
@@ -124,7 +124,7 @@ void LyricLabel::setForwardHalfSecond()
 
 void LyricLabel::setBackHalfSecond()
 {
-   setCurLrcChangeTime(500,true);
+    setCurLrcChangeTime(500,true);
 }
 
 void LyricLabel::setForwardTwoSeconds()
@@ -139,13 +139,13 @@ void LyricLabel::setBackTwoSeconds()
 
 void LyricLabel::setSingerBGShowOrNot()
 {
-   if(!backgroundPointer)
-       return;
-  if(backgroundPointer->isShowSingerBG())
-      backgroundPointer->setShowSingerBG(false);
-  else
-      backgroundPointer->setShowSingerBG(true);
-  backgroundPointer->update();
+    if(!backgroundPointer)
+        return;
+    if(backgroundPointer->isShowSingerBG())
+        backgroundPointer->setShowSingerBG(false);
+    else
+        backgroundPointer->setShowSingerBG(true);
+    backgroundPointer->update();
 }
 
 void LyricLabel::slot_replyLrc(const QByteArray& byt,const QString& songname)
@@ -260,7 +260,7 @@ void LyricLabel::slot_timerWork()
         m_maskLength+=lrcMaskMiniStep;
     }
     else
-       m_maskLength=metrics.width(m_realCurrentText)*precent;
+        m_maskLength=metrics.width(m_realCurrentText)*precent;
     update();
     m_itemPrecent=precent;
     emit sig_currentPrecentChange(str,precent,interval);
@@ -294,7 +294,7 @@ void LyricLabel::positionChanged(qint64 length)
         emit sig_currentLrcChange(m_lyric->getLineAt(index),m_lyric->getLineAt(index+1));
         this->scrollTo(index);
     }
-     slot_timerWork();
+    slot_timerWork();
 }
 
 void LyricLabel::setPostion(qint64 pos)
@@ -306,26 +306,24 @@ void LyricLabel::setPostion(qint64 pos)
 void LyricLabel::changeToEvent(int index)
 {
     emit changeToPosition(m_lyric->getPostion(index)*1000);
-
 }
 
 void LyricLabel::changeFont()
 {
-  QAction *act=(QAction*)sender();
-  if(act->text()=="大")
-  {
-      m_lrcFont =QFont("微软雅黑",14,QFont::Medium);
-  }
-  if(act->text()=="中")
-  {
-      m_lrcFont =QFont("微软雅黑",12,QFont::Medium);
-  }
-  if(act->text()=="小")
-  {
-      m_lrcFont =QFont("微软雅黑",10,QFont::Medium);
-  }
+    QAction *act = (QAction*)sender();
+    if(act->text() == "大")
+    {
+        m_lrcFont = QFont("微软雅黑",14,QFont::Medium);
+    }
+    if(act->text() == "中")
+    {
+        m_lrcFont = QFont("微软雅黑",12,QFont::Medium);
+    }
+    if(act->text() == "小")
+    {
+        m_lrcFont = QFont("微软雅黑",10,QFont::Medium);
+    }
 }
-
 
 void LyricLabel::changeHightLightColor()
 {
@@ -368,7 +366,8 @@ int AbstractWheelWidget::currentIndex() const
 
 void AbstractWheelWidget::setCurrentIndex(int index)
 {
-    if (index >= 0 && index < itemCount()) {
+    if (index >= 0 && index < itemCount())
+    {
         m_currentItem = index;
         m_itemOffset = 0;
         update();
@@ -380,76 +379,76 @@ bool AbstractWheelWidget::event(QEvent *e)
     switch (e->type())
     {
 // ![1]
-        case QEvent::ScrollPrepare:
-        {
-            QScrollPrepareEvent *se = static_cast<QScrollPrepareEvent *>(e);
-            se->setViewportSize(QSizeF(size()));
-            // we claim a huge scrolling area and a huge content position and
-            // hope that the user doesn't notice that the scroll area is restricted
-            se->setContentPosRange(QRectF(0.0, 0.0, 0.0, WHEEL_SCROLL_OFFSET*2));
-            se->setContentPos(QPointF(0.0, WHEEL_SCROLL_OFFSET + m_currentItem * itemHeight() + m_itemOffset)); //相当于这里保存当前位置
-            se->accept();
+    case QEvent::ScrollPrepare:
+    {
+        QScrollPrepareEvent *se = static_cast<QScrollPrepareEvent *>(e);
+        se->setViewportSize(QSizeF(size()));
+        // we claim a huge scrolling area and a huge content position and
+        // hope that the user doesn't notice that the scroll area is restricted
+        se->setContentPosRange(QRectF(0.0, 0.0, 0.0, WHEEL_SCROLL_OFFSET*2));
+        se->setContentPos(QPointF(0.0, WHEEL_SCROLL_OFFSET + m_currentItem * itemHeight() + m_itemOffset)); //相当于这里保存当前位置
+        se->accept();
 
-            return true;
-        }
+        return true;
+    }
 // ![1]
 // ![2]
-        case QEvent::Scroll:
-        {
-            QScrollEvent *se = static_cast<QScrollEvent *>(e);
-            qreal y = se->contentPos().y();
+    case QEvent::Scroll:
+    {
+        QScrollEvent *se = static_cast<QScrollEvent *>(e);
+        qreal y = se->contentPos().y();
 
-            int iy = y - WHEEL_SCROLL_OFFSET;
-            int ih = itemHeight();
+        int iy = y - WHEEL_SCROLL_OFFSET;
+        int ih = itemHeight();
 // ![2]
 // ![3]
 
-            // -- calculate the current item position and offset and redraw the widget
-            int ic = itemCount();
-            if (ic>0)
-            {
-                m_currentItem = iy / ih;
-                m_itemOffset = iy % ih;
+        // -- calculate the current item position and offset and redraw the widget
+        int ic = itemCount();
+        if (ic>0)
+        {
+            m_currentItem = iy / ih;
+            m_itemOffset = iy % ih;
 
-                if (m_currentItem >= ic)
-                    m_currentItem = ic-1;
-            }
-
-            if (m_doSignal)//只有触发信号的滚动才进行,而且这种是人为滚动
-            {
-                //开始滚动
-                if (se->scrollState() == QScrollEvent::ScrollStarted)
-                {
-                    if(m_currentItem>1)
-                    this->m_isScrolled = true;
-                }
-            }
-            //滚动结束
-            if (se->scrollState() == QScrollEvent::ScrollFinished)//
-            {
-                if (m_doSignal)//users do this
-                {
-                    if(m_currentItem>1)
-                    emit changeTo(this->m_currentItem+1);
-                    m_maskLength=0;
-                    m_realCurrentText="";
-                }
-                this->m_isScrolled = false;
-                m_doSignal = true;
-                m_itemOffset=0;
-            }
-            // -- repaint
-            if(m_itemOffset!=0)
-            update();
-            se->accept();
-            return true;
-// ![3]
+            if (m_currentItem >= ic)
+                m_currentItem = ic-1;
         }
-        case QEvent::MouseButtonPress:
-            setFocus();
-            return true;
-        default:
-            return QWidget::event(e);
+
+        if (m_doSignal)//只有触发信号的滚动才进行,而且这种是人为滚动
+        {
+            //开始滚动
+            if (se->scrollState() == QScrollEvent::ScrollStarted)
+            {
+                if(m_currentItem>1)
+                    this->m_isScrolled = true;
+            }
+        }
+        //滚动结束
+        if (se->scrollState() == QScrollEvent::ScrollFinished)//
+        {
+            if (m_doSignal)//users do this
+            {
+                if(m_currentItem>1)
+                    emit changeTo(this->m_currentItem+1);
+                m_maskLength=0;
+                m_realCurrentText="";
+            }
+            this->m_isScrolled = false;
+            m_doSignal = true;
+            m_itemOffset=0;
+        }
+        // -- repaint
+        if(m_itemOffset!=0)
+            update();
+        se->accept();
+        return true;
+// ![3]
+    }
+    case QEvent::MouseButtonPress:
+        setFocus();
+        return true;
+    default:
+        return QWidget::event(e);
     }
     return true;
 }

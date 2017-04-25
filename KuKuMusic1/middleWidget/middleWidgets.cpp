@@ -6,22 +6,21 @@
 #include"myPushButton.h"
 #include"QHBoxLayout"
 #include<QPainter>
+
 middleWidgets::middleWidgets(QWidget *parent) : baseWidget(parent)
 {
     setStyleSheet("baseWidget{background:white;}");
     initLayout();
-
-
 }
+
 void middleWidgets::initLayout()
 {
-    QHBoxLayout *hyout=new QHBoxLayout;
-    m_rightWid=new middleWidgetRight(this);
+    QHBoxLayout *hyout = new QHBoxLayout;
+    m_rightWid = new middleWidgetRight(this);
     m_rightWid->setInitMiddleWidget(this);//have to init this
 
-
-    m_leftWid=new middleWidgetLeft(this);
-    m_btnhidelist=new myPushButton(this);
+    m_leftWid = new middleWidgetLeft(this);
+    m_btnhidelist = new myPushButton(this);
     m_btnhidelist->setFixedSize(13,55);
     m_btnhidelist->hide();
     setlistHideStyle();
@@ -37,10 +36,9 @@ void middleWidgets::initLayout()
 
 void middleWidgets::setInitParent(mainWindow *p)
 {
-    m_mainWindow=p;
+    m_mainWindow = p;
     m_leftWid->setInitMainWindow(p);
     m_rightWid->setInitMainWindow(p);
-
 }
 
 void middleWidgets::setlistShowStyle()
@@ -63,7 +61,6 @@ void middleWidgets::setBtnShowHide(bool isshow)
         m_btnhidelist->show();
     else
         m_btnhidelist->hide();
-
 }
 
 void middleWidgets::mouseMoveEvent(QMouseEvent *e)
@@ -74,23 +71,22 @@ void middleWidgets::mouseMoveEvent(QMouseEvent *e)
 void middleWidgets::paintEvent(QPaintEvent *e)
 {
     baseWidget::paintEvent(e);
-  /*  QPainter p(this);
-    p.setPen(QColor(230,230,230));
-    p.drawLine(QPoint(0,0),QPoint(width(),0));
-    p.drawLine(QPoint(0,height()-1),QPoint(width(),height()-1));*/
+    /*  QPainter p(this);
+      p.setPen(QColor(230,230,230));
+      p.drawLine(QPoint(0,0),QPoint(width(),0));
+      p.drawLine(QPoint(0,height()-1),QPoint(width(),height()-1));*/
 }
-
+//显示/隐藏左边歌曲列表
 void middleWidgets::slot_btnclicked()
 {
     if(m_leftWid->isHidden())//如果是隐藏的
     {
         m_leftWid->show();
-         setlistHideStyle();
-
+        setlistHideStyle();
     }
     else
     {
         m_leftWid->hide();
-       setlistShowStyle();
+        setlistShowStyle();
     }
 }

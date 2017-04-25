@@ -18,7 +18,7 @@ void MvWidget::paintEvent(QPaintEvent *e)
     if (m_img.width()<= 0)
         return;
 
-    ///将图像按比例缩放成和窗口一样大小
+    //将图像按比例缩放成和窗口一样大小
     QImage img = m_img.scaled(this->size(),Qt::KeepAspectRatio);
 
     int x=(width()-img.width())/2;

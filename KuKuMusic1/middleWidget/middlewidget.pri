@@ -5,7 +5,6 @@ $$PWD/middleLeftStackWidget1.cpp\
 $$PWD/middleLeftStackWidget2.cpp\
 $$PWD/middleLeftStackWidget3.cpp\
 $$PWD/middleLeftStackWidget4.cpp\
-$$PWD/middlewidgetleft.cpp\
 $$PWD/middleWidgetRight.cpp\
 $$PWD/middleWidgets.cpp\
 $$PWD/lyric.cpp\
@@ -15,7 +14,8 @@ $$PWD/buttonstackedwidget.cpp\
 $$PWD/middleSearchTableWidget.cpp \
 $$PWD/WebWidget.cpp \
 $$PWD/middleconvienttwobutton.cpp \
-    $$PWD/MvWidget.cpp
+    $$PWD/MvWidget.cpp \
+    $$PWD/middleWidgetLeft.cpp
 
 HEADERS +=\
 $$PWD/middleLeftStackWidget0.h\
