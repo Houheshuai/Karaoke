@@ -16,7 +16,6 @@ INPUT(
 ./release\middleLeftStackWidget2.o
 ./release\middleLeftStackWidget3.o
 ./release\middleLeftStackWidget4.o
-./release\middlewidgetleft.o
 ./release\middleWidgetRight.o
 ./release\middleWidgets.o
 ./release\lyric.o
@@ -27,6 +26,7 @@ INPUT(
 ./release\WebWidget.o
 ./release\middleconvienttwobutton.o
 ./release\MvWidget.o
+./release\middleWidgetLeft.o
 ./release\bottomWidgets.o
 ./release\TextMovingWidget.o
 ./release\skinWidget.o

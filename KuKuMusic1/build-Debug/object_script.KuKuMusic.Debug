@@ -16,7 +16,6 @@ INPUT(
 ./debug\middleLeftStackWidget2.o
 ./debug\middleLeftStackWidget3.o
 ./debug\middleLeftStackWidget4.o
-./debug\middlewidgetleft.o
 ./debug\middleWidgetRight.o
 ./debug\middleWidgets.o
 ./debug\lyric.o
@@ -27,6 +26,7 @@ INPUT(
 ./debug\WebWidget.o
 ./debug\middleconvienttwobutton.o
 ./debug\MvWidget.o
+./debug\middleWidgetLeft.o
 ./debug\bottomWidgets.o
 ./debug\TextMovingWidget.o
 ./debug\skinWidget.o
