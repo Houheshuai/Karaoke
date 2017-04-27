@@ -13,7 +13,7 @@
 #include "myMediaList.h"
 
 class mainWindow;
-
+//底部控件，播放控制，进度条等
 class bottomWidgets : public baseWidget
 {
     Q_OBJECT
