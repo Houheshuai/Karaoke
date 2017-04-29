@@ -2,10 +2,10 @@
 #define DESKTOPLRCWIDGET_H
 
 #include <QWidget>
-#include<QTimer>
-#include"baseDialog.h"
-#include"myPushButton.h"
-#include"AbsFrameLessAutoSize.h"
+#include <QTimer>
+#include "baseDialog.h"
+#include "myPushButton.h"
+#include "AbsFrameLessAutoSize.h"
 
 class deskTopLrcWidget : public AbsFrameLessAutoSize
 {
@@ -32,7 +32,7 @@ protected:
 
 private:
     myPushButton *m_closeBtn;
-    QWidget*m_topWid;
+    QWidget *m_topWid;
 
     float m_precent;
     float m_lrcMaskWidth;

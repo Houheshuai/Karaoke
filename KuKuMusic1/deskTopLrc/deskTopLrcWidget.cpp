@@ -1,15 +1,14 @@
 #include "deskTopLrcWidget.h"
-#include<QLinearGradient>
-#include<QPainter>
-#include<QMessageBox>
-#include<QDebug>
-#include<QHBoxLayout>
-#include<QVBoxLayout>
-
-#include"Global_ValueGather.h"
-#include"lyriclabel.h"
-#include"lyric.h"
-#include"FFmpegPlayer.h"
+#include "Global_ValueGather.h"
+#include "lyriclabel.h"
+#include "lyric.h"
+#include "FFmpegPlayer.h"
+#include <QLinearGradient>
+#include <QPainter>
+#include <QMessageBox>
+#include <QDebug>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 deskTopLrcWidget::deskTopLrcWidget(QWidget *parent)
     : AbsFrameLessAutoSize(parent)
@@ -24,7 +23,7 @@ deskTopLrcWidget::deskTopLrcWidget(QWidget *parent)
     initWidgetMISC();
 }
 
-deskTopLrcWidget::~deskTopLrcWidget(){}
+deskTopLrcWidget::~deskTopLrcWidget() {}
 
 void deskTopLrcWidget::initWidgetMISC()
 {
@@ -35,7 +34,6 @@ void deskTopLrcWidget::initWidgetMISC()
     m_normalGradient.setColorAt(0.1, QColor(0, 75, 155));
     m_normalGradient.setColorAt(0.5, QColor(1, 110, 186));
     m_normalGradient.setColorAt(0.9, QColor(2, 168, 224));
-
 
     m_isOriginalState=false;
     m_isDrawBrush=false;
@@ -61,7 +59,6 @@ void deskTopLrcWidget::initWidgetMISC()
     m_closeBtn->hide();
     m_closeBtn->setGeometry(width()-m_closeBtn->width()-2,0,20,20);
     connect(m_closeBtn,SIGNAL(clicked(bool)),this,SLOT(hide()));
-
 }
 
 void deskTopLrcWidget::setCurrentAndNextLrc(const QString &cur, const QString &next)
@@ -80,33 +77,28 @@ void deskTopLrcWidget::setCurrentAndNextLrc(const QString &cur, const QString &n
     }
     m_isOriginalState=false;
     update();
-
 }
-
-
 
 QString deskTopLrcWidget::getCurrentLrc() const
 {
     if(m_isDrawTop)
-     return m_Text1;
+        return m_Text1;
     return m_Text2;
 }
 
- void deskTopLrcWidget::setOriginalStatus()
+void deskTopLrcWidget::setOriginalStatus()
 {
     m_Text1="";
     m_Text2="";
     m_isOriginalState=true;
     update();
- }
-
+}
 
 void deskTopLrcWidget::slot_currentLrcChange(const QString&cur, const QString &next)
 {
     m_lrcMaskWidth=-1000;
     setCurrentAndNextLrc(cur,next);
 }
-
 
 void deskTopLrcWidget::slot_precentChange(const QString &word, float &precent, int &interval)
 {
@@ -141,54 +133,53 @@ void deskTopLrcWidget::paintEvent(QPaintEvent *)
 
     if(!m_isOriginalState)
     {
-            int y=((height()-20)/2-metrics.height())/2+20;
-            int bottomwidth=width()-metrics.width(m_Text2);
-
+        int y=((height()-20)/2-metrics.height())/2+20;
+        int bottomwidth=width()-metrics.width(m_Text2);
 
         /*
          *frist part
          */
-            m_normalGradient.setStart(0, y);
-            m_normalGradient.setFinalStop(0, y+metrics.height());
+        m_normalGradient.setStart(0, y);
+        m_normalGradient.setFinalStop(0, y+metrics.height());
 
 
-            painter.setPen(QColor(0, 0, 0, 200));
-            painter.drawText(11, y+1,metrics.width(m_Text1),metrics.height(),Qt::AlignLeft,m_Text1);//左对齐
+        painter.setPen(QColor(0, 0, 0, 200));
+        painter.drawText(11, y+1,metrics.width(m_Text1),metrics.height(),Qt::AlignLeft,m_Text1);//左对齐
 
-            painter.setPen(QPen(m_normalGradient,0));
-            painter.drawText(10, y,metrics.width(m_Text1),metrics.height(),Qt::AlignLeft, m_Text1);
+        painter.setPen(QPen(m_normalGradient,0));
+        painter.drawText(10, y,metrics.width(m_Text1),metrics.height(),Qt::AlignLeft, m_Text1);
 
         /*
          *second part
         */
-            m_normalGradient.setStart(0, y+height()/2);
-            m_normalGradient.setFinalStop(0, y+(height()-20)/2+metrics.height());
+        m_normalGradient.setStart(0, y+height()/2);
+        m_normalGradient.setFinalStop(0, y+(height()-20)/2+metrics.height());
 
 
-            painter.setPen(QColor(0, 0, 0, 200));
-            painter.drawText(bottomwidth-9, y+(height()-20)/2+1,metrics.width(m_Text2),metrics.height(),Qt::AlignLeft,m_Text2);//左对齐
+        painter.setPen(QColor(0, 0, 0, 200));
+        painter.drawText(bottomwidth-9, y+(height()-20)/2+1,metrics.width(m_Text2),metrics.height(),Qt::AlignLeft,m_Text2);//左对齐
 
-            painter.setPen(QPen(m_normalGradient,0));
-            painter.drawText(bottomwidth-10, y+(height()-20)/2,metrics.width(m_Text2),metrics.height(),Qt::AlignLeft, m_Text2);
+        painter.setPen(QPen(m_normalGradient,0));
+        painter.drawText(bottomwidth-10, y+(height()-20)/2,metrics.width(m_Text2),metrics.height(),Qt::AlignLeft, m_Text2);
 
-            if(m_isDrawTop)
-            {
-                    m_maskGradient.setStart(0, y);
-                    m_maskGradient.setFinalStop(0, y+metrics.height());
+        if(m_isDrawTop)
+        {
+            m_maskGradient.setStart(0, y);
+            m_maskGradient.setFinalStop(0, y+metrics.height());
 
-                    painter.setPen(QPen(m_maskGradient, 0));
-                    painter.drawText(10, y, m_lrcMaskWidth, metrics.height(),Qt::AlignLeft ,m_Text1);
+            painter.setPen(QPen(m_maskGradient, 0));
+            painter.drawText(10, y, m_lrcMaskWidth, metrics.height(),Qt::AlignLeft ,m_Text1);
 
-            }
-            else
-            {
-                    m_maskGradient.setStart(0, y+(height()-20)/2);
-                    m_maskGradient.setFinalStop(0, y+(height()-20)/2+metrics.height());
+        }
+        else
+        {
+            m_maskGradient.setStart(0, y+(height()-20)/2);
+            m_maskGradient.setFinalStop(0, y+(height()-20)/2+metrics.height());
 
 
-                    painter.setPen(QPen(m_maskGradient, 0));
-                    painter.drawText(bottomwidth-10, y+(height()-20)/2, m_lrcMaskWidth,  metrics.height(),Qt::AlignLeft, m_Text2);
-            }
+            painter.setPen(QPen(m_maskGradient, 0));
+            painter.drawText(bottomwidth-10, y+(height()-20)/2, m_lrcMaskWidth,  metrics.height(),Qt::AlignLeft, m_Text2);
+        }
     }
 
     else/*draw the original text here*/
@@ -232,18 +223,16 @@ void deskTopLrcWidget::enterEvent(QEvent *)
 
 void deskTopLrcWidget::leaveEvent(QEvent *)
 {
-   m_isDrawBrush=false;
-   setCursor(Qt::ArrowCursor);
+    m_isDrawBrush=false;
+    setCursor(Qt::ArrowCursor);
     m_closeBtn->hide();
-   update();
+    update();
 }
 
 void deskTopLrcWidget::mouseMoveEvent(QMouseEvent *e)
 {
-     AbsFrameLessAutoSize::mouseMoveEvent(e);
-     m_isDrawBrush=true;
-     m_closeBtn->show();
-     update();
+    AbsFrameLessAutoSize::mouseMoveEvent(e);
+    m_isDrawBrush=true;
+    m_closeBtn->show();
+    update();
 }
-
-

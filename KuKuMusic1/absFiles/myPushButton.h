@@ -24,7 +24,10 @@ class volButton : public QPushButton
     Q_OBJECT
 public:
     volButton(const QString& normal, const QString& hover, const QString& pressed, QWidget* parent = 0);
-    void setParentSlider(QSlider* slider){m_partnerslider = slider;}
+    void setParentSlider(QSlider* slider)
+    {
+        m_partnerslider = slider;
+    }
 protected:
     void enterEvent(QEvent*);
     void leaveEvent(QEvent*);
@@ -52,8 +55,14 @@ class volButton2:public QPushButton
     Q_OBJECT
 public:
     volButton2(const QString& normal,const QString& hover,const QString& pressed,QWidget*parent=0);
-    ~volButton2(){delete m_timer;}
-    void setPartnerSlider(QSlider *slider){m_partnerslider=slider;}
+    ~volButton2()
+    {
+        delete m_timer;
+    }
+    void setPartnerSlider(QSlider *slider)
+    {
+        m_partnerslider=slider;
+    }
     QTimer *m_timer;
 public slots:
 
@@ -117,15 +126,21 @@ private:
     QPixmap m_pixnormal;
     QPixmap m_pixhover;
 };
-
+//播放模式按钮
 class playModeButton:public QPushButton
 {
     Q_OBJECT
 public:
     explicit playModeButton(QString pixnormal,QString pixhover,QString text,QWidget*parent);
     void setCheckedBtn(bool check);
-    void setPlayMode(PlayMode mode){m_mode=mode;}
-    PlayMode& playMode(){return m_mode;}
+    void setPlayMode(PlayMode mode)
+    {
+        m_mode=mode;
+    }
+    PlayMode& playMode()
+    {
+        return m_mode;
+    }
 protected:
     void mousePressEvent(QMouseEvent *e);
     void enterEvent(QEvent *);
@@ -143,14 +158,17 @@ private:
 
 class playingWidgetBtn :public myPushButton
 {
- Q_OBJECT
+    Q_OBJECT
 public:
     explicit playingWidgetBtn(QWidget*p=0);
     void setNormalColor(const QColor &color);
     void setHoverColor(const QColor &color);
     void adjustSize();
     void setText(const QString &text);
-    QString text(){return m_text;}
+    QString text()
+    {
+        return m_text;
+    }
 
 protected:
     virtual void paintEvent(QPaintEvent *);

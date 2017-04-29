@@ -1,41 +1,43 @@
 #ifndef MIANWINDOWCONTENTWIDGET_H
 #define MIANWINDOWCONTENTWIDGET_H
 
+#include "baseWidget.h"
+#include "myPushButton.h"
+#include "mySlider.h"
+#include "myMediaList.h"
+
 #include <QObject>
 #include <QWidget>
-#include<QLabel>
-#include<QToolTip>
-
-#include"baseWidget.h"
-#include"myPushButton.h"
-#include"mySlider.h"
-#include"myMediaList.h"
-
+#include <QLabel>
+#include <QToolTip>
 
 class playModeWidget:public baseWidget
 {
     Q_OBJECT
 public:
-   explicit playModeWidget(QWidget*parent=0);
-   void init();
-   void setCurrentMode(PlayMode);
+    explicit playModeWidget(QWidget*parent=0);
+    void init();
+    void setCurrentMode(PlayMode);
 
-   QVector<playModeButton*> m_vector;
-   playModeButton *m_btnOrder;
-   playModeButton *m_btnRandom;
-   playModeButton *m_btnOneCircle;
+    QVector<playModeButton*> m_vector;
+    playModeButton *m_btnOrder;
+    playModeButton *m_btnRandom;
+    playModeButton *m_btnOneCircle;
 private slots:
-   void slot_setCurrentMode();
+    void slot_setCurrentMode();
 signals:
-   void sig_CurrentModeChange(PlayMode);
+    void sig_CurrentModeChange(PlayMode);
 protected:
-    void mousePressEvent(QMouseEvent *){}
-    void mouseMoveEvent(QMouseEvent *){}
-    void focusOutEvent(QFocusEvent*){this->hide();}
+    void mousePressEvent(QMouseEvent *) {}
+    void mouseMoveEvent(QMouseEvent *) {}
+    void focusOutEvent(QFocusEvent*)
+    {
+        this->hide();
+    }
 private:
 
 };
-
+//音量调节滑块
 class volSliderWidget:public baseWidget
 {
     Q_OBJECT
@@ -43,11 +45,14 @@ public:
     volSliderWidget(QWidget*parent=0);
     mySlider *m_slider;
 public slots:
-    void slot_sliderMove(int va){QToolTip::showText(QCursor::pos(),QString::number(va));}
+    void slot_sliderMove(int va)
+    {
+        QToolTip::showText(QCursor::pos(),QString::number(va));
+    }
 protected:
-    void mousePressEvent(QMouseEvent*){}
-    void mouseMoveEvent(QMouseEvent*){}
-    void mouseReleaseEvent(QMouseEvent*){}
+    void mousePressEvent(QMouseEvent*) {}
+    void mouseMoveEvent(QMouseEvent*) {}
+    void mouseReleaseEvent(QMouseEvent*) {}
 
     bool eventFilter(QObject *, QEvent *);
 private:

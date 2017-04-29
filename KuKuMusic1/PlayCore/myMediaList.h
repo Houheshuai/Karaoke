@@ -2,7 +2,12 @@
 #define MYMEDIALIST_H
 #include <QUrl>
 #include <QObject>
-enum PlayMode{playInOrder=0,playRandom=1,playOneCircle=2};
+
+enum PlayMode {
+    playInOrder = 0,
+    playRandom = 1,
+    playOneCircle = 2
+};
 
 class myMediaList : public QObject
 {
@@ -10,10 +15,16 @@ class myMediaList : public QObject
 public:
     explicit myMediaList(QObject *parent = 0);
     QUrl mediaUrl(int index);//赋值给musicIndex;
-    inline void addPlayList(const QUrl& url){m_list.append(url);}
+    inline void addPlayList(const QUrl& url)
+    {
+        m_list.append(url);
+    }
 
     void setPlayMode(PlayMode);
-    void setCurIndex(int index){m_musicIndex=index;}
+    void setCurIndex(int index)
+    {
+        m_musicIndex=index;
+    }
     int nextMediaIndex();
     int preMediaIndex();
 

@@ -453,7 +453,7 @@ bool AbstractWheelWidget::event(QEvent *e)
     return true;
 }
 
-void AbstractWheelWidget::paintEvent(QPaintEvent* event)
+void AbstractWheelWidget::paintEvent(QPaintEvent* /*event*/)
 {
     QPainter painter(this);
 

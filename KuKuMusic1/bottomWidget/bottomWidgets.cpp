@@ -86,59 +86,60 @@ void bottomWidgets::init()
     //第三块布局
     QHBoxLayout *layout3 = new QHBoxLayout;
 
-    m_btnplaylist = new myPushButton(this);
+//    m_btnplaylist = new myPushButton(this);
     m_btnlrc = new myPushButton(this);
-    m_btnequalizer = new myPushButton("",this);
+//    m_btnequalizer = new myPushButton("",this);
     m_btnvol = new volButton2(":/image/bottomwidget/btn_vol (1).png",":/image/bottomwidget/btn_vol (2).png",":/image/bottomwidget/btn_vol (3).png",this);
     m_btnplaymode = new myPushButton(this);
-    m_btnmore = new myPushButton(this);
-    m_btndownload = new myPushButton(this);
+//    m_btnmore = new myPushButton(this);
+//    m_btndownload = new myPushButton(this);
     m_btnfavorite = new myPushButton(this);
 
-    m_btnplaylist->setFixedSize(60,20);
+//    m_btnplaylist->setFixedSize(60,20);
     m_btnlrc->setFixedSize(20,20);
-    m_btnequalizer->setFixedSize(48,20);
+//    m_btnequalizer->setFixedSize(48,20);
     m_btnvol->setFixedSize(20,20);
     m_btnplaymode->setFixedSize(20,20);
-    m_btnmore->setFixedSize(20,20);
-    m_btndownload->setFixedSize(20,20);
+//    m_btnmore->setFixedSize(20,20);
+//    m_btndownload->setFixedSize(20,20);
     m_btnfavorite->setFixedSize(20,20);
 
 
-    m_btnplaylist->setStyleSheet("QPushButton{border:NULL;background-image:url(:/image/bottomwidget/btn_miniplaylist (1).png);}"
-                                 "QPushButton::hover{background-image:url(:/image/bottomwidget/btn_miniplaylist (2).png);}"
-                                 "QPushButton::pressed{background-image:url(:/image/bottomwidget/btn_miniplaylist (3).png);}");
+//    m_btnplaylist->setStyleSheet("QPushButton{border:NULL;background-image:url(:/image/bottomwidget/btn_miniplaylist (1).png);}"
+//                                 "QPushButton::hover{background-image:url(:/image/bottomwidget/btn_miniplaylist (2).png);}"
+//                                 "QPushButton::pressed{background-image:url(:/image/bottomwidget/btn_miniplaylist (3).png);}");
+
     m_btnlrc->setStyleSheet("QPushButton{border-image:url(:/image/bottomwidget/btn_lrc (1).png);}"
                             "QPushButton::hover{border-image:url(:/image/bottomwidget/btn_lrc (2).png);}"
                             "QPushButton::pressed{border-image:url(:/image/bottomwidget/btn_lrc (3).png);}");
 
-    m_btnequalizer->setStyleSheet("QPushButton{border:NULL;background-image:url(:/image/bottomwidget/btn_equalizer (1).png);}"
-                                  "QPushButton::hover{background-image:url(:/image/bottomwidget/btn_equalizer (2).png);}"
-                                  "QPushButton::pressed{background-image:url(:/image/bottomwidget/btn_equalizer (3).png);}");
+//    m_btnequalizer->setStyleSheet("QPushButton{border:NULL;background-image:url(:/image/bottomwidget/btn_equalizer (1).png);}"
+//                                  "QPushButton::hover{background-image:url(:/image/bottomwidget/btn_equalizer (2).png);}"
+//                                  "QPushButton::pressed{background-image:url(:/image/bottomwidget/btn_equalizer (3).png);}");
 
     m_btnplaymode->setStyleSheet("QPushButton{border-image:url(:/image/bottomwidget/btn_listrandom (1).png);}"
                                  "QPushButton::hover{border-image:url(:/image/bottomwidget/btn_listrandom (2).png);}" );
 
-    m_btnmore->setStyleSheet("QPushButton{border-image:url(:/image/bottomwidget/btn_more (1).png);}"
-                             "QPushButton::hover{border-image:url(:/image/bottomwidget/btn_more (2).png);}"
-                             "QPushButton::pressed{border-image:url(:/image/bottomwidget/btn_more (3).png);}");
+//    m_btnmore->setStyleSheet("QPushButton{border-image:url(:/image/bottomwidget/btn_more (1).png);}"
+//                             "QPushButton::hover{border-image:url(:/image/bottomwidget/btn_more (2).png);}"
+//                             "QPushButton::pressed{border-image:url(:/image/bottomwidget/btn_more (3).png);}");
 
-    m_btndownload->setStyleSheet("QPushButton{border:NULL;background-image:url(:/image/bottomwidget/btn_download (1).png);}"
-                                 "QPushButton::hover{background-image:url(:/image/bottomwidget/btn_download (2).png);}"
-                                 "QPushButton::pressed{background-image:url(:/image/bottomwidget/btn_download (3).png);}");
+//    m_btndownload->setStyleSheet("QPushButton{border:NULL;background-image:url(:/image/bottomwidget/btn_download (1).png);}"
+//                                 "QPushButton::hover{background-image:url(:/image/bottomwidget/btn_download (2).png);}"
+//                                 "QPushButton::pressed{background-image:url(:/image/bottomwidget/btn_download (3).png);}");
 
     m_btnfavorite->setStyleSheet("QPushButton{border-image:url(:/image/bottomwidget/btn_favorite_no (1).png);}"
                                  "QPushButton::hover{border-image:url(:/image/bottomwidget/btn_favorite_no (2).png);}"
                                  "QPushButton::pressed{border-image:url(:/image/bottomwidget/btn_favorite_no (3).png);}");
 
     layout3->addWidget(m_btnfavorite);
-    layout3->addWidget(m_btndownload);
-    layout3->addWidget(m_btnmore);
+//    layout3->addWidget(m_btndownload);
+//    layout3->addWidget(m_btnmore);
     layout3->addWidget(m_btnplaymode);
     layout3->addWidget(m_btnvol);
-    layout3->addWidget(m_btnequalizer);
+//    layout3->addWidget(m_btnequalizer);
     layout3->addWidget(m_btnlrc);
-    layout3->addWidget(m_btnplaylist);
+//    layout3->addWidget(m_btnplaylist);
 
     layout3->setSpacing(18);
     layout3->setContentsMargins(0,0,0,0);
@@ -147,7 +148,7 @@ void bottomWidgets::init()
     mainlyout->addLayout(layout2);
     mainlyout->addLayout(layout3);
     mainlyout->setSpacing(30);
-    mainlyout->setContentsMargins(12,0,0,0);
+    mainlyout->setContentsMargins(12,0,20,0); //右边界20，歌词按钮不贴边
     setLayout(mainlyout);
 }
 
