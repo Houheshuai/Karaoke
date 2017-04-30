@@ -32,9 +32,6 @@ typedef struct PacketQueue {
     SDL_cond *cond;
 } PacketQueue;
 
-
-
-
 typedef struct{
     AVFormatContext* afct; //
     AVPacket pkt; //
@@ -63,9 +60,6 @@ typedef struct{
     AVStream *video_st;
     SDL_Thread *video_tid;  //视频线程id
 }mediaState;
-
-
-
 
 class FFmpegPlayer : public QThread
 {

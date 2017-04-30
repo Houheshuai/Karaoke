@@ -122,7 +122,7 @@ void playingWidget::init()
 
     vlyout->setSpacing(0);
     vlyout->setContentsMargins(0,5,18,8);
-/////////////////////////////////////////////////////
+
     hlyout->addLayout(hlyout2);
     hlyout->addSpacing(6);
     hlyout->addLayout(vlyout);
@@ -131,7 +131,6 @@ void playingWidget::init()
 
     connect(m_btnAuthor,SIGNAL(clicked(bool)),this,SLOT(slot_readySearch()));
     connect(m_btnSongName,SIGNAL(clicked(bool)),this,SLOT(slot_readySearch()));
-
 }
 
 void playingWidget::setLoveState()

@@ -1,13 +1,14 @@
 #ifndef TOPSEARCHTIPSWIDGET_H
 #define TOPSEARCHTIPSWIDGET_H
 
+#include "QListWidget.h"
 #include <QObject>
 #include <QWidget>
-#include "QListWidget.h"
-#include<QTableWidgetItem>
-#include<QNetworkAccessManager>
-#include<QNetworkReply>
-#include<QNetworkRequest>
+#include <QTableWidgetItem>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+
 class topSearchTipsWidget:public QListWidget
 {
     Q_OBJECT

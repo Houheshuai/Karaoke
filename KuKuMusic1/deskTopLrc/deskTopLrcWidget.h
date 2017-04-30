@@ -6,7 +6,7 @@
 #include "baseDialog.h"
 #include "myPushButton.h"
 #include "AbsFrameLessAutoSize.h"
-
+//桌面歌词控件
 class deskTopLrcWidget : public AbsFrameLessAutoSize
 {
     Q_OBJECT

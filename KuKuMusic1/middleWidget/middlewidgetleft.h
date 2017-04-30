@@ -1,12 +1,13 @@
 #ifndef MIDDLEWIDGETLEFT_H
 #define MIDDLEWIDGETLEFT_H
 
+#include "baseWidget.h"
+
 #include <QObject>
 #include <QWidget>
-#include"baseWidget.h"
-#include<QStackedWidget>
-#include<QPropertyAnimation>
-#include<myPushButton.h>
+#include <QStackedWidget>
+#include <QPropertyAnimation>
+#include <myPushButton.h>
 
 class mainWindow;
 class middleLeftStackWidget0;
@@ -15,13 +16,10 @@ class middleLeftStackWidget2;
 class middleLeftStackWidget3;
 class middleLeftStackWidget4;
 
-
 class middleWidgetLeft : public baseWidget
 {
     Q_OBJECT
     Q_PROPERTY(int m_x READ getValue WRITE animation)
-
-
 
 public:
     explicit middleWidgetLeft(QWidget *parent = 0);
@@ -70,8 +68,6 @@ private:
     int m_preItem;
     QPropertyAnimation *m_animation;
     QPropertyAnimation *m_Widanimation;
-
 };
-
 
 #endif // MIDDLEWIDGETLEFT_H

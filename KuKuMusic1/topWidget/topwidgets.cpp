@@ -201,7 +201,6 @@ void TopWidgets::initWidget()
     setLayout(hmainyout);
 
     connect(serbtn,SIGNAL(clicked(bool)),m_lineEdit,SIGNAL(returnPressed()));
-
 }
 
 void TopWidgets::searchFromLineEdit(const QString str)

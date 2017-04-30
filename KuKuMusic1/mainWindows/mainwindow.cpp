@@ -32,20 +32,20 @@
 
 mainWindow::mainWindow(QWidget *parent):baseWindow(parent)//设置背景就设置m_mainwid就行了
 {
-     mainwid=this;//global value
-     m_border=8;
-     setMinimumSize(1008,698);
-     m_mainwid->setStyleSheet("QLabel{color:white;}");//"Widget{background: rgb(0,140,230);}"//border-image:url(:/image/skin/1.png)
+    mainwid=this;//global value
+    m_border=8;
+    setMinimumSize(1008,698);
+    m_mainwid->setStyleSheet("QLabel{color:white;}");//"Widget{background: rgb(0,140,230);}"//border-image:url(:/image/skin/1.png)
 
 
-     initLayout();//加载主要的layout
-     initMediaPlayer();
-     initNetwork();
-     initTrayMenu();//加载系统图标菜单
-     initWidgetMISC();
-     initTimeline();
-     initConnection();
-     readSetting();
+    initLayout();//加载主要的layout
+    initMediaPlayer();
+    initNetwork();
+    initTrayMenu();//加载系统图标菜单
+    initWidgetMISC();
+    initTimeline();
+    initConnection();
+    readSetting();
 }
 void mainWindow::readSetting()
 {
@@ -73,7 +73,7 @@ void mainWindow::readSetting()
     skinWidgetContentItem*item=(skinWidgetContentItem*)m_skinwid->signalMapper()->mapping(background);
     if(item!=NULL)
         emit item->clicked();
-     else
+    else
         m_skinwid->setdefaultSkin();
 ///setInitplayMode
     m_playModeWid->setCurrentMode(PlayMode(playmodeindex));
@@ -85,11 +85,11 @@ void mainWindow::readSetting()
 
 void mainWindow::saveSetting()
 {
-     QSettings setting("config.ini",QSettings::IniFormat,0);
+    QSettings setting("config.ini",QSettings::IniFormat,0);
 
     setting.beginGroup("mainWindow");
     setting.setValue("background",m_mainwid->currentSkinPath());
-     setting.setValue("volume",curVol());
+    setting.setValue("volume",curVol());
 
     setting.setValue("listopa",m_skinwid->m_sliderWidget->m_slider->value());
     setting.setValue("playmode",pMode);
@@ -136,7 +136,7 @@ void mainWindow::clearBackground()
 
 void mainWindow::setBackgroundPixmap(const QPixmap &pixmap)
 {
-   m_mainwid->setPixmap(pixmap);
+    m_mainwid->setPixmap(pixmap);
 }
 void mainWindow::initWidgetMISC()
 {
@@ -225,7 +225,7 @@ bool mainWindow::eventFilter(QObject *o, QEvent *e)
     {
         if(e->type()==QEvent::Enter)
         {
-           m_bottomwid->m_btnvol-> m_timer->stop();
+            m_bottomwid->m_btnvol-> m_timer->stop();
         }
         if(e->type()==QEvent::Leave)
         {
@@ -251,24 +251,24 @@ void mainWindow::slot_setPlayMode(PlayMode mode)
     pMode=mode;
     m_bottomwid->setPlayModeBtnStyle(PlayMode(mode));
     foreach(myTablePlayListFinal*fin,m_midstack0->myTablePlayListFinalVector())//every single playlist
-        fin->setPlayMode(mode);
+    fin->setPlayMode(mode);
 }
 
 void mainWindow::slot_setPlayModeWidget()
 {
-  if(!m_playModeWid->hasFocus())
-  {
-      m_playModeWid->setGeometry(m_bottomwid->m_btnplaymode->x()-(m_playModeWid->width()-m_bottomwid->m_btnplaymode->width())/2,
-                                 m_topwid->height()+m_middwid->height()-m_playModeWid->height()+m_bottomwid->m_btnplaymode->height(),
-                                 150,
-                                 150);
-      m_playModeWid->setFocus();
-      m_playModeWid->show();
-  }
-  else
-  {
-      m_playModeWid->hide();
-  }
+    if(!m_playModeWid->hasFocus())
+    {
+        m_playModeWid->setGeometry(m_bottomwid->m_btnplaymode->x()-(m_playModeWid->width()-m_bottomwid->m_btnplaymode->width())/2,
+                                   m_topwid->height()+m_middwid->height()-m_playModeWid->height()+m_bottomwid->m_btnplaymode->height(),
+                                   150,
+                                   150);
+        m_playModeWid->setFocus();
+        m_playModeWid->show();
+    }
+    else
+    {
+        m_playModeWid->hide();
+    }
 }
 void mainWindow::initConnection()
 {
@@ -330,7 +330,7 @@ void mainWindow::slot_currentMediaChanged(const QString &media, bool isMV)//setn
 
     if(!isMV)
     {
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////请求background
+        //请求background
         QString author= songname.split("-").at(0);
         QDir dir("D:/ExcellentAlbum/"+author);
         dir.mkpath("D:/ExcellentAlbum/"+author);
@@ -338,13 +338,13 @@ void mainWindow::slot_currentMediaChanged(const QString &media, bool isMV)//setn
         dir.setFilter(QDir::Files|QDir::NoSymLinks);
         int file_count = list.size();
         if(file_count==2)//文件夹下为空的话
-             emit sig_requestBgPic(author);
-         else//本地加载
+            emit sig_requestBgPic(author);
+        else//本地加载
         {
             m_timeline->setFrameRange(0,file_count-3);
             m_timeline->setDuration((file_count-2)*10000);
             QFileInfo file_info;
-            for(int i=0; i<file_count;i++)
+            for(int i=0; i<file_count; i++)
             {
                 file_info= list.at(i);
                 QString suffix = file_info.suffix();
@@ -359,34 +359,34 @@ void mainWindow::slot_currentMediaChanged(const QString &media, bool isMV)//setn
             setBackgroundPixmap(m_pixvector.value(0));
         }
 
-        ///////////////////////////////////////////////////////////////////////Execellentlrc文件夹下的
-            QString path2lrc="D://ExcellentLrc/"+songname+".lrc";   //lrc url
-            QString ablumurl="D://ExcellentAlbum/"+songname+".jpg";  //albums url
-            QFile file3(path2lrc);//歌词文件第二个
-        ////////////////////////////////////////////////////////////////////////ALBUMS REQUEST
-           finalwid->setCurrentSongAlbumPic(QPixmap(":/image/middlewidget/lab_Author.png"));
-           QFile file(ablumurl);
-           if(file.exists())//如果存在专辑图片 加载图片
-               finalwid->setCurrentSongAlbumPic(QPixmap(ablumurl));
-           else
-               emit sig_requestAlbum(songname,ablumurl);
-        //////////////////////////////////////////////////////////////////////////////////////LRC REQUEST
+        //Execellentlrc文件夹下的
+        QString path2lrc="D://ExcellentLrc/"+songname+".lrc";   //lrc url
+        QString ablumurl="D://ExcellentAlbum/"+songname+".jpg";  //albums url
+        QFile file3(path2lrc);//歌词文件第二个
+        //ALBUMS REQUEST
+        finalwid->setCurrentSongAlbumPic(QPixmap(":/image/middlewidget/lab_Author.png"));
+        QFile file(ablumurl);
+        if(file.exists())//如果存在专辑图片 加载图片
+            finalwid->setCurrentSongAlbumPic(QPixmap(ablumurl));
+        else
+            emit sig_requestAlbum(songname,ablumurl);
+        //LRC REQUEST
 
         if(file3.exists())//如果存在在D:ExcellentLrc中的话
-          {
+        {
             if(!file3.open(QIODevice::ReadOnly))
                 return;
-              QByteArray byt=file3.readAll();
-              file3.close();
-              m_middwid->m_rightWid->m_lrcwid->analyzeLrc(byt,path2lrc);
-          }
-          else//如果两个地方都没有歌词文件
-          {
+            QByteArray byt=file3.readAll();
+            file3.close();
+            m_middwid->m_rightWid->m_lrcwid->analyzeLrc(byt,path2lrc);
+        }
+        else//如果两个地方都没有歌词文件
+        {
             QString songdur= finalwid->currentSongDuration();
             QTime time= QTime::fromString(songdur,"mm:ss");
             int dur=time.minute()*60*1000+time.second()*1000;
             emit sig_requestLrc(songname,dur,path2lrc);
-          }
+        }
         file3.close();
     }
 }
@@ -473,17 +473,18 @@ void mainWindow::slot_quitApp()
 void mainWindow::slot_iconIsActived(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason)
-     { //点击托盘显示窗口
-       case QSystemTrayIcon::Trigger:
-       case QSystemTrayIcon::DoubleClick:
-         {
-            showNormal();
-            activateWindow();
-            break;
-         }
-         default:
-          break;
-     }
+    {
+    //点击托盘显示窗口
+    case QSystemTrayIcon::Trigger:
+    case QSystemTrayIcon::DoubleClick:
+    {
+        showNormal();
+        activateWindow();
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 
@@ -491,9 +492,9 @@ void mainWindow::closeEvent(QCloseEvent *event)
 {
     if(system_tray->isVisible())
     {
-     // hide();
-      qApp->quit(); //点击 X 关闭应用
-      //event->ignore();
+        // hide();
+        qApp->quit(); //点击 X 关闭应用
+        //event->ignore();
     }
     else
         event->accept();
@@ -520,7 +521,7 @@ void mainWindow::mouseDoubleClickEvent(QMouseEvent *e)
 
 void mainWindow::slot_currentMediaError()
 {
-   m_midstack0->slot_endOfMedia();
+    m_midstack0->slot_endOfMedia();
 }
 
 void mainWindow::slot_setPlayerPlayOrPause()
@@ -531,7 +532,7 @@ void mainWindow::slot_setPlayerPlayOrPause()
     {
         m_ffplayer->pause();
     }
-     else if(m_ffplayer->getPlayerStatus()==pausingStatus||m_ffplayer->getPlayerStatus()==bufferingStatus)
+    else if(m_ffplayer->getPlayerStatus()==pausingStatus||m_ffplayer->getPlayerStatus()==bufferingStatus)
     {
         m_ffplayer->play();
     }
@@ -559,7 +560,7 @@ void mainWindow::slot_setBgPix(const QVector<QPixmap> &pixvector,const QString &
             setBackgroundPixmap(pixvector.value(0));
             m_timeline->setFrameRange(0,pixvector.count()-1);
             if(pixvector.count()!=0)
-            m_timeline->setDuration((pixvector.count())*10000);
+                m_timeline->setDuration((pixvector.count())*10000);
 
             m_pixvector=pixvector;
             m_timeline->start();

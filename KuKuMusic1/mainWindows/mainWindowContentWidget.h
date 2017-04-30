@@ -10,7 +10,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QToolTip>
-
+//播放模式控件
 class playModeWidget:public baseWidget
 {
     Q_OBJECT
@@ -37,7 +37,7 @@ protected:
 private:
 
 };
-//音量调节滑块
+//音量调节控件
 class volSliderWidget:public baseWidget
 {
     Q_OBJECT
@@ -58,7 +58,7 @@ protected:
 private:
 
 };
-
+//添加我的最爱提示控件
 class AddLoveListTips:public baseWidget
 {
     Q_OBJECT

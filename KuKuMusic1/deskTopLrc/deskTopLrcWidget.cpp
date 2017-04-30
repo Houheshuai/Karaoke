@@ -27,7 +27,7 @@ deskTopLrcWidget::~deskTopLrcWidget() {}
 
 void deskTopLrcWidget::initWidgetMISC()
 {
-    m_maskGradient.setColorAt(0.1,QColor(150,250,250));
+    m_maskGradient.setColorAt(0.1, QColor(150,250,250));
     m_maskGradient.setColorAt(0.5, Qt::white);
     m_maskGradient.setColorAt(0.9, QColor(150,250,250));
 

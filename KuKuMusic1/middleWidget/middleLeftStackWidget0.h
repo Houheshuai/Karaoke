@@ -23,23 +23,25 @@ class middleConvientTwoButton;
 class middleListSearch;
 class myPlayer;
 
-
 class myScrollArea:public QScrollArea
 {
     Q_OBJECT
 public:
     explicit myScrollArea(QWidget *parent = Q_NULLPTR);
 protected:
-    void mousePressEvent(QMouseEvent *){setFocus();}
+    void mousePressEvent(QMouseEvent *)
+    {
+        setFocus();
+    }
 private:
 };
-//////////////////////////////////////////////////////////////////
+
 class middleLeftStackWidget0: public myScrollArea
 {
     Q_OBJECT
 public:
-   explicit middleLeftStackWidget0(QWidget *parent);
-    ~middleLeftStackWidget0(){}
+    explicit middleLeftStackWidget0(QWidget *parent);
+    ~middleLeftStackWidget0() {}
     void init();
     void initAddTips();
     void initConvientWidget();
@@ -56,11 +58,26 @@ public:
     void setSwapList( myTablePlayListFinal*begin, myTablePlayListFinal*after);
     void setListTakeAndInsert( myTablePlayListFinal*start, myTablePlayListFinal*after); //add to butt of myTablePlayListFinal*after
 
-    inline mainWindow* mainWindows(){return m_mainWindow;}
-    inline middleListSearch* middleListSearchs(){return m_searchwid;}
-    inline myTablePlayListFinal* nowPlayFinalTable(){return m_nowplayfinaltable;}
-    inline QVector<myTablePlayListFinal*> & myTablePlayListFinalVector(){return m_Vector;}
-    inline myShowTableButton* convientShowTableBtn(){return m_convientSTBtn;}
+    inline mainWindow* mainWindows()
+    {
+        return m_mainWindow;
+    }
+    inline middleListSearch* middleListSearchs()
+    {
+        return m_searchwid;
+    }
+    inline myTablePlayListFinal* nowPlayFinalTable()
+    {
+        return m_nowplayfinaltable;
+    }
+    inline QVector<myTablePlayListFinal*> & myTablePlayListFinalVector()
+    {
+        return m_Vector;
+    }
+    inline myShowTableButton* convientShowTableBtn()
+    {
+        return m_convientSTBtn;
+    }
 
     baseWidget *m_wid;
 public Q_SLOTS:

@@ -1,16 +1,17 @@
 #include "mynetwork.h"
-#include<QFile>
-#include<QJsonDocument>
-#include<QJsonArray>
-#include<QJsonObject>
-#include<QEventLoop>
-#include<QDebug>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QEventLoop>
+#include <QDebug>
 
-#define USE_NETCLOUD 0
+//#define USE_NETCLOUD 0
+#define USE_NETCLOUD 1
 
 const static QString bgurl="http://artistpicserver.kuwo.cn/pic.web?type=big_artist_pic&pictype=url&content=list&&id=0&from=pc&json=1&version=1&width=1920&height=1080&name=%1";
 const static QString songurl="http://itwusun.com/search/wy/%1?&f=json&size=50&p=%2&sign=itwusun";
-
+//下载酷狗歌词有关
 const static QString KGLrcPart0="http://songsearch.kugou.com/song_search_v2?keyword=%1&page=1&pagesize=40&filter=0&bitrate=0&isfuzzy=0&inputtype=2&platform=PcFilter&userid=312986171&clientver=8100&iscorrection=3";
 const static QString KGLrcPart1="http://lyrics.kugou.com/search?ver=1&man=no&client=pc&keyword=%1&duration=%2&hash=%3";//&hash=9c6fd9b90800f7a37f6821c07bc0f906 9C6FD9B90800F7A37F6821C07BC0F906 b3c9045aa086236dc78a59357bdf73ac
 const static QString KGLrcPart2="http://lyrics.kugou.com/download?ver=1&client=pc&id=%1&accesskey=%2&fmt=krc";
@@ -110,7 +111,6 @@ check this out===>http://trackercdn.kugou.com/i/v2/?cmd=24
 
 MyNetWork::MyNetWork(QObject *parent) : QObject(parent)
 {
-
     m_pageindex=1;
     m_songname="";
 }
@@ -118,7 +118,7 @@ MyNetWork::MyNetWork(QObject *parent) : QObject(parent)
 MyNetWork::~MyNetWork()
 {
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
 {
     QString songname=name;
@@ -133,11 +133,11 @@ void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
     requestalbum1.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
     QNetworkReply *reply1= mangeralbum1.post(requestalbum1,"offset=0&total=true&limit=100&type=1&s="+songencod);
 
-///loop1
+    //loop1
     QEventLoop loop1;
     connect(&mangeralbum1,SIGNAL(finished(QNetworkReply*)),&loop1,SLOT(quit()));
     loop1.exec();
-////
+
     QByteArray byt1=reply1->readAll();
     if(reply1->error()==QNetworkReply::NoError)
     {
@@ -153,20 +153,20 @@ void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
         QNetworkAccessManager mangeralbum2;
         requestalbum2.setUrl(picurl);
         QNetworkReply *reply2= mangeralbum2.get(requestalbum2);
-///loop2
+        //loop2
         QEventLoop loop2;
         connect(&mangeralbum2,SIGNAL(finished(QNetworkReply*)),&loop2,SLOT(quit()));
         loop2.exec();
-///
+
         if(reply2->error()==QNetworkReply::NoError)
         {
             QByteArray byt=reply2->readAll();
             emit setpic(byt,name);
-    ///save
+            //save
             QPixmap pix;
             pix.loadFromData(byt);
             pix.save(savelocal);
-    ///
+
             reply2->deleteLater();
         }
         else
@@ -185,8 +185,6 @@ void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
 
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////
 void MyNetWork::requestSong(const QString &str)//请求歌曲
 {
     QString songname=str;
@@ -204,35 +202,32 @@ void MyNetWork::requestSong(const QString &str)//请求歌曲
     requestsong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
     QNetworkReply *reply1= mangersong.post(requestsong,"offset=0&total=true&limit=100&type=1&s="+byt);
 
-
 #else
     QString Url = ITWUSUN.arg(1).arg(songname);
     requestsong.setUrl(Url);
     QNetworkReply *reply1= mangersong.get(requestsong);
 #endif
 
-
-///loop1
+    //loop1
     QEventLoop loop1;
     connect(reply1,SIGNAL(finished()),&loop1,SLOT(quit()));
     loop1.exec();
-///
 
-   if(reply1->error()==QNetworkReply::NoError)
-   {
+    if(reply1->error()==QNetworkReply::NoError)
+    {
         QByteArray arry=reply1->readAll();
 
         emit sig_reqSongfinished(arry);
-   }
-   else
-   {
-       reply1->deleteLater();
-       return;
-   }
-   reply1->deleteLater();
+    }
+    else
+    {
+        reply1->deleteLater();
+        return;
+    }
+    reply1->deleteLater();
 
-   m_pageindex=1;
-   m_songname=str;
+    m_pageindex=1;
+    m_songname=str;
 }
 
 void MyNetWork::requestSongNextPage()
@@ -261,15 +256,14 @@ void MyNetWork::requestSongNextPage()
     connect(reply1,SIGNAL(finished()),&loop1,SLOT(quit()));
     loop1.exec();
 ///
-   if(reply1->error()==QNetworkReply::NoError)
-   {
+    if(reply1->error()==QNetworkReply::NoError)
+    {
         QByteArray arry=reply1->readAll();
         emit sig_reqSongNextPagefinished(arry);
-   }
-   reply1->deleteLater();
+    }
+    reply1->deleteLater();
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MyNetWork::requestlrc(const QString &lrcname,qint64 totaltime,const QString &lrcloaction)//请求歌词
 {
     if(totaltime==0)
@@ -303,11 +297,11 @@ void MyNetWork::requestlrc(const QString &lrcname,qint64 totaltime,const QString
     QNetworkAccessManager mangerlrc1;
     requestlrc1.setUrl(QUrl(KGLrcPart1.arg(songname).arg(totaltime).arg(hash)));
     QNetworkReply *reply1= mangerlrc1.get(requestlrc1);
-///loop1
+    //loop1
     QEventLoop loop1;
     connect(&mangerlrc1,SIGNAL(finished(QNetworkReply*)),&loop1,SLOT(quit()));
     loop1.exec();
-////
+
     if(reply1->error()!=QNetworkReply::NoError)
     {
         reply0->deleteLater();
@@ -326,30 +320,30 @@ void MyNetWork::requestlrc(const QString &lrcname,qint64 totaltime,const QString
     QNetworkAccessManager mangerlrc2;
     requestlrc2.setUrl(KGLrcPart2.arg(id).arg(accesskey));
     QNetworkReply *reply2= mangerlrc2.get(requestlrc2);
-///loop2
+    //loop2
     QEventLoop loop2;
     connect(&mangerlrc2,SIGNAL(finished(QNetworkReply*)),&loop2,SLOT(quit()));
     loop2.exec();
-///
+
     if(reply2->error()==QNetworkReply::NoError)
     {
-            QByteArray byt=reply2->readAll();
-            QJsonDocument doc=QJsonDocument::fromJson(byt);
-            QJsonObject obj=doc.object();
-            QByteArray utf8byt=obj.value("content").toString().toUtf8();
-            QByteArray bytfrom64=QByteArray::fromBase64(utf8byt);
-            if(bytfrom64.size()!=0)
+        QByteArray byt=reply2->readAll();
+        QJsonDocument doc=QJsonDocument::fromJson(byt);
+        QJsonObject obj=doc.object();
+        QByteArray utf8byt=obj.value("content").toString().toUtf8();
+        QByteArray bytfrom64=QByteArray::fromBase64(utf8byt);
+        if(bytfrom64.size()!=0)
+        {
+            emit dolrcworkfinished(bytfrom64,lrcname);//发送做完的信号
+            //用于保存
+            QFile file(lrcloaction);
+            file.resize(0);
+            if(file.open(QIODevice::WriteOnly))//如果打开失败
             {
-                emit dolrcworkfinished(bytfrom64,lrcname);//发送做完的信号
-                ////////////////////////////用于保存
-                QFile file(lrcloaction);
-                file.resize(0);
-                if(file.open(QIODevice::WriteOnly))//如果打开失败
-                {
-                    file.write(bytfrom64); //write the kugou source krc
-                    file.close();
-                }
+                file.write(bytfrom64); //write the kugou source krc
+                file.close();
             }
+        }
     }
     reply0->deleteLater();
     reply1->deleteLater();
@@ -357,22 +351,22 @@ void MyNetWork::requestlrc(const QString &lrcname,qint64 totaltime,const QString
 }
 
 const QImage &MyNetWork::BgWhiteChange(QImage &image , int brightness)
+{
+    uchar *line =image.scanLine(0);
+    uchar *pixel = line;
+    for (int y = 0; y < image.height(); ++y)
     {
-        uchar *line =image.scanLine(0);
-            uchar *pixel = line;
-            for (int y = 0; y < image.height(); ++y)
-            {
-                pixel = line;
-                for (int x = 0; x < image.width(); ++x)
-                {
-                    *pixel = qBound(0, *pixel + brightness, 255);
-                    *(pixel + 1) = qBound(0, *(pixel + 1) + brightness, 255);
-                    *(pixel + 2) = qBound(0, *(pixel + 2) + brightness, 255);
-                    pixel += 4;
-                }
-                line += image.bytesPerLine();
-            }
-            return image;
+        pixel = line;
+        for (int x = 0; x < image.width(); ++x)
+        {
+            *pixel = qBound(0, *pixel + brightness, 255);
+            *(pixel + 1) = qBound(0, *(pixel + 1) + brightness, 255);
+            *(pixel + 2) = qBound(0, *(pixel + 2) + brightness, 255);
+            pixel += 4;
+        }
+        line += image.bytesPerLine();
+    }
+    return image;
 }
 
 void MyNetWork::requestMv(const QString &mvname)
@@ -382,15 +376,13 @@ void MyNetWork::requestMv(const QString &mvname)
     QNetworkAccessManager manger;
     request.setUrl(ITWUSUN.arg(1).arg(QString(byt)));
     QNetworkReply *reply1= manger.get(request);
-///loop1
+    //loop1
     QEventLoop loop1;
     connect(reply1,SIGNAL(finished()),&loop1,SLOT(quit()));
     loop1.exec();
-///
 
-
-   if(reply1->error()==QNetworkReply::NoError)
-   {
+    if(reply1->error()==QNetworkReply::NoError)
+    {
         QByteArray arry=reply1->readAll();
 
         QJsonDocument doc=QJsonDocument::fromJson(arry);
@@ -398,14 +390,14 @@ void MyNetWork::requestMv(const QString &mvname)
         QJsonObject obj=array.at(0).toObject();
         QString url= obj.value("MvUrl").toString();//添加mp3Url
         if(!url.isEmpty())
-         emit sig_requestMvfinished(url);
-   }
-   else
-   {
-       reply1->deleteLater();
-       return;
-   }
-   reply1->deleteLater();
+            emit sig_requestMvfinished(url);
+    }
+    else
+    {
+        reply1->deleteLater();
+        return;
+    }
+    reply1->deleteLater();
 }
 
 void MyNetWork::requestBgPic(const QString &author)
@@ -425,33 +417,32 @@ void MyNetWork::requestBgPic(const QString &author)
     QJsonArray array=obj.value("array").toArray();
 
     QVector<QPixmap> m_pixvector;
-    for(int i=0;i<array.count();i++)
+    for(int i=0; i<array.count(); i++)
     {
+        QJsonObject obj1= array.at(i).toObject();
+        QString url=obj1.value("bkurl").toString();
+        if(!url.isEmpty())//如果不为空
+        {
+            QNetworkAccessManager *manger2=new QNetworkAccessManager(this);
+            QNetworkReply *reply2=manger2->get(QNetworkRequest(url));
 
-       QJsonObject obj1= array.at(i).toObject();
-       QString url=obj1.value("bkurl").toString();
-       if(!url.isEmpty())//如果不为空
-       {
-           QNetworkAccessManager *manger2=new QNetworkAccessManager(this);
-           QNetworkReply *reply2=manger2->get(QNetworkRequest(url));
+            QEventLoop loop2;
+            connect(manger2,SIGNAL(finished(QNetworkReply*)),&loop2,SLOT(quit()));
+            loop2.exec();
 
-           QEventLoop loop2;
-           connect(manger2,SIGNAL(finished(QNetworkReply*)),&loop2,SLOT(quit()));
-           loop2.exec();
+            QByteArray byt2=reply2->readAll();
 
-           QByteArray byt2=reply2->readAll();
+            QImage image;
+            image.loadFromData(byt2);
+            BgWhiteChange(image,-50);
+            image.save(QString("D:/ExcellentAlbum/%1/%2.jpg").arg(author).arg(i));
 
-           QImage image;
-           image.loadFromData(byt2);
-           BgWhiteChange(image,-50);
-           image.save(QString("D:/ExcellentAlbum/%1/%2.jpg").arg(author).arg(i));
+            m_pixvector<<QPixmap::fromImage(image);
 
-           m_pixvector<<QPixmap::fromImage(image);
-
-           manger2->deleteLater();
-           reply2->deleteLater();
-       }
+            manger2->deleteLater();
+            reply2->deleteLater();
+        }
     }
     if(!m_pixvector.isEmpty())
-    emit sig_setBgpix(m_pixvector,author);
+        emit sig_setBgpix(m_pixvector,author);
 }

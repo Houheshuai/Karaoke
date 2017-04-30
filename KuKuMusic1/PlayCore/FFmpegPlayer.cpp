@@ -404,9 +404,6 @@ int interrupt_cb(void *ctx)//网络不畅就会一直做这里 ，正在播放�
    return 0;
 }
 
-
-
-
 FFmpegPlayer::FFmpegPlayer(QObject *parent) : QThread(parent)
 {
     ffplayerPointer=this;
@@ -499,7 +496,6 @@ void FFmpegPlayer::FreeAllocSpace() //存在内在
     packet_queue_flush(&m_MS.videoq);//队列freee
 
     m_MS={0};//自动将能初始化为0的都初始化为NULL
-
 }
 
 

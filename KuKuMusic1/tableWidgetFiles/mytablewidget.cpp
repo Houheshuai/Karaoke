@@ -45,7 +45,7 @@ void myTableWidget::slot_btnloveclicked()
 
 void myTableWidget::slot_playingWidgetDelBtnClicked()
 {
-    int playIndex= currentSongIndex();
+    int playIndex = currentSongIndex();
     removeSong(playIndex);
 }
 

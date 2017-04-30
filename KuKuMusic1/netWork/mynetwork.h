@@ -1,13 +1,14 @@
 #ifndef MYNETWORK_H
 #define MYNETWORK_H
 
-#include<QObject>
-#include<QNetworkAccessManager>
-#include<QNetworkReply>
-#include<QNetworkRequest>
-#include<Qimage>
-#include<QPixmap>
+#include <QObject>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <Qimage>
+#include <QPixmap>
 
+//网络有关，下载歌曲唱片、歌词
 class MyNetWork : public QObject
 {
     Q_OBJECT

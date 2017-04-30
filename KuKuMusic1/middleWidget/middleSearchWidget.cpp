@@ -1,23 +1,23 @@
 #include "middleSearchWidget.h"
+#include "Global_ValueGather.h"
+#include "middleLeftStackWidget0.h"
+#include "myTablePlayListFinal.h"
+#include "myPushButton.h"
 
-#include<QHeaderView>
-#include<QHBoxLayout>
-#include<QVBoxLayout>
-#include<QJsonDocument>
-#include<QJsonArray>
-#include<QJsonObject>
-#include<QPainter>
-#include<QTime>
-#include<QMessageBox>
-#include<QMenu>
-#include<QScrollBar>
+#include <QHeaderView>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QPainter>
+#include <QTime>
+#include <QMessageBox>
+#include <QMenu>
+#include <QScrollBar>
 
-#include"Global_ValueGather.h"
-#include"middleLeftStackWidget0.h"
-#include"myTablePlayListFinal.h"
-#include"myPushButton.h"
-
-#define USE_NETCLOUD 0
+//#define USE_NETCLOUD 0
+#define USE_NETCLOUD 1
 
 loadingWidget::loadingWidget(QString pixurl,int tinypixcount,QString text,QWidget *p):baseWidget(p)
 {
@@ -32,11 +32,12 @@ loadingWidget::loadingWidget(QString pixurl,int tinypixcount,QString text,QWidge
     connect(animationtimeline,SIGNAL(frameChanged(int)),SLOT(slot_valuechange(int)));
     animationtimeline->setLoopCount(0);
 
-    for(int i=0;i<tinypixcount;i++)//进入
+    for(int i=0; i<tinypixcount; i++) //进入
     {
         m_listpix<<pix.copy(i*(pix.width()/tinypixcount),0,pix.width()/tinypixcount,pix.height());
     }
 }
+
 void loadingWidget::paintEvent(QPaintEvent *p)
 {
     baseWidget::paintEvent(p);
@@ -55,16 +56,16 @@ void loadingWidget::paintEvent(QPaintEvent *p)
 
 void loadingWidget::showEvent(QShowEvent *e)
 {
-        baseWidget::showEvent(e);
-        if(this->isHidden())
-            animationtimeline->stop();
-        else
-        {
-            animationtimeline->start();
-            raise();
-        }
+    baseWidget::showEvent(e);
+    if(this->isHidden())
+        animationtimeline->stop();
+    else
+    {
+        animationtimeline->start();
+        raise();
+    }
 }
-////////////////////////////////////////////////////////////////////////////////
+
 middleSearchWidget::middleSearchWidget(QWidget*p):baseWidget(p)
 {
     setStyleSheet("QLabel{color:rgb(153,153,153);font-size:12px;}"
@@ -85,36 +86,40 @@ void middleSearchWidget::slot_addRequestSong(const QByteArray& byt)
     QJsonObject obj1=obj0.value("result").toObject();
     QJsonArray arry=obj1.value("songs").toArray();
     int arrycount=arry.count();
-    for(int i=0;i<arrycount;i++)//在这里完成搜索插入列表
+    for(int i=0; i<arrycount; i++) //在这里完成搜索插入列表
     {
-       QJsonObject obj2=arry.at(i).toObject();
-       m_songlist<<obj2.value("mp3Url").toString();//添加mp3Url
+        QJsonObject obj2=arry.at(i).toObject();
+        m_songlist<<obj2.value("mp3Url").toString();//添加mp3Url
 
-       int dur=obj2.value("duration").toInt();
-       QTime total_time(0, (dur/60000)%60, (dur/1000)%60);
-       QString duration=total_time.toString("mm:ss");
+        int dur = obj2.value("duration").toInt();
+        QTime total_time(0, (dur/60000)%60, (dur/1000)%60);
+        QString duration = total_time.toString("mm:ss");
 
-       QJsonObject albumnObj=obj2.value("album").toObject();
-       QString albumname= albumnObj.value("name").toString();
+        QJsonObject albumnObj = obj2.value("album").toObject();
+        QString albumname = albumnObj.value("name").toString();
 
+        QString songname = obj2.value("name").toString();
+        QJsonArray arry1 = obj2.value("artists").toArray();
+        QJsonObject obj3 = arry1.at(0).toObject();
+        QString author = obj3.value("name").toString();
 
-       QString songname=obj2.value("name").toString();
-       QJsonArray arry1=obj2.value("artists").toArray();
-       QJsonObject obj3=arry1.at(0).toObject();
-       QString author= obj3.value("name").toString();
+        int row = m_table->rowCount();
+        m_table->insertRow(row);
+        m_table->setItem(row, 0, new QTableWidgetItem(""));
+        //m_table->setItem(row, 1, new QTableWidgetItem(author + "-" + songname));
+        //m_table->setItem(row, 2, new QTableWidgetItem(albumname));
+        //m_table->setItem(row, 3, new QTableWidgetItem(duration));
+        m_table->setItem(row, 1, new QTableWidgetItem(songname));
+        m_table->setItem(row, 2, new QTableWidgetItem(author));
+        m_table->setItem(row, 3, new QTableWidgetItem(albumname));
 
-       int row= m_table->rowCount();
-       m_table->insertRow(row);
-       m_table->setItem(row,0,new QTableWidgetItem(""));
-       m_table->setItem(row,1,new QTableWidgetItem(author+"-"+songname));
-       m_table->setItem(row,2,new QTableWidgetItem(albumname));
-       m_table->setItem(row,3,new QTableWidgetItem(duration));
-       m_table->setItem(row,4,new QTableWidgetItem(""));
+        m_table->setItem(row, 4, new QTableWidgetItem(duration));
+        m_table->setItem(row, 5, new QTableWidgetItem(""));
     }
 #else
     QJsonDocument doc=QJsonDocument::fromJson(byt);
     QJsonArray array=doc.array();
-    for(int i=0;i<array.count();i++)//在这里完成搜索插入列表
+    for(int i=0; i<array.count(); i++) //在这里完成搜索插入列表
     {
         QJsonObject obj=array.at(i).toObject();
 
@@ -137,20 +142,22 @@ void middleSearchWidget::slot_addRequestSong(const QByteArray& byt)
 #endif
     setRequestisFinished(true);//request finished so we could request the song of the next page;
 }
+
 void middleSearchWidget::initMaskWidget()
 {
     m_maskwid=new loadingWidget(":/image/middlewidget/loading.png",12,"正在努力加载中~~",this);
     m_maskwid->setGeometry(0,1,width(),height());
     m_maskwid->show();
 }
+
 void middleSearchWidget::slot_requestSong(const QByteArray &byt)//返回的chao
 {
     m_maskwid->hide();
     m_songlist.clear();
     int count=m_table->rowCount();
-    for(int i=0;i<count;i++)
+    for(int i=0; i<count; i++)
     {
-         m_table->removeRow(0); //不是一个好办法 的没办法
+        m_table->removeRow(0); //不是一个好办法 的没办法
     }
     slot_addRequestSong(byt);
 }
@@ -183,24 +190,20 @@ void middleSearchWidget::slot_autoRequestNextPage(int value)
     {
         if(m_isRequestFinished)
         {
-          emit sig_requestSongNextPage();
-          setRequestisFinished(false);//prevent to request network for several times;
+            emit sig_requestSongNextPage();
+            setRequestisFinished(false);//prevent to request network for several times;
         }
     }
-
 }
+
 void middleSearchWidget::init()
 {
     QHBoxLayout *hlyout=new QHBoxLayout;
-
     QHBoxLayout *hlyout1=new QHBoxLayout;
-
     QVBoxLayout *vlyout=new QVBoxLayout;
-
 
     m_table=new middleSearchTableWidget(this);
     m_table->setInitSearchTableWidget(this);
-
 
     baseWidget *wid1=new baseWidget(this);
     wid1->setFixedHeight(36);
@@ -242,7 +245,7 @@ void middleSearchWidget::init()
     QLabel *label5=new QLabel("操作",this);
 
     m_checkbox->setStyleSheet("QCheckBox::indicator:checked{border-image:url(:/image/middlewidget/checked.png)}"
-                                   "QCheckBox::indicator:unchecked{border-image:url(:/image/middlewidget/unchecked.png)}");
+                              "QCheckBox::indicator:unchecked{border-image:url(:/image/middlewidget/unchecked.png)}");
 
     m_labelSinger->adjustSize();
     m_labelAlbum->adjustSize();
@@ -282,50 +285,50 @@ void middleSearchWidget::slot_checkBoxClicked()
 {
     if(m_checkbox->checkState()==Qt::Checked)
     {
-        for(int i=0;i<m_table->rowCount();i++)
+        for(int i=0; i<m_table->rowCount(); i++)
         {
-           QCheckBox*box= (QCheckBox*)m_table->cellWidget(i,0);
-           box->setCheckState(Qt::Checked);
+            QCheckBox*box= (QCheckBox*)m_table->cellWidget(i,0);
+            box->setCheckState(Qt::Checked);
         }
     }
     else
     {
-        for(int i=0;i<m_table->rowCount();i++)
+        for(int i=0; i<m_table->rowCount(); i++)
         {
-           QCheckBox*box= (QCheckBox*)m_table->cellWidget(i,0);
-           box->setCheckState(Qt::Unchecked);
+            QCheckBox*box= (QCheckBox*)m_table->cellWidget(i,0);
+            box->setCheckState(Qt::Unchecked);
         }
     }
 }
 
 void middleSearchWidget::slot_menuWork()
 {
-  int index=sender()->objectName().toInt();
-  QStringList list_name;
-  QStringList list_dur;
-  QStringList list_url;
+    int index=sender()->objectName().toInt();
+    QStringList list_name;
+    QStringList list_dur;
+    QStringList list_url;
 
-  int count=m_table->rowCount();
-  for(int i=0;i<count;i++)
-  {
-      QCheckBox* box= (QCheckBox*)m_table->cellWidget(i,0);
-      playingWidgetBtn *btn=NULL;
-          if(box->checkState()==Qt::Checked)//如果选中项
-          {
-              btn=(playingWidgetBtn*)m_table->cellWidget(i,2);
-              list_name<<btn->text()+"-"+m_table->item(i,1)->text();
+    int count=m_table->rowCount();
+    for(int i=0; i<count; i++)
+    {
+        QCheckBox* box= (QCheckBox*)m_table->cellWidget(i,0);
+        playingWidgetBtn *btn=NULL;
+        if(box->checkState()==Qt::Checked)//如果选中项
+        {
+            btn=(playingWidgetBtn*)m_table->cellWidget(i,2);
+            list_name<<btn->text()+"-"+m_table->item(i,1)->text();
 
-              list_dur<<m_table->item(i,4)->text();
+            list_dur<<m_table->item(i,4)->text();
 
-              list_url<<m_songlist.value(i);
-          }
-  }
-  if(list_name.count()==0)
-  {
-      QMessageBox::information(NULL,"提示","请选择一首歌曲");
-      return;
-  }
-   midstack0Pointer->myTablePlayListFinalVector().value(index)->slot_addSongFromSearchTable(list_name,list_url,list_dur);
+            list_url<<m_songlist.value(i);
+        }
+    }
+    if(list_name.count()==0)
+    {
+        QMessageBox::information(NULL,"提示","请选择一首歌曲");
+        return;
+    }
+    midstack0Pointer->myTablePlayListFinalVector().value(index)->slot_addSongFromSearchTable(list_name,list_url,list_dur);
 
 }
 void middleSearchWidget::slot_btnplayclicked()//obviously,playbutton
@@ -335,19 +338,19 @@ void middleSearchWidget::slot_btnplayclicked()//obviously,playbutton
     QStringList list_url;
 
     int count=m_table->rowCount();
-    for(int i=0;i<count;i++)
+    for(int i=0; i<count; i++)
     {
         QCheckBox* box= (QCheckBox*)m_table->cellWidget(i,0);
         playingWidgetBtn *btn=NULL;
-         if(box->checkState()==Qt::Checked)//如果选中项
-            {
-                btn=(playingWidgetBtn*)m_table->cellWidget(i,2);
-                list_name<<btn->text()+"-"+m_table->item(i,1)->text();
+        if(box->checkState()==Qt::Checked)//如果选中项
+        {
+            btn=(playingWidgetBtn*)m_table->cellWidget(i,2);
+            list_name<<btn->text()+"-"+m_table->item(i,1)->text();
 
-                list_dur<<m_table->item(i,4)->text();
+            list_dur<<m_table->item(i,4)->text();
 
-                list_url<<m_songlist.value(i);
-            }
+            list_url<<m_songlist.value(i);
+        }
     }
     if(list_name.count()!=0)
         midstack0Pointer->myTablePlayListFinalVector().value(0)->slot_playSongFromSearchTable(list_name,list_url,list_dur);
@@ -370,7 +373,8 @@ void middleSearchWidget::slot_btnaddclicked()
     menu.exec(QCursor::pos());
 
     QList<QAction*> actlist=  menu.actions();
-    foreach (QAction* act, actlist) {
+    foreach (QAction* act, actlist)
+    {
         act->deleteLater();
     }
 }

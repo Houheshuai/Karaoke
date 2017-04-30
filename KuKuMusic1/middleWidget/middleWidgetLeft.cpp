@@ -66,11 +66,13 @@ void middleWidgetLeft::setBackgroundnormal()
     setDrawVerticalLine(true);
     update();
 }
+
 void middleWidgetLeft::setWidgetOpacity(int value)
 {
-     middleWidgetLeft::bgcolor=QColor(255,255,255,value);
-     update();
+    middleWidgetLeft::bgcolor=QColor(255,255,255,value);
+    update();
 }
+
 void middleWidgetLeft::initLayout()
 {
     QVBoxLayout *vlyout=new QVBoxLayout;
@@ -91,7 +93,6 @@ void middleWidgetLeft::initLayout()
     m_stackwid->addWidget(m_Swidget4);
 
     m_stackwid->setContentsMargins(0,0,0,0);
-
 
     m_btn[0]=new stackButton(":/image/middlewidget/btn_music (1).png",":/image/middlewidget/btn_music (2).png",":/image/middlewidget/btn_music (3).png",this);
     m_btn[1]=new stackButton(":/image/middlewidget/btn_cloud (1).png",":/image/middlewidget/btn_cloud (2).png",":/image/middlewidget/btn_cloud (3).png",this);
@@ -114,13 +115,18 @@ void middleWidgetLeft::initLayout()
     hlyout->setContentsMargins(0,0,0,0);
     hlyout->setSpacing(0);
 
+    m_btn[0]->hide();
+    m_btn[1]->hide();
+    m_btn[2]->hide();
+    m_btn[3]->hide();
+    m_btn[4]->hide();
     vlyout->addLayout(hlyout);
     vlyout->addWidget(m_stackwid);
     vlyout->setSpacing(0);
     vlyout->setContentsMargins(0,0,0,0);
     setLayout(vlyout);
 
-    for(int i=0;i<5;i++)
+    for(int i=0; i<5; i++)
     {
         m_btn[i]->setObjectName(QString::number(i));
         connect(m_btn[i],SIGNAL(pressed()),this,SLOT(slot_btn()));
@@ -131,6 +137,7 @@ void middleWidgetLeft::initLayout()
     m_stackwid->setCurrentIndex(0);//选中第一个stackwidget
     m_btn[0]->setselected(true); //设置
 }
+
 void middleWidgetLeft::slot_changeButtonSelected(int index)
 {
     m_isAnima=true;
@@ -139,15 +146,15 @@ void middleWidgetLeft::slot_changeButtonSelected(int index)
     m_animation->setEndValue(index*m_btn[0]->width());
     m_animation->start();
 
-    for(int i=0;i<5;i++)
+    for(int i=0; i<5; i++)
     {
         if(i==index)
         {
-           m_btn[index]->setselected(true);
+            m_btn[index]->setselected(true);
         }
         else
         {
-          m_btn[i]->setselected(false);
+            m_btn[i]->setselected(false);
         }
     }
 
@@ -167,6 +174,7 @@ void middleWidgetLeft::slot_changeButtonSelected(int index)
     }
     m_preItem=index;
 }
+
 void middleWidgetLeft::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
@@ -175,23 +183,23 @@ void middleWidgetLeft::paintEvent(QPaintEvent *)
     p.drawRect(-1,-1,width(),height()+1);
     p.setPen(color);
 
-   if(m_isAnima)
+    if(m_isAnima)
     {
-       if(m_isDrawVerticalLine)
-       p.drawLine(width()-1,0,width()-1,height());//vertical line
+        if(m_isDrawVerticalLine)
+            p.drawLine(width()-1,0,width()-1,height());//vertical line
 
-        p.drawLine(0,m_btn[0]->y()+m_btn[0]->height()-1,m_x+(m_btn[0]->width()-m_pix.width())/2-1,m_btn[0]->y()+m_btn[0]->height()-1);//first line
-        p.drawLine(m_x+(m_btn[0]->width()-m_pix.width())/2+m_pix.width(),m_btn[0]->y()+m_btn[0]->height()-1,width(),m_btn[0]->y()+m_btn[0]->height()-1);//second line
-        p.drawPixmap(m_x+(m_btn[0]->width()-m_pix.width())/2,m_btn[0]->y()+m_btn[0]->height()-m_pix.height()+1,m_pix);
+        //p.drawLine(0,m_btn[0]->y()+m_btn[0]->height()-1,m_x+(m_btn[0]->width()-m_pix.width())/2-1,m_btn[0]->y()+m_btn[0]->height()-1);//first line
+        //p.drawLine(m_x+(m_btn[0]->width()-m_pix.width())/2+m_pix.width(),m_btn[0]->y()+m_btn[0]->height()-1,width(),m_btn[0]->y()+m_btn[0]->height()-1);//second line
+        //p.drawPixmap(m_x+(m_btn[0]->width()-m_pix.width())/2,m_btn[0]->y()+m_btn[0]->height()-m_pix.height()+1,m_pix); //隐藏小三角
     }
     else
     {
-       if(m_isDrawVerticalLine)
-       p.drawLine(width()-1,0,width()-1,height());
+        if(m_isDrawVerticalLine)
+            p.drawLine(width()-1,0,width()-1,height());
 
-       p.drawLine(0,m_btn[0]->y()+m_btn[0]->height()-1,m_index*m_btn[0]->width()+(m_btn[0]->width()-m_pix.width())/2-1,m_btn[0]->y()+m_btn[0]->height()-1);
-       p.drawLine(m_index*m_btn[0]->width()+(m_btn[0]->width()-m_pix.width())/2+m_pix.width(),m_btn[0]->y()+m_btn[0]->height()-1,width(),m_btn[0]->y()+m_btn[0]->height()-1);
-       p.drawPixmap(m_index*m_btn[0]->width()+(m_btn[0]->width()-m_pix.width())/2,m_btn[0]->y()+m_btn[0]->height()-m_pix.height()+1,m_pix);
+        p.drawLine(0,m_btn[0]->y()+m_btn[0]->height()-1,m_index*m_btn[0]->width()+(m_btn[0]->width()-m_pix.width())/2-1,m_btn[0]->y()+m_btn[0]->height()-1);
+        p.drawLine(m_index*m_btn[0]->width()+(m_btn[0]->width()-m_pix.width())/2+m_pix.width(),m_btn[0]->y()+m_btn[0]->height()-1,width(),m_btn[0]->y()+m_btn[0]->height()-1);
+        p.drawPixmap(m_index*m_btn[0]->width()+(m_btn[0]->width()-m_pix.width())/2,m_btn[0]->y()+m_btn[0]->height()-m_pix.height()+1,m_pix);
     }
 }
 void middleWidgetLeft::slot_btn()
