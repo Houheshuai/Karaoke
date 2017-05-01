@@ -1,34 +1,33 @@
 #include "middleWidgetRight.h"
+#include "middlewidgetleft.h"
+#include "myPushButton.h"
+#include "lyriclabel.h"
+#include "middleSearchWidget.h"
+#include "middleWidgets.h"
+#include "mainwindow.h"
+#include "middleWidgets.h"
+#include "Global_ValueGather.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include<QPainter>
-#include<middlewidgetleft.h>
+#include <QPainter>
 
-#include"myPushButton.h"
-#include"lyriclabel.h"
-#include"middleSearchWidget.h"
-#include"middleWidgets.h"
-#include"mainwindow.h"
-#include"middleWidgets.h"
-
-#include"Global_ValueGather.h"
-QColor middleWidgetRight::bgcolor= QColor(230,230,230);//初始化
+QColor middleWidgetRight::bgcolor = QColor(230,230,230);//初始化
 
 middleWidgetRight::middleWidgetRight(QWidget*parent):baseWidget(parent)
 {
-    m_isdrawline=true;
+    m_isdrawline = true;
     init();
     emit listButtons().at(0)->click();
 }
+
 void middleWidgetRight::init()
 {
-
     setMinimumWidth(690);
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     QHBoxLayout *hlyout=new QHBoxLayout;
     QVBoxLayout *vlyout=new QVBoxLayout;
 
-    m_stackWid=new QStackedWidget(this);
+    m_stackWid = new QStackedWidget(this);
 
 #if 0
     m_stackWid->addWidget(m_web0=new WebWidget(this));
@@ -47,28 +46,26 @@ void middleWidgetRight::init()
     m_web1->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
     m_web1->m_web->show();
 
-        m_web2->m_web->load(QUrl("http://www2.kugou.kugou.com/yueku/v9/html/default_special.html?ver=8071"));
-        m_web2->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
-        m_web2->m_web->show();
+    m_web2->m_web->load(QUrl("http://www2.kugou.kugou.com/yueku/v9/html/default_special.html?ver=8071"));
+    m_web2->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
+    m_web2->m_web->show();
 
-        m_web3->m_web->load(QUrl("http://www2.kugou.kugou.com/mv/v9/html/mvradio.html"));
-        m_web3->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
-        m_web3->m_web->show();
+    m_web3->m_web->load(QUrl("http://www2.kugou.kugou.com/mv/v9/html/mvradio.html"));
+    m_web3->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
+    m_web3->m_web->show();
 
-        m_web4->m_web->load(QUrl("http://fanxing.kugou.com/mini/index.html?ver=8071"));
-        m_web4->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
-        m_web4->m_web->show();
+    m_web4->m_web->load(QUrl("http://fanxing.kugou.com/mini/index.html?ver=8071"));
+    m_web4->m_web->settings()->setUserStyleSheetUrl(QUrl("qrc:/css/QWebViewStyle.css"));
+    m_web4->m_web->show();
 
- #else
-
-
-        m_stackWid->addWidget(new baseWidget(this));
-        m_stackWid->addWidget(new baseWidget(this));
-        m_stackWid->addWidget(new baseWidget(this));
-        m_stackWid->addWidget(new baseWidget(this));
-        m_stackWid->addWidget(m_MvWid=new MvWidget(this));
-        m_stackWid->addWidget(m_lrcwid=new LyricLabel(false,this));
-        m_stackWid->addWidget(m_searchwid=new middleSearchWidget(this));
+#else
+    m_stackWid->addWidget(new baseWidget(this));
+    m_stackWid->addWidget(new baseWidget(this));
+    m_stackWid->addWidget(new baseWidget(this));
+    m_stackWid->addWidget(new baseWidget(this));
+    m_stackWid->addWidget(m_MvWid = new MvWidget(this));
+    m_stackWid->addWidget(m_lrcwid = new LyricLabel(false,this));
+    m_stackWid->addWidget(m_searchwid = new middleSearchWidget(this));
 #endif
 
     myPushButton *m_btn=new myPushButton("乐库",this);
@@ -110,10 +107,17 @@ void middleWidgetRight::init()
     hlyout->setContentsMargins(0,0,0,0);
     m_listbtn<<m_btn<<m_btn1<<m_btn2<<m_btn3<<m_btn4<<m_btn5;
 
-    for(int i=0;i<m_listbtn.count();i++)
+    m_btn->hide();     //没有实现功能，先隐藏按钮
+    m_btn1->hide();
+    m_btn2->hide();
+    m_btn3->hide();
+    m_btn4->hide();
+   // m_btn5->hide();
+
+    for(int i=0; i<m_listbtn.count(); i++)
     {
         m_listbtn.at(i)->setObjectName(QString::number(i));
-       connect(m_listbtn.at(i),SIGNAL(clicked()),this,SLOT(slot_btnClick()));
+        connect(m_listbtn.at(i),SIGNAL(clicked()),this,SLOT(slot_btnClick()));
     }
 
     m_wid=new baseWidget(this);
@@ -129,17 +133,17 @@ void middleWidgetRight::init()
 
 void middleWidgetRight::setInitMainWindow(mainWindow *p)
 {
-   m_mainWindow=p;
-   m_lrcwid->setInitMainWindow(p);
+    m_mainWindow=p;
+    m_lrcwid->setInitMainWindow(p);
 }
 
 void middleWidgetRight::slot_setSearchStack()//搜索界面
 {
-        QLineEdit *ledit=(QLineEdit*)sender();
-        QString text=ledit->text().simplified();
-        if(text.isEmpty())
-            text=ledit->placeholderText();
-        slot_search(text);
+    QLineEdit *ledit=(QLineEdit*)sender();
+    QString text=ledit->text().simplified();
+    if(text.isEmpty())
+        text=ledit->placeholderText();
+    slot_search(text);
 }
 
 void middleWidgetRight::slot_search(const QString& text)
@@ -150,10 +154,10 @@ void middleWidgetRight::slot_search(const QString& text)
     m_searchwid->showLoadingWidget();
     m_searchwid->setRequestisFinished(false); // request the song   we give the bool variable a false value
 
-    for(int i=0;i<m_listbtn.count();i++)//do not select
+    for(int i=0; i<m_listbtn.count(); i++) //do not select
     {
-          m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(68,68,68);font-size:17px;font-family:黑体;}"
-                                         "QPushButton:hover{color:rgb(40,143,231);}");
+        m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(68,68,68);font-size:17px;font-family:黑体;}"
+                                       "QPushButton:hover{color:rgb(40,143,231);}");
     }
     m_stackWid->setCurrentIndex(m_listbtn.count());//the last
 
@@ -162,7 +166,7 @@ void middleWidgetRight::slot_search(const QString& text)
 
 void middleWidgetRight::slot_setLrcShowStack()
 {
-        m_stackWid->setCurrentIndex(5);
+    m_stackWid->setCurrentIndex(5);
 }
 
 void middleWidgetRight::resizeEvent(QResizeEvent *e)
@@ -173,16 +177,16 @@ void middleWidgetRight::resizeEvent(QResizeEvent *e)
         int getwidth= m_middlewidget->width()-m_middlewidget->m_leftWid->width();
         m_wid->setGeometry(m_middlewidget->m_leftWid->width(),0,getwidth,m_wid->height());
     }
-
 }
+
 void middleWidgetRight::slot_curStackChange(int index)
 {
-    for(int i=0;i<m_listbtn.count();i++)
+    for(int i=0; i<m_listbtn.count(); i++)
     {
         if(i==index)
             m_listbtn.at(i)->setStyleSheet("QPushButton{border-image: url(:/image/middlewidget/btn_mask.png); color:rgb(40,143,231);font-size:17px;font-family:黑体;}");
         else
-           m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(68,68,68);font-size:17px;font-family:黑体;}"
+            m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(68,68,68);font-size:17px;font-family:黑体;}"
                                            "QPushButton:hover{color:rgb(40,143,231);}");
     }
     if(index==5)//lrc widget
@@ -190,10 +194,10 @@ void middleWidgetRight::slot_curStackChange(int index)
         m_mainWindow->m_mainwid->setCurrentIndex(5);
         m_middlewidget->setStyleSheet("background:transparent;");
         m_middlewidget->m_leftWid->setBackgroundtransparent();
-        for(int i=0;i<m_listbtn.count();i++)
+        for(int i=0; i<m_listbtn.count(); i++)
         {
-           m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(240,240,240);font-size:17px;font-family:黑体;}"
-                                          "QPushButton:hover{color:rgb(40,143,231);}");
+            m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(240,240,240);font-size:17px;font-family:黑体;}"
+                                           "QPushButton:hover{color:rgb(40,143,231);}");
         }
         m_listbtn.at(5)->setStyleSheet("QPushButton{border-image: url(:/image/middlewidget/btn_mask.png); color:rgb(40,143,231);font-size:17px;font-family:黑体;}");
         m_middlewidget->setBtnShowHide(true);//the button was used to show or hide the lefttable
@@ -202,16 +206,16 @@ void middleWidgetRight::slot_curStackChange(int index)
     }
     else
     {
-         m_mainWindow->m_mainwid->setCurrentIndex(index);
-         m_middlewidget->setStyleSheet("background:white;");
-         m_middlewidget->m_leftWid->setBackgroundnormal();
+        m_mainWindow->m_mainwid->setCurrentIndex(index);
+        m_middlewidget->setStyleSheet("background:white;");
+        m_middlewidget->m_leftWid->setBackgroundnormal();
 
-         m_mainWindow->m_mainwid->setCurrentIndex(index);
-         m_middlewidget->setBtnShowHide(false);
-         m_middlewidget->m_leftWid->show();
-         m_middlewidget->setlistHideStyle();
-         setDrawLine(true);
-         update();
+        m_mainWindow->m_mainwid->setCurrentIndex(index);
+        m_middlewidget->setBtnShowHide(false);
+        m_middlewidget->m_leftWid->show();
+        m_middlewidget->setlistHideStyle();
+        setDrawLine(true);
+        update();
     }
 }
 
@@ -219,11 +223,13 @@ void middleWidgetRight::slot_imageMV(QImage img)
 {
     m_MvWid->setImage(img);
 }
+
 void middleWidgetRight::slot_btnClick()
 {
     int index=sender()->objectName().toInt();
     m_stackWid->setCurrentIndex(index);
 }
+
 void middleWidgetRight::paintEvent(QPaintEvent *e)
 {
     baseWidget::paintEvent(e);

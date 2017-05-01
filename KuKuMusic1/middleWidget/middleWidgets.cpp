@@ -18,6 +18,7 @@ void middleWidgets::initLayout()
     QHBoxLayout *hyout = new QHBoxLayout;
     m_rightWid = new middleWidgetRight(this);
     m_rightWid->setInitMiddleWidget(this);//have to init this
+    //m_rightWid->listButtons().at(5)->click();
 
     m_leftWid = new middleWidgetLeft(this);
     m_btnhidelist = new myPushButton(this);

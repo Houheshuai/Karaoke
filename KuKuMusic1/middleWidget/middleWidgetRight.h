@@ -6,14 +6,14 @@
 #include <QStackedWidget>
 #include <QLineEdit>
 #include <QLabel>
-//#include"WebWidget.h"
+#include "WebWidget.h"
 #include "MvWidget.h"
 #include "baseWidget.h"
-
+#include "myPushButton.h"
 class mainWindow;
 class middleSearchWidget;
 class LyricLabel;
-class myPushButton;
+//class myPushButton;
 class middleWidgets;
 
 class middleWidgetRight:public baseWidget
@@ -64,11 +64,11 @@ private:
     baseWidget*m_wid;
 
 
-    /*   WebWidget *m_web0;
-        WebWidget *m_web1;
-        WebWidget *m_web2;
-        WebWidget *m_web3;
-        WebWidget *m_web4;*/
+//    WebWidget *m_web0;
+//    WebWidget *m_web1;
+//    WebWidget *m_web2;
+//    WebWidget *m_web3;
+//    WebWidget *m_web4;
 };
 
 #endif // MIDDLEWIDGETRIGHT_H

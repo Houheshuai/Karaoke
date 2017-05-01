@@ -27,6 +27,7 @@ middleWidgetLeft::middleWidgetLeft(QWidget *parent) : baseWidget(parent)
     initLayout();
     initAnimation();
 }
+
 void middleWidgetLeft::initAnimation()
 {
     m_pix=QPixmap(":/image/middlewidget/indicator.png");

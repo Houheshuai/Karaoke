@@ -2008,10 +2008,13 @@ debug/moc_topwidgets.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
 		../topWidget/topwidgets.h
 	D:\Qt\Qt5.6.2\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.6.2/5.6/mingw49_32/mkspecs/win32-g++ -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/threadFiles -IE:/git/hello-world/KuKuMusic1/dataBase -IE:/git/hello-world/KuKuMusic1/deskTopLrc -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/trayIconMenu -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/tableWidgetFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/PlayCore -IE:/git/hello-world/KuKuMusic1/PlayCore/libvlc_include -IE:/git/hello-world/KuKuMusic1/PlayCore/include -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/netWork -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/topWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/middleWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/bottomWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/otherWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/absFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/mainWindows -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtMultimedia -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtSql -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtNetwork -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore -I. ..\topWidget\topwidgets.h -o debug\moc_topwidgets.cpp
 
-debug/moc_topSearchTipsWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
+debug/moc_topSearchTipsWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QListWidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlistview.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qwidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobal.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qconfig.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfeatures.h \
@@ -2041,7 +2044,11 @@ debug/moc_topSearchTipsWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/Q
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmutex.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnumeric.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qversiontagging.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstring.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qchar.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbytearray.h \
@@ -2063,10 +2070,6 @@ debug/moc_topSearchTipsWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/Q
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject_impl.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QWidget \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qwidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmargins.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qrect.h \
@@ -2113,11 +2116,6 @@ debug/moc_topSearchTipsWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/Q
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QListWidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlistview.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qitemselectionmodel.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
@@ -2132,6 +2130,8 @@ debug/moc_topSearchTipsWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/Q
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtabwidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QWidget \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QTableWidgetItem \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtablewidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtableview.h \
@@ -2802,7 +2802,8 @@ debug/moc_middleLeftStackWidget4.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCor
 		../middleWidget/middleLeftStackWidget4.h
 	D:\Qt\Qt5.6.2\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.6.2/5.6/mingw49_32/mkspecs/win32-g++ -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/threadFiles -IE:/git/hello-world/KuKuMusic1/dataBase -IE:/git/hello-world/KuKuMusic1/deskTopLrc -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/trayIconMenu -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/tableWidgetFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/PlayCore -IE:/git/hello-world/KuKuMusic1/PlayCore/libvlc_include -IE:/git/hello-world/KuKuMusic1/PlayCore/include -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/netWork -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/topWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/middleWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/bottomWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/otherWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/absFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/mainWindows -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtMultimedia -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtSql -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtNetwork -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore -I. ..\middleWidget\middleLeftStackWidget4.h -o debug\moc_middleLeftStackWidget4.cpp
 
-debug/moc_middlewidgetleft.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
+debug/moc_middlewidgetleft.cpp: ../absFiles/baseWidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
@@ -2907,7 +2908,6 @@ debug/moc_middlewidgetleft.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObj
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		../absFiles/baseWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QStackedWidget \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qstackedwidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
@@ -3051,8 +3051,9 @@ debug/moc_middleWidgetRight.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QOb
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtextoption.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
-		../middleWidget/MvWidget.h \
+		../middleWidget/WebWidget.h \
 		../absFiles/baseWidget.h \
+		../middleWidget/MvWidget.h \
 		../middleWidget/middleWidgetRight.h
 	D:\Qt\Qt5.6.2\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.6.2/5.6/mingw49_32/mkspecs/win32-g++ -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/threadFiles -IE:/git/hello-world/KuKuMusic1/dataBase -IE:/git/hello-world/KuKuMusic1/deskTopLrc -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/trayIconMenu -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/tableWidgetFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/PlayCore -IE:/git/hello-world/KuKuMusic1/PlayCore/libvlc_include -IE:/git/hello-world/KuKuMusic1/PlayCore/include -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/netWork -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/topWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/middleWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/bottomWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/otherWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/absFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/mainWindows -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtMultimedia -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtSql -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtNetwork -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore -I. ..\middleWidget\middleWidgetRight.h -o debug\moc_middleWidgetRight.cpp
 
@@ -5034,7 +5035,8 @@ debug/moc_basewindow.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMainWi
 		../absFiles/basewindow.h
 	D:\Qt\Qt5.6.2\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.6.2/5.6/mingw49_32/mkspecs/win32-g++ -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/threadFiles -IE:/git/hello-world/KuKuMusic1/dataBase -IE:/git/hello-world/KuKuMusic1/deskTopLrc -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/trayIconMenu -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/tableWidgetFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/PlayCore -IE:/git/hello-world/KuKuMusic1/PlayCore/libvlc_include -IE:/git/hello-world/KuKuMusic1/PlayCore/include -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/netWork -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/topWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/middleWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/bottomWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/otherWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/absFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/mainWindows -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtMultimedia -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtSql -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtNetwork -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore -I. ..\absFiles\basewindow.h -o debug\moc_basewindow.cpp
 
-debug/moc_mainWindowContentWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
+debug/moc_mainWindowContentWidget.cpp: ../absFiles/baseWidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
@@ -5139,12 +5141,6 @@ debug/moc_mainWindowContentWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCo
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QToolTip \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtooltip.h \
-		../absFiles/baseWidget.h \
 		../absFiles/myPushButton.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QPushButton \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
@@ -5162,6 +5158,11 @@ debug/moc_mainWindowContentWidget.cpp: D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCo
 		../PlayCore/myMediaList.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QUrl \
 		../absFiles/mySlider.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QToolTip \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtooltip.h \
 		../mainWindows/mainWindowContentWidget.h
 	D:\Qt\Qt5.6.2\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.6.2/5.6/mingw49_32/mkspecs/win32-g++ -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/threadFiles -IE:/git/hello-world/KuKuMusic1/dataBase -IE:/git/hello-world/KuKuMusic1/deskTopLrc -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/trayIconMenu -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/tableWidgetFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/PlayCore -IE:/git/hello-world/KuKuMusic1/PlayCore/libvlc_include -IE:/git/hello-world/KuKuMusic1/PlayCore/include -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/netWork -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/topWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/middleWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/bottomWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/otherWidget -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/absFiles -IE:/git/hello-world/KuKuMusic1 -IE:/git/hello-world/KuKuMusic1/mainWindows -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtMultimedia -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtSql -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtNetwork -ID:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore -I. ..\mainWindows\mainWindowContentWidget.h -o debug\moc_mainWindowContentWidget.cpp
 
@@ -7789,10 +7790,13 @@ debug/topwidgets.o: ../topWidget/topwidgets.cpp ../topWidget/topwidgets.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\topwidgets.o ..\topWidget\topwidgets.cpp
 
 debug/topSearchTipsWidget.o: ../topWidget/topSearchTipsWidget.cpp ../topWidget/topSearchTipsWidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QListWidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlistview.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qwidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobal.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qconfig.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfeatures.h \
@@ -7822,7 +7826,11 @@ debug/topSearchTipsWidget.o: ../topWidget/topSearchTipsWidget.cpp ../topWidget/t
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmutex.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnumeric.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qversiontagging.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstring.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qchar.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbytearray.h \
@@ -7844,10 +7852,6 @@ debug/topSearchTipsWidget.o: ../topWidget/topSearchTipsWidget.cpp ../topWidget/t
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject_impl.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QWidget \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qwidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmargins.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qrect.h \
@@ -7894,11 +7898,6 @@ debug/topSearchTipsWidget.o: ../topWidget/topSearchTipsWidget.cpp ../topWidget/t
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QListWidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlistview.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qitemselectionmodel.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
@@ -7913,6 +7912,8 @@ debug/topSearchTipsWidget.o: ../topWidget/topSearchTipsWidget.cpp ../topWidget/t
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtabwidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QWidget \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QTableWidgetItem \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtablewidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtableview.h \
@@ -8276,6 +8277,7 @@ debug/middleLeftStackWidget0.o: ../middleWidget/middleLeftStackWidget0.cpp ../mi
 		../middleWidget/middleWidgetRight.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QStackedWidget \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qstackedwidget.h \
+		../middleWidget/WebWidget.h \
 		../middleWidget/MvWidget.h \
 		../middleWidget/lyriclabel.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/Qtimer \
@@ -8945,8 +8947,9 @@ debug/middleWidgetRight.o: ../middleWidget/middleWidgetRight.cpp ../middleWidget
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtextoption.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
-		../middleWidget/MvWidget.h \
+		../middleWidget/WebWidget.h \
 		../absFiles/baseWidget.h \
+		../middleWidget/MvWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
@@ -9267,6 +9270,7 @@ debug/middleWidgets.o: ../middleWidget/middleWidgets.cpp ../middleWidget/middleW
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtextoption.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
+		../middleWidget/WebWidget.h \
 		../middleWidget/MvWidget.h \
 		../mainWindows/mainwindow.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QSystemTrayIcon \
@@ -10003,40 +10007,22 @@ debug/middleSearchWidget.o: ../middleWidget/middleSearchWidget.cpp ../middleWidg
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtNetwork/qnetworkrequest.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/Qimage \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QPixmap \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHeaderView \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qheaderview.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QJsonDocument \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsondocument.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsonvalue.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QJsonArray \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsonarray.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QJsonObject \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsonobject.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QPainter \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpainter.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QTime \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMessageBox \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmessagebox.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qdialog.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMenu \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmenu.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qaction.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QScrollBar \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qscrollbar.h \
 		../mainWindows/Global_ValueGather.h \
 		../middleWidget/middleLeftStackWidget0.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QScrollArea \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qscrollarea.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QThread \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qthread.h \
 		../tableWidgetFiles/myshowtablebutton.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMenu \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmenu.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qaction.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QAction \
 		../tableWidgetFiles/myTablePlayListFinal.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QWheelEvent \
@@ -10056,7 +10042,25 @@ debug/middleSearchWidget.o: ../middleWidget/middleSearchWidget.cpp ../middleWidg
 		../tableWidgetFiles/playingWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QTableWidgetItem \
 		../tableWidgetFiles/myTableAddWidget.h \
-		../dataBase/myDataBase.h
+		../dataBase/myDataBase.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHeaderView \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qheaderview.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QJsonDocument \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsondocument.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QJsonArray \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsonarray.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QJsonObject \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qjsonobject.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QPainter \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpainter.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QTime \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMessageBox \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qdialog.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QScrollBar \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qscrollbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\middleSearchWidget.o ..\middleWidget\middleSearchWidget.cpp
 
 debug/buttonstackedwidget.o: ../middleWidget/buttonstackedwidget.cpp ../middleWidget/buttonstackedwidget.h \
@@ -10517,7 +10521,118 @@ debug/middleSearchTableWidget.o: ../middleWidget/middleSearchTableWidget.cpp ../
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlistview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\middleSearchTableWidget.o ..\middleWidget\middleSearchTableWidget.cpp
 
-debug/WebWidget.o: ../middleWidget/WebWidget.cpp 
+debug/WebWidget.o: ../middleWidget/WebWidget.cpp ../middleWidget/WebWidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobal.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qconfig.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfeatures.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsystemdetection.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qprocessordetection.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcompilerdetection.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qtypeinfo.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qtypetraits.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qisenum.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsysinfo.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qlogging.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qflags.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbasicatomic.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qgenericatomic.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_cxx11.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_gcc.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_msvc.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_armv7.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_armv6.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_armv5.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_ia64.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_x86.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_unix.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobalstatic.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmutex.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnumeric.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qversiontagging.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstring.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qchar.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbytearray.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qrefcount.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qarraydata.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qlist.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qalgorithms.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qiterator.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qhashfunctions.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qpair.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbytearraylist.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstringlist.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qregexp.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcoreevent.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmetatype.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject_impl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QWidget \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qwidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmargins.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qrect.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsize.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qpoint.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpalette.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qcolor.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qrgb.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qrgba64.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qbrush.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qvector.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qmatrix.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpolygon.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qregion.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qdatastream.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qiodevice.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qline.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtransform.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpainterpath.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qimage.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpixelformat.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpixmap.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsharedpointer.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qshareddata.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qhash.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qfont.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qfontmetrics.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qfontinfo.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qsizepolicy.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qcursor.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qkeysequence.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qevent.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qvariant.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmap.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qdebug.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qtextstream.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qlocale.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qset.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qurl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qurlquery.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfile.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
+		../absFiles/baseWidget.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\WebWidget.o ..\middleWidget\WebWidget.cpp
 
 debug/middleconvienttwobutton.o: ../middleWidget/middleconvienttwobutton.cpp ../middleWidget/middleconvienttwobutton.h \
@@ -10772,6 +10887,7 @@ debug/MvWidget.o: ../middleWidget/MvWidget.cpp ../middleWidget/MvWidget.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\MvWidget.o ..\middleWidget\MvWidget.cpp
 
 debug/middleWidgetLeft.o: ../middleWidget/middleWidgetLeft.cpp ../middleWidget/middlewidgetleft.h \
+		../absFiles/baseWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
@@ -10877,7 +10993,6 @@ debug/middleWidgetLeft.o: ../middleWidget/middleWidgetLeft.cpp ../middleWidget/m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		../absFiles/baseWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QStackedWidget \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qstackedwidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
@@ -11164,18 +11279,15 @@ debug/bottomWidgets.o: ../bottomWidget/bottomWidgets.cpp ../bottomWidget/bottomW
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QToolTip \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtooltip.h \
 		../bottomWidget/TextMovingWidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QTime \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qdatetime.h \
 		../middleWidget/middleLeftStackWidget0.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QScrollArea \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qscrollarea.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QDebug \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QThread \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qthread.h \
@@ -11287,7 +11399,10 @@ debug/bottomWidgets.o: ../bottomWidget/bottomWidgets.cpp ../bottomWidget/bottomW
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
-		../absFiles/AbsFrameLessAutoSize.h
+		../absFiles/AbsFrameLessAutoSize.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QTime \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\bottomWidgets.o ..\bottomWidget\bottomWidgets.cpp
 
 debug/TextMovingWidget.o: ../bottomWidget/TextMovingWidget.cpp ../bottomWidget/TextMovingWidget.h \
@@ -12728,11 +12843,12 @@ debug/basewindow.o: ../absFiles/basewindow.cpp ../absFiles/basewindow.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtextformat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\basewindow.o ..\absFiles\basewindow.cpp
 
-debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../mainWindows/mainWindowContentWidget.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
+debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../PlayCore/myMediaList.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QUrl \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qurl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbytearray.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qrefcount.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobal.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qconfig.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfeatures.h \
@@ -12745,7 +12861,10 @@ debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsysinfo.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qlogging.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qflags.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobalstatic.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmutex.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnumeric.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qversiontagging.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbasicatomic.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_bootstrap.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qgenericatomic.h \
@@ -12758,17 +12877,13 @@ debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_ia64.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_x86.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qatomic_unix.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qglobalstatic.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmutex.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnumeric.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qversiontagging.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qnamespace.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qarraydata.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstring.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qchar.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qbytearray.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qrefcount.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qarraydata.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qlist.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qalgorithms.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qiterator.h \
@@ -12778,12 +12893,19 @@ debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstringlist.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qregexp.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qurlquery.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qshareddata.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qhash.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QObject \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcoreevent.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qmetatype.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qobject_impl.h \
+		../mainWindows/mainWindowContentWidget.h \
+		../absFiles/baseWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QWidget \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qwidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
@@ -12811,8 +12933,6 @@ debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpixelformat.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qpixmap.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsharedpointer.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qshareddata.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qhash.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qsharedpointer_impl.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qfont.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qfontmetrics.h \
@@ -12828,18 +12948,10 @@ debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qlocale.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qset.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qurl.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qurlquery.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfile.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QToolTip \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtooltip.h \
-		../absFiles/baseWidget.h \
 		../absFiles/myPushButton.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QPushButton \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
@@ -12854,9 +12966,12 @@ debug/mainWindowContentWidget.o: ../mainWindows/mainWindowContentWidget.cpp ../m
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QSlider \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qslider.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
-		../PlayCore/myMediaList.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QUrl \
 		../absFiles/mySlider.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlabel.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QToolTip \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qtooltip.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
@@ -13420,6 +13535,7 @@ debug/mainwindow.o: ../mainWindows/mainwindow.cpp ../mainWindows/mainwindow.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qstackedwidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QPropertyAnimation \
 		../middleWidget/middleWidgetRight.h \
+		../middleWidget/WebWidget.h \
 		../middleWidget/MvWidget.h \
 		../middleWidget/middleSearchWidget.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QCheckBox \
@@ -14078,22 +14194,13 @@ debug/deskTopLrcWidget.o: ../deskTopLrc/deskTopLrcWidget.cpp ../deskTopLrc/deskT
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QSlider \
 		../PlayCore/myMediaList.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QUrl \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QLinearGradient \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMessageBox \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmessagebox.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QDebug \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
 		../mainWindows/Global_ValueGather.h \
 		../middleWidget/lyriclabel.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMenu \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmenu.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qaction.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QDebug \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/QThread \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/qthread.h \
 		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtCore/Qtimer \
@@ -14199,7 +14306,16 @@ debug/deskTopLrcWidget.o: ../deskTopLrc/deskTopLrcWidget.cpp ../deskTopLrc/deskT
 		../PlayCore/include/SDL2/SDL_system.h \
 		../PlayCore/include/SDL2/SDL_timer.h \
 		../PlayCore/include/SDL2/SDL_version.h \
-		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QImage
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QImage \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtGui/QLinearGradient \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QMessageBox \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
+		D:/Qt/Qt5.6.2/5.6/mingw49_32/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\deskTopLrcWidget.o ..\deskTopLrc\deskTopLrcWidget.cpp
 
 debug/qrc_res_otherwidget.o: debug/qrc_res_otherwidget.cpp 

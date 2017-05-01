@@ -11,7 +11,7 @@ baseWidget::baseWidget(QWidget *parent) : QWidget(parent)
     setStyleSheet("QWidget{background:transparent;}");
     setMouseTracking(true);
 }
-void baseWidget::paintEvent(QPaintEvent *e)
+void baseWidget::paintEvent(QPaintEvent */*e*/)
 {
    // QWidget::paintEvent(e);
     QStyleOption opt;

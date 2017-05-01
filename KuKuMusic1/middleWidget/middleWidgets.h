@@ -3,10 +3,10 @@
 
 #include <QObject>
 #include <QWidget>
-#include"baseWidget.h"
-
+#include "baseWidget.h"
+#include "middleWidgetRight.h"
 class middleWidgetLeft;
-class middleWidgetRight;
+//class middleWidgetRight;
 class mainWindow;
 class myPushButton;
 

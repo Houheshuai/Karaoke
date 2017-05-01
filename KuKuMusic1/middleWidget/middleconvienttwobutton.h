@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QWidget>
-#include<QlineEdit>
-#include<myPushButton.h>
+#include <QlineEdit>
+#include <myPushButton.h>
 
 #include"baseWidget.h"
 
@@ -14,18 +14,18 @@ class middleConvientTwoButton : public baseWidget
 {
     Q_OBJECT
 public:
-  explicit   middleConvientTwoButton(QWidget*p=0);
+    explicit middleConvientTwoButton(QWidget*p=0);
 
-   myPushButton *m_btnsearch;
-   myPushButton *m_btnlocate;
+    myPushButton *m_btnsearch;
+    myPushButton *m_btnlocate;
 protected:
-   void showEvent(QShowEvent *);
-   void enterEvent(QEvent *);
-   void leaveEvent(QEvent *);
+    void showEvent(QShowEvent *);
+    void enterEvent(QEvent *);
+    void leaveEvent(QEvent *);
 public slots:
-   void slot_timerEvent();
+    void slot_timerEvent();
 private:
-   QTimer *m_timer;
+    QTimer *m_timer;
 };
 
 class middleListSearch:public baseWidget
@@ -40,7 +40,5 @@ public slots:
     void setClear();
 
 };
-
-
 
 #endif // MIDDLECONVIENTTWOBUTTON_H
