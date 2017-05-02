@@ -155,7 +155,7 @@ private:
     QPixmap m_pixhover;
     QString m_text;
 };
-
+//播放控件上的按钮，歌手名、歌曲名
 class playingWidgetBtn :public myPushButton
 {
     Q_OBJECT

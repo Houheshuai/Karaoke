@@ -152,7 +152,7 @@ void middleWidgetRight::slot_search(const QString& text)
     m_searchwid->m_checkbox->setCheckState(Qt::Unchecked);
     m_searchwid->setFocus();
     m_searchwid->showLoadingWidget();
-    m_searchwid->setRequestisFinished(false); // request the song   we give the bool variable a false value
+    m_searchwid->setRequestisFinished(false); // request the song we give the bool variable a false value
 
     for(int i=0; i<m_listbtn.count(); i++) //do not select
     {

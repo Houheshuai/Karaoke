@@ -1,13 +1,12 @@
 #include "myPushButton.h"
-#include<QPainter>
-#include<QDebug>
-#include<QFontMetrics>
-#include<QToolTip>
-
-#include"mySlider.h"
-#include"bottomWidgets.h"
-#include"topwidgets.h"
-#include<middleWidgets.h>
+#include "mySlider.h"
+#include "bottomWidgets.h"
+#include "topwidgets.h"
+#include <QPainter>
+#include <QDebug>
+#include <QFontMetrics>
+#include <QToolTip>
+#include <middleWidgets.h>
 
 myPushButton::myPushButton(QWidget*parent):QPushButton(parent)
 {
@@ -15,6 +14,7 @@ myPushButton::myPushButton(QWidget*parent):QPushButton(parent)
     setFlat(true);
     setStyleSheet("QPushButton{background:transparent;}");
 }
+
 myPushButton::myPushButton(const QString& str, QWidget *parent):QPushButton(str,parent)
 {
     setCursor(Qt::PointingHandCursor);
@@ -40,8 +40,6 @@ volButton::volButton(const QString& normal,const QString& hover,const QString& p
         m_listhover<<pixhover.copy(i*(pixhover.width()/5),0,pixhover.width()/5,pixhover.height());
     for(int i=0; i<5; i++)
         m_listpressed<<pixpressed.copy(i*(pixpressed.width()/5),0,pixpressed.width()/5,pixpressed.height());
-
-
 }
 void volButton::paintEvent(QPaintEvent *)
 {
@@ -52,8 +50,8 @@ void volButton::paintEvent(QPaintEvent *)
     {
         p.drawPixmap((width()-m_listhover.at(0).width())/2,(height()-m_listhover.at(0).height())/2,m_listhover.at(m_index));
     }
-
 }
+
 void volButton::mousePressEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::LeftButton)
@@ -61,11 +59,11 @@ void volButton::mousePressEvent(QMouseEvent *e)
         QPushButton::mousePressEvent(e);
     }
 }
+
 void volButton::mouseReleaseEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::LeftButton)
     {
-
         if(this->contentsRect().contains(mapFromGlobal(QCursor::pos())))
         {
             if(m_isvolempty==0)//如果没有音量就 设置一个
@@ -100,6 +98,7 @@ void volButton::enterEvent(QEvent *)
     m_isenter = true;
     update();
 }
+
 void volButton::leaveEvent(QEvent *)
 {
     m_isenter = false;
@@ -116,6 +115,7 @@ stackButton::stackButton(const QString& pixnormal,const QString& pixhover,const 
     setCursor(Qt::PointingHandCursor);
     setFlat(true);
 }
+
 void stackButton::paintEvent(QPaintEvent *e)
 {
     QPushButton::paintEvent(e);
@@ -128,14 +128,14 @@ void stackButton::paintEvent(QPaintEvent *e)
 
     if(m_pressed)//选中
         p.drawPixmap((width()-m_pixselected.width())/2,(height()-m_pixselected.height())/2,m_pixselected);
-
-
 }
+
 void stackButton::setselected(bool sel)//用于控制pix显示
 {
     m_pressed=sel;
     update();
 }
+
 void stackButton::mousePressEvent(QMouseEvent *e)
 {
     QPushButton::mousePressEvent(e);
@@ -157,7 +157,7 @@ void stackButton::leaveEvent(QEvent *e)
     m_enter=false;
     update();
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 leftPixButton::leftPixButton(QString pixnormal, QString pixhover, QWidget *parent):QPushButton(parent)
 {
     m_enter=false;
@@ -165,6 +165,7 @@ leftPixButton::leftPixButton(QString pixnormal, QString pixhover, QWidget *paren
     m_pixnormal=QPixmap(pixnormal);
     m_pixhover=QPixmap(pixhover);
 }
+
 void leftPixButton::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
@@ -173,8 +174,8 @@ void leftPixButton::paintEvent(QPaintEvent *)
 
     if(m_enter)//hover
         p.drawPixmap(44,(height()-m_pixhover.height())/2,m_pixhover);
-
 }
+
 void leftPixButton::mousePressEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::LeftButton)
@@ -184,17 +185,19 @@ void leftPixButton::mousePressEvent(QMouseEvent *e)
     }
     QPushButton::mousePressEvent(e);
 }
+
 void leftPixButton::enterEvent(QEvent *)
 {
     m_enter=true;
     update();
 }
+
 void leftPixButton::leaveEvent(QEvent *)
 {
     m_enter=false;
     update();
 }
-//////////////////////////////////////////////////////////////////////////////////////
+
 volButton2::volButton2(const QString& normal,const QString& hover,const QString& pressed,QWidget*parent)
     :QPushButton(parent)//5个连一串
 {
@@ -218,9 +221,6 @@ volButton2::volButton2(const QString& normal,const QString& hover,const QString&
     m_timer=new QTimer;
     m_timer->setSingleShot(true);
     connect(m_timer,SIGNAL(timeout()),this,SIGNAL(sig_hideVolWidget()));
-
-
-
 }
 
 void volButton2::paintEvent(QPaintEvent *)
@@ -233,6 +233,7 @@ void volButton2::paintEvent(QPaintEvent *)
         p.drawPixmap((width()-m_listhover.at(0).width())/2,(height()-m_listhover.at(0).height())/2,m_listhover.at(m_index));
     }
 }
+
 void volButton2::mousePressEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::LeftButton)
@@ -240,6 +241,7 @@ void volButton2::mousePressEvent(QMouseEvent *e)
         QPushButton::mousePressEvent(e);
     }
 }
+
 void volButton2::mouseReleaseEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::LeftButton)
@@ -286,7 +288,7 @@ void volButton2::leaveEvent(QEvent *)
     m_timer->start(500);
     update();
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 playModeButton::playModeButton(QString pixnormal, QString pixhover, QString text,QWidget *parent):QPushButton(parent)
 {
     m_mode=PlayMode::playInOrder;
@@ -298,26 +300,29 @@ playModeButton::playModeButton(QString pixnormal, QString pixhover, QString text
     m_text=text;
     setFixedSize(100,20);
     setCheckedBtn(false);
-
 }
+
 void playModeButton::enterEvent(QEvent *e)
 {
     QPushButton::enterEvent(e);
     m_enter=true;
     update();
 }
+
 void playModeButton::mousePressEvent(QMouseEvent *e)
 {
     QPushButton::mousePressEvent(e);
     //  m_pressed=true;
     //  update();
 }
+
 void playModeButton::leaveEvent(QEvent *e)
 {
     QPushButton::leaveEvent(e);
     m_enter=false;
     update();
 }
+
 void playModeButton::paintEvent(QPaintEvent *e)
 {
     QPushButton::paintEvent(e);
@@ -332,21 +337,22 @@ void playModeButton::paintEvent(QPaintEvent *e)
         p.drawText(35,15,m_text);
     }
 }
+
 void playModeButton::setCheckedBtn(bool check)
 {
     m_pressed=check;
     update();
 }
 
-playingWidgetBtn::playingWidgetBtn(QWidget *p):myPushButton(p)
+playingWidgetBtn::playingWidgetBtn(QWidget *p) : myPushButton(p)
 {
-    m_isenter=false;
-    m_normalcolor=QColor(0,0,0);
-    m_hovercolor=QColor(0,0,0);
+    m_isenter = false;
+    m_normalcolor = QColor(0,0,0);
+    m_hovercolor = QColor(0,0,0);
     setCursor(Qt::ArrowCursor);
     setMouseTracking(true);
 }
-
+//绘画事件，字体变色，显示下划线
 void playingWidgetBtn::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
@@ -362,7 +368,7 @@ void playingWidgetBtn::paintEvent(QPaintEvent *)
     }
     p.drawText(0,(height()-metrics.height())/2,width(),metrics.height(),Qt::AlignCenter,m_text);
 }
-
+//鼠标移动事件，在按钮上面的话光标变小手
 void playingWidgetBtn::mouseMoveEvent(QMouseEvent *e)
 {
     QPushButton::mouseMoveEvent(e);
@@ -370,13 +376,13 @@ void playingWidgetBtn::mouseMoveEvent(QMouseEvent *e)
     QRect re((width()-metrics.width(m_text))/2,(height()-metrics.height())/2,metrics.width(m_text),metrics.height());
     if(re.contains(e->pos()))
     {
-        m_isenter=true;
-        QToolTip::showText(QCursor::pos(),m_text);
+        m_isenter = true;
+        //QToolTip::showText(QCursor::pos(),m_text); //多此一举
         setCursor(Qt::PointingHandCursor);
     }
     else
     {
-        m_isenter=false;
+        m_isenter = false;
         setCursor(Qt::ArrowCursor);
     }
     update();
@@ -391,31 +397,31 @@ void playingWidgetBtn::mousePressEvent(QMouseEvent *e)
 void playingWidgetBtn::leaveEvent(QEvent *e)
 {
     myPushButton::leaveEvent(e);
-    m_isenter=false;
+    m_isenter = false;
 }
 
 void playingWidgetBtn::setNormalColor(const QColor &color)
 {
-    m_normalcolor=color;
+    m_normalcolor = color;
 }
 
 void playingWidgetBtn::setHoverColor(const QColor &color)
 {
-    m_hovercolor=color;
+    m_hovercolor = color;
 }
 
 void playingWidgetBtn::adjustSize()
 {
     myPushButton::adjustSize();
     QFontMetrics metrir(font());
-    int fw= metrir.width(m_text);
-    if(fw>maximumWidth())
-        fw=maximumWidth();
+    int fw = metrir.width(m_text);
+    if(fw > maximumWidth())
+        fw = maximumWidth();
     setFixedWidth(fw);
 }
 
 void playingWidgetBtn::setText(const QString &text)
 {
-    m_text=text;
+    m_text = text;
     update();
 }
