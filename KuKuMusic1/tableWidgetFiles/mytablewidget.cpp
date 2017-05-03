@@ -28,19 +28,19 @@ void myTableWidget::slot_btnloveclicked()
 
     if(!m_groupWid->isLoved())//其余列表中存喜爱的 则删除它
     {
-          table->removeSong(m_loveNowRow,false);
-          m_middleftStack0->showRemovetips(); //show the tips that remove successfully
-       }
-       else//则添加它 到喜爱的列表
-       {
-           QString songname=item(m_prebgItem,1)->text();
-           QString url=m_finalWidget->songUrlList().value(m_prebgItem).toString();
-           myTablePlayListFinal*plove=m_middleftStack0->myTablePlayListFinalVector().last(); //第二个列表中
+        table->removeSong(m_loveNowRow,false);
+        m_middleftStack0->showRemovetips(); //show the tips that remove successfully
+    }
+    else//则添加它 到喜爱的列表
+    {
+        QString songname=item(m_prebgItem,1)->text();
+        QString url=m_finalWidget->songUrlList().value(m_prebgItem).toString();
+        myTablePlayListFinal*plove=m_middleftStack0->myTablePlayListFinalVector().last(); //第二个列表中
 
-           plove->addToPlayList(songname,url,m_text.simplified());
+        plove->addToPlayList(songname,url,m_text.simplified());
 
-           m_middleftStack0->showAddtips(); //show the tips  that add successfully
-       }
+        m_middleftStack0->showAddtips(); //show the tips  that add successfully
+    }
 }
 
 void myTableWidget::slot_playingWidgetDelBtnClicked()
@@ -78,30 +78,32 @@ void myTableWidget::slot_menuRequest(QPoint)//请求菜单
     QVector<myTablePlayListFinal*> &plist=m_middleftStack0->myTablePlayListFinalVector();
 
     int index=0;
-    foreach (myTablePlayListFinal*final, plist) {
-     QAction* act=new QAction(final->ShowButtonName(),m_Addtoplistmenu);
-       act->setObjectName(QString::number(index));
-            m_Addtoplistmenu->addAction(act);
-            connect(act,SIGNAL(triggered(bool)),this,SLOT(slot_moveToPList()));
-            index++;
-            if(final==m_finalWidget)
-            {
-                act->setEnabled(false);
-            }
+    foreach (myTablePlayListFinal*final, plist)
+    {
+        QAction* act=new QAction(final->ShowButtonName(),m_Addtoplistmenu);
+        act->setObjectName(QString::number(index));
+        m_Addtoplistmenu->addAction(act);
+        connect(act,SIGNAL(triggered(bool)),this,SLOT(slot_moveToPList()));
+        index++;
+        if(final==m_finalWidget)
+        {
+            act->setEnabled(false);
+        }
     }
     if(rowCount()==0)
         return;
     int height2=QApplication::desktop()->height()-QCursor::pos().y();
     if(height2<m_menu->height())
     {
-       m_menu->exec(QPoint(QCursor::pos().x(),height2));
+        m_menu->exec(QPoint(QCursor::pos().x(),height2));
     }
     else
     {
         m_menu->exec(QCursor::pos());
     }
     QList<QAction*> actlist=  m_Addtoplistmenu->actions();
-    foreach (QAction* act, actlist) {
+    foreach (QAction* act, actlist)
+    {
         act->deleteLater();
     }
 
@@ -114,23 +116,23 @@ void myTableWidget::slot_moveToPList()//添加到列表中
 
     QList<QTableWidgetItem*> items=selectedItems();
 
-        int songcount=items.count();
-        if(songcount==0)
-            return;
+    int songcount=items.count();
+    if(songcount==0)
+        return;
 
-      for(int i=0;i<songcount;i++)
-       {
-          QTableWidgetItem*it=items.at(i);
-          int row= it->row();
+    for(int i=0; i<songcount; i++)
+    {
+        QTableWidgetItem*it=items.at(i);
+        int row= it->row();
 
-          if(!final->songUrlList().contains(m_finalWidget->songUrlList().at(row)))//url判断在不在列表中
-          {
-               QString songname=item(row,1)->text();
-               QString duration=item(row,2)->text();
-               QString url= m_finalWidget->songUrlList().at(row).toString();
-               final->addToPlayList(songname,url,duration.simplified());
-          }
-      }
+        if(!final->songUrlList().contains(m_finalWidget->songUrlList().at(row)))//url判断在不在列表中
+        {
+            QString songname=item(row,1)->text();
+            QString duration=item(row,2)->text();
+            QString url= m_finalWidget->songUrlList().at(row).toString();
+            final->addToPlayList(songname,url,duration.simplified());
+        }
+    }
 
 }
 void myTableWidget::slot_actplay()
@@ -189,12 +191,13 @@ void myTableWidget::init()
 void myTableWidget::slot_cellClicked(int, int)
 {
     QVector<myTablePlayListFinal *> &wList=m_middleftStack0->myTablePlayListFinalVector();
-     foreach (myTablePlayListFinal* f, wList) {
-         if(f->m_table!=this)//用来找其它的
-         {
-             f->m_table->setCurrentCell(-1,0);
-         }
-      }
+    foreach (myTablePlayListFinal* f, wList)
+    {
+        if(f->m_table!=this)//用来找其它的
+        {
+            f->m_table->setCurrentCell(-1,0);
+        }
+    }
 }
 bool myTableWidget::eventFilter(QObject *o, QEvent *e)
 {
@@ -222,7 +225,7 @@ bool myTableWidget::eventFilter(QObject *o, QEvent *e)
         }
         if(e->type()==QEvent::MouseButtonDblClick)
         {
-                slot_doublick(currentSongIndex(),0);
+            slot_doublick(currentSongIndex(),0);
         }
     }
     return QObject::eventFilter(o,e);
@@ -252,20 +255,20 @@ void myTableWidget::slot_mvclicked()
 
 void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by playingwidget's lovebtn
 {
-   int index=currentSongIndex();
-   if(index==-1)
-       return;
-   myTablePlayListFinal*plovelist= m_middleftStack0->myTablePlayListFinalVector().last();
-   if(plovelist==m_finalWidget)//if this table is the nowplaytable
-   {
-       removeSong(index);
-       m_middleftStack0->showRemovetips(); //show the tips that removed successfully
-       emit sig_setLoveState(true);
-   }
-   else//need to add or delete
-   {
-       if(plovelist->songUrlList().contains(m_finalWidget->songUrlList().value(index)))//if true  then delete
-       {
+    int index=currentSongIndex();
+    if(index==-1)
+        return;
+    myTablePlayListFinal*plovelist= m_middleftStack0->myTablePlayListFinalVector().last();
+    if(plovelist==m_finalWidget)//if this table is the nowplaytable
+    {
+        removeSong(index);
+        m_middleftStack0->showRemovetips(); //show the tips that removed successfully
+        emit sig_setLoveState(true);
+    }
+    else//need to add or delete
+    {
+        if(plovelist->songUrlList().contains(m_finalWidget->songUrlList().value(index)))//if true  then delete
+        {
             int plistindex=  plovelist->songUrlList().indexOf(m_finalWidget->songUrlList().value(index));
             plovelist->m_table->slot_cellEnter(-1,0);
             plovelist->m_table->removeRow(plistindex);
@@ -275,9 +278,9 @@ void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by p
             m_playingWid->setUnloveState();
             emit sig_setLoveState(false);
             m_middleftStack0->showRemovetips();
-       }
-         else          //add
-       {
+        }
+        else          //add
+        {
             QString songname=item(index,1)->text();
             QString url=m_finalWidget->songUrlList().value(index).toString();
             plovelist->addToPlayList(songname,url,m_text.simplified());
@@ -285,8 +288,8 @@ void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by p
             m_playingWid->setLoveState();
             emit sig_setLoveState(true);
             m_middleftStack0->showAddtips(); //show the tips  that add successfully
-       }
-   }
+        }
+    }
 }
 void myTableWidget::initPlayingWidget()
 {
@@ -312,90 +315,91 @@ void myTableWidget::slot_doublick(int r, int c,bool isMv)
     if(rowCount()==0)
         return;
 
-     QFont font1;
-     font1.setPixelSize(12);//12字号是默认的
+    QFont font1;
+    font1.setPixelSize(12);//12字号是默认的
 
-     foreach (myTablePlayListFinal* wp, m_middleftStack0->myTablePlayListFinalVector()) {
-          int curindex=wp->m_table->currentSongIndex();
-          wp->m_table->setRowHeight(curindex,32);
-          wp->m_table->m_playingWid->hide();//把其它的都隐藏起来
-          wp->m_table->m_playingWid->setCurrentSongItem(NULL);
-          if(wp->m_table->item(curindex,1)!=Q_NULLPTR)
-          {
-              wp->m_table->item(curindex,1)->setFont(font1);
-              wp->m_table->item(curindex,2)->setFont(font1);
-          }
+    foreach (myTablePlayListFinal* wp, m_middleftStack0->myTablePlayListFinalVector())
+    {
+        int curindex=wp->m_table->currentSongIndex();
+        wp->m_table->setRowHeight(curindex,32);
+        wp->m_table->m_playingWid->hide();//把其它的都隐藏起来
+        wp->m_table->m_playingWid->setCurrentSongItem(NULL);
+        if(wp->m_table->item(curindex,1)!=Q_NULLPTR)
+        {
+            wp->m_table->item(curindex,1)->setFont(font1);
+            wp->m_table->item(curindex,2)->setFont(font1);
         }
+    }
 
-         /*
-          *we set the big font in order to look like invisible
-            */
-         QFont font2;
-         font2.setPointSize(100);
-         item(r,1)->setFont(font2);
-         item(r,2)->setFont(font2);
+    /*
+     *we set the big font in order to look like invisible
+       */
+    QFont font2;
+    font2.setPointSize(100);
+    item(r,1)->setFont(font2);
+    item(r,2)->setFont(font2);
 
-        setRowHeight(r,52);
-        m_playingWid->setCurrentSongItem(item(r,c));
-        m_playingWid->setSongName(item(r,1)->text());
-        m_playingWid->show();
-        updatePlayingWidgetPos();
+    setRowHeight(r,52);
+    m_playingWid->setCurrentSongItem(item(r,c));
+    m_playingWid->setSongName(item(r,1)->text());
+    m_playingWid->show();
+    updatePlayingWidgetPos();
 
-        if(isMv)
-            emit sig_playMv(r);
-        else
-            emit sig_play(r);
+    if(isMv)
+        emit sig_playMv(r);
+    else
+        emit sig_play(r);
 
-       if(m_middleftStack0->myTablePlayListFinalVector().last()->songUrlList().contains(m_finalWidget->songUrlList().value(r)))
-       {
-           m_playingWid->setLoveState();
-           emit sig_setLoveState(true);
-       }
-       else
-       {
-           m_playingWid->setUnloveState();
-           emit sig_setLoveState(false);
-       }
+    if(m_middleftStack0->myTablePlayListFinalVector().last()->songUrlList().contains(m_finalWidget->songUrlList().value(r)))
+    {
+        m_playingWid->setLoveState();
+        emit sig_setLoveState(true);
+    }
+    else
+    {
+        m_playingWid->setUnloveState();
+        emit sig_setLoveState(false);
+    }
 
-       if(!m_middleftStack0->middleListSearchs()->isHidden())//无隐藏状态
-       {
-           m_middleftStack0->middleListSearchs()->m_lineEdit->setText("");
-           m_middleftStack0->middleListSearchs()->hide();
-           m_middleftStack0->scrolltoCurrentPlayList();
-       }
-       setAutoLayoutSize();
+    if(!m_middleftStack0->middleListSearchs()->isHidden())//无隐藏状态
+    {
+        m_middleftStack0->middleListSearchs()->m_lineEdit->setText("");
+        m_middleftStack0->middleListSearchs()->hide();
+        m_middleftStack0->scrolltoCurrentPlayList();
+    }
+    setAutoLayoutSize();
 }
 
 void myTableWidget::slot_animation(QVariant& var)
 {
-     m_middleftStack0->verticalScrollBar()->setValue(var.toInt());
+    m_middleftStack0->verticalScrollBar()->setValue(var.toInt());
 }
 void myTableWidget::setAutoLayoutSize()
 {
-      int minheight=0;
-        foreach(myTablePlayListFinal *f,m_middleftStack0->myTablePlayListFinalVector())
+    int minheight=0;
+    foreach(myTablePlayListFinal *f,m_middleftStack0->myTablePlayListFinalVector())
+    {
+        int height=0;
+        int btnheight=f->m_Btntable->height();
+        if(!f->m_table->isHidden())//如果显示的话
         {
-            int height=0;
-            int btnheight=f->m_Btntable->height();
-            if(!f->m_table->isHidden())//如果显示的话
-            {
-                for(int i=0;i<f->m_table->rowCount();i++)
-                    height+=f->m_table->rowHeight(i);
+            for(int i=0; i<f->m_table->rowCount(); i++)
+                height+=f->m_table->rowHeight(i);
 
-                if(f->m_table->rowCount()==0)
-                    height=m_addWid->height();
-                f->m_table->setMinimumHeight(height);
-                f->setMaximumHeight(height+btnheight);
-                minheight+=(height+btnheight);
-            }
-            else
-            {
-                f->m_table->setMinimumHeight(height);
-                f->setMaximumHeight(btnheight);
-                minheight+=(btnheight);
-            }
+            if(f->m_table->rowCount()==0)
+                height=m_addWid->height();
+            f->m_table->setMinimumHeight(height);
+            f->setMaximumHeight(height+btnheight);
+            minheight+=(height+btnheight);
         }
-      m_middleftStack0->m_wid->setMinimumHeight(minheight);
+        else
+        {
+            f->m_table->setMinimumHeight(height);
+            f->setMaximumHeight(btnheight);
+            minheight+=(btnheight);
+        }
+    }
+    m_middleftStack0->m_wid->setMinimumHeight(minheight);
 }
 
 int myTableWidget::currentSongIndex()
@@ -408,17 +412,17 @@ void myTableWidget::updatePlayingWidgetPos()
     int index = currentSongIndex();
     int height=0;
 
-    for(int i=0;i<index;i++)
+    for(int i=0; i<index; i++)
     {
         int rh= rowHeight(i);
         height+=rh;
     }
     if(index==-1)//没有播放的
-       m_playingWid->hide();
+        m_playingWid->hide();
     if(rowHeight(index)==0)
-         m_playingWid->hide();
+        m_playingWid->hide();
     else
-         m_playingWid->show();
+        m_playingWid->show();
     m_playingWid->raise();
     m_playingWid->setGeometry(0,height,width()-1,52);
 }
@@ -492,15 +496,15 @@ void myTableWidget::mouseMoveEvent(QMouseEvent *e)
 {
     QTableWidget::mouseMoveEvent(e);
 
-   // setSelectionMode(QAbstractItemView::SingleSelection);
+    // setSelectionMode(QAbstractItemView::SingleSelection);
     if(itemAt(mapFromGlobal(QCursor::pos()))==Q_NULLPTR)//不在格子上面移动
     {
-            if(m_enter)
-          slot_cellEnter(-1, 0);
+        if(m_enter)
+            slot_cellEnter(-1, 0);
     }
     else
     {
-         m_enter=true;
+        m_enter=true;
     }
 
 }
@@ -520,7 +524,6 @@ void myTableWidget::slot_cellEnter(int row, int c)
         item(m_prebgItem,2)->setText(m_text);
         item(m_prebgItem,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignRight);
 
-
         item(m_prebgItem,0)->setBackgroundColor(Qt::transparent);
         item(m_prebgItem,1)->setBackgroundColor(Qt::transparent);
         item(m_prebgItem,2)->setBackgroundColor(Qt::transparent);
@@ -530,7 +533,6 @@ void myTableWidget::slot_cellEnter(int row, int c)
 
         m_crossWid=NULL;
         m_groupWid=NULL;
-
     }
     if(row!=m_prebgItem)
     {
@@ -568,7 +570,7 @@ void myTableWidget::slot_cellEnter(int row, int c)
             this->item(row,1)->setBackgroundColor(hoverbgcolor);
             this->item(row,2)->setBackgroundColor(hoverbgcolor);
             connect(m_groupWid->m_btnDel,SIGNAL(clicked()),this,SLOT(slot_removeHoverRow()));
-            connect(m_groupWid->m_btnMovie,SIGNAL(clicked(bool)),this,SLOT(slot_mvclicked()));
+            //connect(m_groupWid->m_btnMovie,SIGNAL(clicked(bool)),this,SLOT(slot_mvclicked()));
         }
         m_prebgItem=row;
     }

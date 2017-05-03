@@ -179,6 +179,6 @@ void playingWidget::setSongName(const QString &str)
 
 void playingWidget::slot_readySearch()
 {
-    playingWidgetBtn*btn= (playingWidgetBtn*)sender();
+    playingWidgetBtn* btn = (playingWidgetBtn*)sender();
     emit sig_clicked(btn->text());
 }

@@ -39,7 +39,7 @@ public:
 
     QStackedWidget *m_stackWid;
     LyricLabel * m_lrcwid;
-    middleSearchWidget*m_searchwid;
+    middleSearchWidget* m_searchwid;
     static QColor bgcolor;
 public slots:
     void slot_setSearchStack();

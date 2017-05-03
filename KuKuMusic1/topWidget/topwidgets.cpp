@@ -76,13 +76,14 @@ void TopWidgets::initWidget()
                                 "QPushButton::hover{border-image:url(:/image/topwidget/btn_refresh(2).png);}"
                                 "QPushButton::pressed{border-image:url(:/image/topwidget/btn_refresh(3).png);}");
    */
-    m_lineEdit=new QLineEdit(this); //搜索框
+    m_lineEdit = new QLineEdit(this); //搜索框
     m_lineEdit->setMinimumSize(260,26);
     m_lineEdit->setMaximumSize(320,26);
     m_lineEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
-    m_lineEdit->setStyleSheet("QLineEdit{border-radius:13px;background:rgb(255,255,255,180);}");
+    m_lineEdit->setStyleSheet("QLineEdit{border-radius:13px; background:rgb(255,255,255,180); "
+                              "font-size:13px; font-family:微软雅黑}");
     m_lineEdit->setContextMenuPolicy(Qt::NoContextMenu);
-    myPushButton *serbtn=new myPushButton(m_lineEdit);  //搜索按钮
+    myPushButton *serbtn = new myPushButton(m_lineEdit);  //搜索按钮
     serbtn->setFixedSize(16,16);
     serbtn->setStyleSheet("QPushButton{background:transparent;border-image: url(:/image/topwidget/btn_search (1).png);}"
                           "QPushButton::hover{border-image: url(:/image/topwidget/btn_search (2).png);}"

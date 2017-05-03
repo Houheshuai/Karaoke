@@ -49,11 +49,11 @@ void tableCellWidget::init()
     setLayout(hlyout);
 }
 
-/////////////////////////////////////////////////////////////////////////
 middleSearchTableWidget::middleSearchTableWidget(QWidget*p):QTableWidget(p),m_prebgItem(-1)
 {
     init();
 }
+
 void middleSearchTableWidget::init()
 {
     setMouseTracking(true);
@@ -66,8 +66,8 @@ void middleSearchTableWidget::init()
     setShowGrid(false);//隐藏线
     this->horizontalHeader()->setVisible(false);
     this->verticalHeader()->setVisible(false);
-    setEditTriggers(QTableWidget::NoEditTriggers);//涓嶅彲缂栬緫
-    setSelectionBehavior (QAbstractItemView::SelectRows); //璁剧疆閫夋嫨琛屼负锛屼互琛屼负鍗曚綅
+    setEditTriggers(QTableWidget::NoEditTriggers);
+    setSelectionBehavior(QAbstractItemView::SelectRows);
     setSelectionMode (QAbstractItemView::SingleSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);
     setAcceptDrops(true);
@@ -81,7 +81,7 @@ void middleSearchTableWidget::init()
     insertColumn(4);
     insertColumn(5);
 
-    QHeaderView *header= this->horizontalHeader();
+    QHeaderView *header = this->horizontalHeader();
     header->resizeSection(0,13);
     header->resizeSection(1,(width()-143)/3);
     header->resizeSection(2,(width()-143)/3);
@@ -111,7 +111,7 @@ void middleSearchTableWidget::setItem(int row, int column, QTableWidgetItem *ite
     {
     case 0:
     {
-        QCheckBox *box=new QCheckBox(item->text(),this);
+        QCheckBox *box = new QCheckBox(item->text(),this);
         box->setStyleSheet("QCheckBox::indicator:checked{border-image:url(:/image/middlewidget/checked.png)}"
                            "QCheckBox::indicator:unchecked{border-image:url(:/image/middlewidget/unchecked.png)}");
         box->setText("");

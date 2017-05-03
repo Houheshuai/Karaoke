@@ -15,10 +15,10 @@ pushButtonCrossWidget::pushButtonCrossWidget(QWidget *parent) : QWidget(parent)
 
 pushButtonGroupWidget::pushButtonGroupWidget(QWidget *parent) : QWidget(parent)
 {
-    m_islove=false;
+    m_islove = false;
 
-    QHBoxLayout *hlyout=new QHBoxLayout;
-    m_btnLove=new myPushButton(this);
+    QHBoxLayout *hlyout = new QHBoxLayout;
+    m_btnLove = new myPushButton(this);
     m_btnLove->setFixedSize(16,16);
     m_btnDel=new myPushButton(this);
     m_btnDel->setFixedSize(16,16);
@@ -52,7 +52,7 @@ pushButtonGroupWidget::pushButtonGroupWidget(QWidget *parent) : QWidget(parent)
     hlyout->setContentsMargins(0,0,0,0);
     setLayout(hlyout);
 
-    connect(m_btnLove,SIGNAL(clicked(bool)),this,SLOT(slot_btnloveclicked()));
+    //connect(m_btnLove,SIGNAL(clicked(bool)),this,SLOT(slot_btnloveclicked()));
 }
 
 void pushButtonGroupWidget::setLoved()

@@ -314,8 +314,10 @@ void middleLeftStackWidget0::setPlayListConnection()
         disconnect(m_Vector.at(i)->m_table,SIGNAL(sig_playMv(int)),this,SLOT(slot_playMVIndex(int)));//播放MV!!
         connect(m_Vector.at(i)->m_table,SIGNAL(sig_playMv(int)),this,SLOT(slot_playMVIndex(int)));
 
-        disconnect(m_Vector.at(i)->m_table->m_playingWid,SIGNAL(sig_clicked(QString)),m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_search(QString)));//clickand 搜索
-        connect(m_Vector.at(i)->m_table->m_playingWid,SIGNAL(sig_clicked(QString)),m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_search(QString)));//搜索
+        disconnect(m_Vector.at(i)->m_table->m_playingWid,SIGNAL(sig_clicked(QString)),
+                   m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_search(QString)));//clickand 搜索
+        connect(m_Vector.at(i)->m_table->m_playingWid,SIGNAL(sig_clicked(QString)),
+                m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_search(QString)));//搜索
 
         disconnect(m_Vector.at(i)->m_table->m_playingWid->m_btnLab,SIGNAL(clicked(bool)),m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_setLrcShowStack()));
         connect(m_Vector.at(i)->m_table->m_playingWid->m_btnLab,SIGNAL(clicked(bool)),m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_setLrcShowStack()));
@@ -422,12 +424,10 @@ void middleLeftStackWidget0::slot_verScrBarChange(int value)
     }
     if(final)
         final->updateConvientButton();
-
 }
 
 myScrollArea::myScrollArea(QWidget *parent):QScrollArea(parent)
 {
-
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setFrameShadow(QFrame::Plain);//设置平的样式

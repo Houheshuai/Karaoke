@@ -369,7 +369,7 @@ const QImage &MyNetWork::BgWhiteChange(QImage &image , int brightness)
     return image;
 }
 
-void MyNetWork::requestMv(const QString &mvname)
+void MyNetWork::requestMv(const QString &mvname)//API无法使用
 {
     QByteArray byt=QString(mvname).replace("&"," ").toUtf8().toPercentEncoding();
     QNetworkRequest request;
