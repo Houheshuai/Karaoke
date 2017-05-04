@@ -478,20 +478,22 @@ void myTableWidget::showEvent(QShowEvent *e)
     m_finalWidget->m_Btntable->setTableShowIndicator();
     setAutoLayoutSize();
 }
+
 void myTableWidget::hideEvent(QHideEvent *e)
 {
     QTableWidget::hideEvent(e);
     m_finalWidget->m_Btntable->setTableHideIndicator();
     setAutoLayoutSize();
 }
+
 void myTableWidget::resizeEvent(QResizeEvent *e)
 {
     QTableWidget::resizeEvent(e);
 
     horizontalHeader()->resizeSection(1,width()-140);//resizeHeader
     m_playingWid->resize(width()-1,52);
-    ////////////////////
 }
+
 void myTableWidget::mouseMoveEvent(QMouseEvent *e)
 {
     QTableWidget::mouseMoveEvent(e);
@@ -515,7 +517,6 @@ void myTableWidget::leaveEvent(QEvent *e)
 }
 void myTableWidget::slot_cellEnter(int row, int c)
 {
-
     if(item(m_prebgItem,c)!=Q_NULLPTR&&row!=m_prebgItem)
     {
         removeCellWidget(m_prebgItem,0);
@@ -527,24 +528,15 @@ void myTableWidget::slot_cellEnter(int row, int c)
         item(m_prebgItem,0)->setBackgroundColor(Qt::transparent);
         item(m_prebgItem,1)->setBackgroundColor(Qt::transparent);
         item(m_prebgItem,2)->setBackgroundColor(Qt::transparent);
-
-        m_crossWid->deleteLater();
-        m_groupWid->deleteLater();
-
-        m_crossWid=NULL;
-        m_groupWid=NULL;
     }
     if(row!=m_prebgItem)
     {
         if(item(row,2)!=Q_NULLPTR)//防止内存无用增加
         {
-            m_crossWid=new pushButtonCrossWidget(this);
-            m_groupWid=new pushButtonGroupWidget(this);
-            m_groupWid->setObjectName(QString::number(row));
-            if(m_middleftStack0->myTablePlayListFinalVector().last()==m_finalWidget)//如果是正在我的最爱列表  全部都是红色的
+
+            if(m_middleftStack0->myTablePlayListFinalVector().last()==m_finalWidget)//如果是正在我的最爱列表 全部都是红色的
             {
-                m_groupWid->setLoved();
-                connect(m_groupWid->m_btnLove,SIGNAL(clicked(bool)),this,SLOT(slot_removeHoverRow()));
+
             }
             else
             {
@@ -554,23 +546,14 @@ void myTableWidget::slot_cellEnter(int row, int c)
                 if(list.contains(url))//如果歌曲存在在我的喜欢列表中 就有Loveed
                 {
                     m_loveNowRow=list.indexOf(url);
-                    m_groupWid->setLoved();
                 }
-                connect(m_groupWid->m_btnLove,SIGNAL(clicked()),this,SLOT(slot_btnloveclicked()));
             }
-
-            setCellWidget(row,0,m_crossWid);
-            setCellWidget(row,2,m_groupWid);
-
             m_text=item(row,2)->text();
-            item(row,2)->setText("");
+            //item(row,2)->setText("");
             QColor hoverbgcolor(180,180,180,50);
-
             this->item(row,0)->setBackgroundColor(hoverbgcolor);
             this->item(row,1)->setBackgroundColor(hoverbgcolor);
             this->item(row,2)->setBackgroundColor(hoverbgcolor);
-            connect(m_groupWid->m_btnDel,SIGNAL(clicked()),this,SLOT(slot_removeHoverRow()));
-            //connect(m_groupWid->m_btnMovie,SIGNAL(clicked(bool)),this,SLOT(slot_mvclicked()));
         }
         m_prebgItem=row;
     }
@@ -594,6 +577,3 @@ void myTableWidget::slot_rowCountChanged()//如果空
         m_addWid->hide();
     }
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-

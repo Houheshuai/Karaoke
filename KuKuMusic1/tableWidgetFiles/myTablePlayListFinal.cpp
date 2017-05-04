@@ -19,7 +19,7 @@
 #include"mainwindow.h"
 #include"middlewidgetleft.h"
 
-static QColor  BGcolor=QColor(230,230,230);
+static QColor BGcolor=QColor(230,230,230);
 
 myTablePlayListFinal::myTablePlayListFinal(QWidget*parent):baseWidget(parent)
 {
@@ -94,36 +94,36 @@ void myTablePlayListFinal::dropEvent(QDropEvent *event)
     QList<QUrl> files = event->mimeData()->urls();
     QMediaPlayer player;
     QEventLoop lp;
-       for(int i=0;i<files.count();i++)
-       {
-           if(files.value(i).toString().contains(".mp3"))
-           {
-                   QFileInfo info(files.value(i).toLocalFile());
-                   QString m_name=info.completeBaseName();
-                   if(!m_playList->m_list.contains(files.value(i)))
-                   {
-                       QString filePath=files.value(i).toLocalFile();
-                       player.setMedia(QUrl(filePath));
-////prevent the loop dont stop
-                       QTimer timer;
-                       connect(&timer,&QTimer::timeout,[&](){
-                                   lp.quit();
-                               });
-                       timer.setSingleShot(true);
-                       timer.start(2000);
+    for(int i=0; i<files.count(); i++)
+    {
+        if(files.value(i).toString().contains(".mp3"))
+        {
+            QFileInfo info(files.value(i).toLocalFile());
+            QString m_name=info.completeBaseName();
+            if(!m_playList->m_list.contains(files.value(i)))
+            {
+                QString filePath=files.value(i).toLocalFile();
+                player.setMedia(QUrl(filePath));
+                //prevent the loop dont stop
+                QTimer timer;
+                connect(&timer,&QTimer::timeout,[&]()
+                {
+                    lp.quit();
+                });
+                timer.setSingleShot(true);
+                timer.start(2000);
 
-                       connect(&player,SIGNAL(durationChanged(qint64)),&lp,SLOT(quit()));
-                       lp.exec();
-                       qint64 musicTime= player.duration();
-                       QTime total_time(0, (musicTime/60000)%60, (musicTime/1000)%60);
-                       QString duration=total_time.toString("mm:ss");
+                connect(&player,SIGNAL(durationChanged(qint64)),&lp,SLOT(quit()));
+                lp.exec();
+                qint64 musicTime= player.duration();
+                QTime total_time(0, (musicTime/60000)%60, (musicTime/1000)%60);
+                QString duration=total_time.toString("mm:ss");
 
-
-                       addToPlayList(m_name,files.value(i).toLocalFile(),duration);
-                       setAutoLayout();
-                   }
-           }
-      }
+                addToPlayList(m_name,files.value(i).toLocalFile(),duration);
+                setAutoLayout();
+            }
+        }
+    }
 
 }
 
@@ -137,10 +137,10 @@ void myTablePlayListFinal::slot_emptyList()//清空列表
 
     myDataBase::emptyList(ShowButtonName());
 
-   if(m_midleft0->nowPlayFinalTable()==this)//如果正在播放的
-     {
+    if(m_midleft0->nowPlayFinalTable()==this)//如果正在播放的
+    {
         stopCurrentSong();
-     }
+    }
     while(i<count)
     {
         int row=m_table->rowCount()-1;
@@ -184,7 +184,7 @@ const QString myTablePlayListFinal::currentSongDuration()
 
 int myTablePlayListFinal::currentSongDurationToInt()
 {
-   QTime time= QTime::fromString( currentSongDuration(),"mm:ss");
+    QTime time= QTime::fromString( currentSongDuration(),"mm:ss");
     return time.minute()*60*1000+time.second()*1000;
 }
 
@@ -216,7 +216,7 @@ void myTablePlayListFinal::updateConvientButton()
 #else
     int y=0;
     QVector<myTablePlayListFinal*> &vector=m_midleft0->myTablePlayListFinalVector();
-    for(int i=0;i<vector.size();i++)
+    for(int i=0; i<vector.size(); i++)
     {
         myTablePlayListFinal*f=vector.value(i);
         if(f==this)
@@ -225,7 +225,7 @@ void myTablePlayListFinal::updateConvientButton()
     }
     if(m_midleft0->verticalScrollBar()->value()<=y)
     {
-         m_midleft0->convientShowTableBtn()->hide();
+        m_midleft0->convientShowTableBtn()->hide();
     }
     else
     {
@@ -257,31 +257,30 @@ void myTablePlayListFinal::slot_showHideTable()
     {
         m_table->hide();
         foreach(myTablePlayListFinal *f,m_midleft0->myTablePlayListFinalVector())
-                f->m_table->hide();
+        f->m_table->hide();
         m_midleft0->convientShowTableBtn()->hide();
-
     }
     else
     {
-       m_table->show();
-           foreach(myTablePlayListFinal *f,m_midleft0->myTablePlayListFinalVector())
-           {
-               if(f!=this)//如果显示的话
-               {
-                   f->m_table->hide();
-               }
-           }
+        m_table->show();
+        foreach(myTablePlayListFinal *f,m_midleft0->myTablePlayListFinalVector())
+        {
+            if(f!=this)//如果显示的话
+            {
+                f->m_table->hide();
+            }
+        }
     }
 }
 
 void myTablePlayListFinal::getlistfromDateBase()//从数据库中获取列表
 {
-   QVector<QStringList> vec= myDataBase::readListSongInfo(ShowButtonName());
-   QStringList listname=vec.at(0);
-   QStringList listurl=vec.at(1);
-   QStringList listduration=vec.at(2);
-   for(int i=0;i<listname.count();i++)
-   {
+    QVector<QStringList> vec= myDataBase::readListSongInfo(ShowButtonName());
+    QStringList listname=vec.at(0);
+    QStringList listurl=vec.at(1);
+    QStringList listduration=vec.at(2);
+    for(int i=0; i<listname.count(); i++)
+    {
         m_table->insertRow(i);
         m_table->setItem(i,0,new QTableWidgetItem(""));
         m_table->setItem(i,1,new QTableWidgetItem(listname.value(i)));
@@ -289,8 +288,8 @@ void myTablePlayListFinal::getlistfromDateBase()//从数据库中获取列表
         m_table->item(i,2)->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
 
         m_playList->addPlayList(listurl.value(i));
-   }
-   m_Btntable-> slot_updateSongCount();
+    }
+    m_Btntable-> slot_updateSongCount();
 }
 
 void myTablePlayListFinal::slot_addSong()
@@ -302,7 +301,7 @@ void myTablePlayListFinal::slot_addSong()
 
     QMediaPlayer player;
     QEventLoop lp;
-    for(int i=0;i<files.count();i++)
+    for(int i=0; i<files.count(); i++)
     {
         QFileInfo info(files[i]);
         QString m_name=info.completeBaseName();
@@ -310,10 +309,12 @@ void myTablePlayListFinal::slot_addSong()
         {
             QString filePath=files.value(i);
             player.setMedia(QUrl(filePath));
-////prevent the loop dont stop
+            //prevent the loop dont stop
             QTimer timer;
-            connect(&timer,&QTimer::timeout,[&](){lp.quit();
-                               });
+            connect(&timer,&QTimer::timeout,[&]()
+            {
+                lp.quit();
+            });
             timer.setSingleShot(true);
             timer.start(2000);
 
@@ -332,73 +333,73 @@ void myTablePlayListFinal::slot_addSong()
 void myTablePlayListFinal::slot_addSongFolder()
 {
     QString dirrr = QFileDialog::getExistingDirectory(this, tr("打开本地歌曲文件夹"),
-                                                    "/home",
-                                                    QFileDialog::ShowDirsOnly
-                                                   | QFileDialog::DontResolveSymlinks);
+                    "/home",
+                    QFileDialog::ShowDirsOnly
+                    | QFileDialog::DontResolveSymlinks);
     QDir dir(dirrr);
-        if(!dir.exists())
+    if(!dir.exists())
+    {
+        return;
+    }
+    dir.setFilter(QDir::Files | QDir::NoSymLinks);
+    QFileInfoList list = dir.entryInfoList();
+
+    int file_count = list.count();
+    qDebug()<<file_count;
+    if(file_count <= 0)
+    {
+        return;
+    }
+
+    QStringList files;
+    for(int i=0; i<file_count; i++)
+    {
+        QFileInfo file_info = list.at(i);
+        QString suffix = file_info.suffix();
+        if(QString::compare(suffix, QString("mp3"), Qt::CaseInsensitive) == 0)
         {
-            return;
+            QString absolute_file_path = file_info.absoluteFilePath();
+            files.append(absolute_file_path);
         }
-        dir.setFilter(QDir::Files | QDir::NoSymLinks);
-        QFileInfoList list = dir.entryInfoList();
+    }
 
-        int file_count = list.count();
-        qDebug()<<file_count;
-        if(file_count <= 0)
+    if(files.isEmpty())
+        return;
+
+    QMediaPlayer player;
+    QEventLoop lp;
+    for(int i=0; i<files.count(); i++)
+    {
+
+        QFileInfo info(files[i]);
+        QString m_name=info.completeBaseName();
+        if(!m_playList->m_list.contains(files.value(i)))
         {
-            return;
+            QString filePath=files.value(i);
+            player.setMedia(QUrl(filePath));
+
+            connect(&player,SIGNAL(durationChanged(qint64)),&lp,SLOT(quit()));
+            lp.exec();
+            qint64 musicTime= player.duration();
+            QTime total_time(0, (musicTime/60000)%60, (musicTime/1000)%60);
+            QString format = "mm:ss";
+
+            QString duration=total_time.toString(format);
+            addToPlayList(m_name,files.at(i),duration);
+            setAutoLayout();
         }
-
-        QStringList files;
-        for(int i=0; i<file_count;i++)
-        {
-            QFileInfo file_info = list.at(i);
-            QString suffix = file_info.suffix();
-            if(QString::compare(suffix, QString("mp3"), Qt::CaseInsensitive) == 0)
-            {
-                QString absolute_file_path = file_info.absoluteFilePath();
-                files.append(absolute_file_path);
-            }
-        }
-
-        if(files.isEmpty())
-            return;
-
-        QMediaPlayer player;
-        QEventLoop lp;
-           for(int i=0;i<files.count();i++)
-           {
-
-                       QFileInfo info(files[i]);
-                       QString m_name=info.completeBaseName();
-                       if(!m_playList->m_list.contains(files.value(i)))
-                       {
-                           QString filePath=files.value(i);
-                           player.setMedia(QUrl(filePath));
-
-                           connect(&player,SIGNAL(durationChanged(qint64)),&lp,SLOT(quit()));
-                           lp.exec();
-                           qint64 musicTime= player.duration();
-                           QTime total_time(0, (musicTime/60000)%60, (musicTime/1000)%60);
-                           QString format = "mm:ss";
-
-                           QString duration=total_time.toString(format);
-                           addToPlayList(m_name,files.at(i),duration);
-                           setAutoLayout();
-                       }
-            }
+    }
 }
 void myTablePlayListFinal::slot_playSongFromSearchTable(const QStringList &namelist,const QStringList &urllist,const QStringList &dur)
 {
-    for(int i=0;i<namelist.count();i++)
+    for(int i=0; i<namelist.count(); i++)
     {
-                QString m_name=namelist.value(i);
-                if(!m_playList->m_list.contains(urllist.value(i)))
-                {
-                    addToPlayList(m_name,urllist.value(i),dur.value(i));
-                }
-     }
+        QString m_name=namelist.value(i);
+        if(!m_playList->m_list.contains(urllist.value(i)))
+        {
+            addToPlayList(m_name,urllist.value(i),dur.value(i));
+        }
+    }
 
     if( m_midleft0->myTablePlayListFinalVector().at(0)->m_table->isHidden())//如果第一列表隐藏
         m_midleft0->myTablePlayListFinalVector().at(0)->m_Btntable->clicked();
@@ -414,16 +415,16 @@ void myTablePlayListFinal::slot_playSongFromSearchTable(const QStringList &namel
 
 void myTablePlayListFinal::slot_addSongFromSearchTable(const QStringList &namelist,const QStringList& urllist,const QStringList &dur)
 {
-    for(int i=0;i<namelist.count();i++)
+    for(int i=0; i<namelist.count(); i++)
     {
-                QString m_name=namelist.value(i);
-                if(!m_playList->m_list.contains(urllist.value(i)))
-                {
-                    addToPlayList(m_name,urllist.value(i),dur.value(i));
-                }
-     }
-   if(m_table->isHidden())//如果第一列表隐藏
-      m_Btntable->clicked();
-   else
-       setAutoLayout();
+        QString m_name=namelist.value(i);
+        if(!m_playList->m_list.contains(urllist.value(i)))
+        {
+            addToPlayList(m_name,urllist.value(i),dur.value(i));
+        }
+    }
+    if(m_table->isHidden())//如果第一列表隐藏
+        m_Btntable->clicked();
+    else
+        setAutoLayout();
 }
