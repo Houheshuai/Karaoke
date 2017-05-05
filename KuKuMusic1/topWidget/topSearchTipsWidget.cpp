@@ -1,10 +1,11 @@
 #include "topSearchTipsWidget.h"
-#include<QJsonDocument>
-#include<QJsonObject>
-#include<QJsonArray>
-#include<QEventLoop>
-#include<QLineEdit>
-#include<QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QEventLoop>
+#include <QLineEdit>
+#include <QDebug>
+
 topSearchTipsWidget::topSearchTipsWidget(QWidget*p):QListWidget(p)
 {
     m_manger=new QNetworkAccessManager(this);

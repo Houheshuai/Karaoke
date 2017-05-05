@@ -30,13 +30,13 @@ middleWidgetLeft::middleWidgetLeft(QWidget *parent) : baseWidget(parent)
 
 void middleWidgetLeft::initAnimation()
 {
-    m_pix=QPixmap(":/image/middlewidget/indicator.png");
-    m_index=-1;
-    m_preindex=-1;
-    m_preItem=0;
-    m_x=0;
-    m_isAnima=true;
-    m_animation=new QPropertyAnimation(this,"m_x");
+    m_pix = QPixmap(":/image/middlewidget/indicator.png");
+    m_index = -1;
+    m_preindex = -1;
+    m_preItem = 0;
+    m_x = 0;
+    m_isAnima = true;
+    m_animation = new QPropertyAnimation(this,"m_x");
     m_animation->setDuration(200);
     m_stackwid->setCurrentIndex(0);
     connect(m_animation,SIGNAL(finished()),this,SLOT(slot_finished()));
@@ -54,7 +54,7 @@ void middleWidgetLeft::setInitMainWindow(mainWindow *p)
 
 void middleWidgetLeft::setBackgroundtransparent()
 {
-    color=QColor(55,55,55,55);
+    color = QColor(55,55,55,55);
     m_Swidget0->updateBGColor();
     setDrawVerticalLine(false);
     update();
@@ -62,7 +62,7 @@ void middleWidgetLeft::setBackgroundtransparent()
 
 void middleWidgetLeft::setBackgroundnormal()
 {
-    color=QColor(230,230,230);
+    color = QColor(230,230,230);
     m_Swidget0->updateBGColor();
     setDrawVerticalLine(true);
     update();

@@ -137,19 +137,19 @@ void middleLeftStackWidget0::slot_playIndex(int index)//设置播放的index所�
 
 void middleLeftStackWidget0::init()
 {
-    m_nowplayfinaltable=NULL;
+    m_nowplayfinaltable = NULL;
 
     setMouseTracking(true);
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-    m_wid=new baseWidget(this);
+    m_wid = new baseWidget(this);
     setWidget(m_wid);
-    QGridLayout *glyout=new QGridLayout;
+    QGridLayout *glyout = new QGridLayout;
     glyout->addWidget(m_wid);
     glyout->setContentsMargins(0,0,0,0);
     setLayout(glyout);
 
-    vlyout1=new QVBoxLayout;
-    myTablePlayListFinal *table0=new myTablePlayListFinal(this);
+    vlyout1 = new QVBoxLayout;
+    myTablePlayListFinal *table0 = new myTablePlayListFinal(this);
     table0->setMiddleStackWidget0(this);
     table0->setShowButtonName("默认列表");
     table0->getlistfromDateBase();//添加歌曲
