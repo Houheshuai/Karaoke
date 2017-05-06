@@ -13,7 +13,7 @@
 
 class myTablePlayListFinal;
 class myTableWidget;
-//歌曲列表菜单，右键或点击菜单图标显示
+//歌曲列表菜单按钮，右键或点击菜单图标显示
 class myShowTableButton:public QPushButton
 {
     Q_OBJECT

@@ -1,34 +1,33 @@
 #include "myTablePlayListFinal.h"
-#include<QVBoxLayout>
-#include<QScrollBar>
-#include<QFileDialog>
-#include<iterator>
-#include<QToolTip>
-#include<QMessageBox>
-#include<QEventLoop>
-#include<QTime>
-#include<qthread.h>
-#include<QMediaPlayer>
-#include<QPainter>
-#include<QMimeData>
+#include "FFmpegPlayer.h"
+#include "middleLeftStackWidget0.h"
+#include "myMediaList.h"
+#include "mytablewidget.h"
+#include "mainwindow.h"
+#include "middlewidgetleft.h"
+#include <QVBoxLayout>
+#include <QScrollBar>
+#include <QFileDialog>
+#include <iterator>
+#include <QToolTip>
+#include <QMessageBox>
+#include <QEventLoop>
+#include <QTime>
+#include <qthread.h>
+#include <QMediaPlayer>
+#include <QPainter>
+#include <QMimeData>
 
-#include"FFmpegPlayer.h"
-#include"middleLeftStackWidget0.h"
-#include"myMediaList.h"
-#include"mytablewidget.h"
-#include"mainwindow.h"
-#include"middlewidgetleft.h"
-
-static QColor BGcolor=QColor(230,230,230);
+static QColor BGcolor = QColor(230,230,230);
 
 myTablePlayListFinal::myTablePlayListFinal(QWidget*parent):baseWidget(parent)
 {
-    m_PlayListname="新建列表";
+    m_PlayListname = "新建列表";
     setMouseTracking(true);
     this->setAcceptDrops(true);
 
-    m_playList=new myMediaList(this);//列表
-    m_table=new myTableWidget(this);
+    m_playList = new myMediaList(this);//列表
+    m_table = new myTableWidget(this);
     m_table->setinitMyTableFinal(this);//some connection was initialized here
 
     m_Btntable=new myShowTableButton(this);

@@ -39,13 +39,13 @@ void myShowTableButton::initMenu()
     m_menu->addAction(act_addplaylist);
     m_menu->addSeparator();
     m_menu->addAction(act_addsong);
-    m_menu->addAction(new QAction("稍后播",m_menu));
-    m_menu->addAction(new QAction("添加到播放列表",m_menu));
-    m_menu->addAction(new QAction("全部发送到移动设备",m_menu));
-    m_menu->addAction(new QAction("下载本列表全部歌曲",m_menu));
-    m_menu->addAction(new QAction("排序",m_menu));
-    m_menu->addAction(new QAction("匹配MV",m_menu));
-    m_menu->addAction(new QAction("收藏整个列表",m_menu));
+    //m_menu->addAction(new QAction("稍后播",m_menu));
+//    m_menu->addAction(new QAction("添加到播放列表",m_menu));
+//    m_menu->addAction(new QAction("全部发送到移动设备",m_menu));
+//    m_menu->addAction(new QAction("下载本列表全部歌曲",m_menu));
+//    m_menu->addAction(new QAction("排序",m_menu));
+//    m_menu->addAction(new QAction("匹配MV",m_menu));
+//    m_menu->addAction(new QAction("收藏整个列表",m_menu));
     m_menu->addSeparator();
     m_menu->addAction(act_emptyList);
     m_menu->addAction(act_delplayList);
@@ -60,7 +60,6 @@ void myShowTableButton::initMenu()
     connect(act_addplaylist,SIGNAL(triggered(bool)),this,SIGNAL(sig_addPlayList()));
     connect(act_addsong,SIGNAL(triggered(bool)),this,SIGNAL(sig_addSong()));
     connect(this,SIGNAL(sig_reName(QString)),this,SLOT(slot_reNameDB(QString)));
-
 }
 
 void myShowTableButton::setFinalWidget(QWidget *p)
@@ -97,8 +96,10 @@ void myShowTableButton::setFinalWidget(QWidget *p)
 
  void myShowTableButton::setEnabledMenuItem(bool isSetting)
 {
-    m_menu->actionAt(QPoint(5,309))->setEnabled(isSetting);//del
-    m_menu->actionAt(QPoint(5,337))->setEnabled(isSetting);//rename
+//    m_menu->actionAt(QPoint(5,309))->setEnabled(isSetting);//del
+//    m_menu->actionAt(QPoint(5,337))->setEnabled(isSetting);//rename
+    m_menu->actionAt(QPoint(5,113))->setEnabled(isSetting);//del
+    m_menu->actionAt(QPoint(5,141))->setEnabled(isSetting);//rename
 }
 
 void myShowTableButton::setTipsStyle(bool isset)
@@ -126,7 +127,7 @@ void myShowTableButton::slot_ReName()
 }
 void myShowTableButton::slot_reNameDB(const QString &newName)
 {
-    QString oldname= m_finalWid->ShowButtonName();
+    QString oldname = m_finalWid->ShowButtonName();
     myDataBase::renameList(oldname,newName);
 }
 
@@ -221,7 +222,6 @@ void myShowTableButton::mouseMoveEvent(QMouseEvent *e)
     }
 }
 
-
 bool myShowTableButton::eventFilter(QObject *o, QEvent *e)
 {
     if(o==m_lineEdit)
@@ -233,8 +233,6 @@ bool myShowTableButton::eventFilter(QObject *o, QEvent *e)
     }
     return QObject::eventFilter(o,e);
 }
-
-
 
 void myShowTableButton::paintEvent(QPaintEvent *)
 {

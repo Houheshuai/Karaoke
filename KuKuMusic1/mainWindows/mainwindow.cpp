@@ -305,15 +305,16 @@ void mainWindow::initConnection()
     connect(trayMenu(),SIGNAL(sig_OpenDeskTopLrc()),this,SLOT(slot_OpenDeskTopLrc()));
     connect(bottomWidget()->m_btnlrc,SIGNAL(clicked(bool)),this,SLOT(slot_OpenDeskTopLrc()));
 }
+
 void mainWindow::slot_currentMediaChanged(const QString &media, bool isMV)//setnowplaytext
 {
     setOriginalStatus();
 
-    myTablePlayListFinal*finalwid=m_midstack0->nowPlayFinalTable();
-    if(media.isEmpty()||!m_midstack0->nowPlayFinalTable())//如果为空
+    myTablePlayListFinal* finalwid = m_midstack0->nowPlayFinalTable();
+    if(media.isEmpty() || !m_midstack0->nowPlayFinalTable())//如果为空
         return;
 
-    foreach(myTablePlayListFinal*f,m_midstack0->myTablePlayListFinalVector())
+    foreach(myTablePlayListFinal* f, m_midstack0->myTablePlayListFinalVector())
     {
         disconnect(f->m_table,SIGNAL(sig_setLoveState(bool)),m_bottomwid,SLOT(slot_setLoveState(bool)));
         disconnect(m_bottomwid->m_btnfavorite,SIGNAL(clicked(bool)),f->getPlayingWidget()->m_btnLove,SLOT(click()));
@@ -331,58 +332,56 @@ void mainWindow::slot_currentMediaChanged(const QString &media, bool isMV)//setn
     if(!isMV)
     {
         //请求background
-        QString author= songname.split("-").at(0);
+        QString author = songname.split("-").at(0);
         QDir dir("D:/ExcellentAlbum/"+author);
         dir.mkpath("D:/ExcellentAlbum/"+author);
         QFileInfoList list = dir.entryInfoList();
-        dir.setFilter(QDir::Files|QDir::NoSymLinks);
+        dir.setFilter(QDir::Files | QDir::NoSymLinks);
         int file_count = list.size();
-        if(file_count==2)//文件夹下为空的话
+        if(file_count == 2) //文件夹下为空的话
             emit sig_requestBgPic(author);
-        else//本地加载
+        else //本地加载
         {
             m_timeline->setFrameRange(0,file_count-3);
             m_timeline->setDuration((file_count-2)*10000);
             QFileInfo file_info;
-            for(int i=0; i<file_count; i++)
+            for(int i = 0; i < file_count; i++)
             {
-                file_info= list.at(i);
+                file_info = list.at(i);
                 QString suffix = file_info.suffix();
-                if(suffix==QString("jpg"))
+                if(suffix == QString("jpg"))
                 {
                     QString absolute_file_path = file_info.absoluteFilePath();
-                    m_pixvector<<QPixmap(absolute_file_path);
+                    m_pixvector << QPixmap(absolute_file_path);
                 }
             }
 
             m_timeline->start();
             setBackgroundPixmap(m_pixvector.value(0));
         }
-
         //Execellentlrc文件夹下的
-        QString path2lrc="D://ExcellentLrc/"+songname+".lrc";   //lrc url
-        QString ablumurl="D://ExcellentAlbum/"+songname+".jpg";  //albums url
+        QString path2lrc = "D://ExcellentLrc/"+songname+".lrc";   //lrc url
+        QString ablumurl = "D://ExcellentAlbum/"+songname+".jpg";  //albums url
         QFile file3(path2lrc);//歌词文件第二个
         //ALBUMS REQUEST
         finalwid->setCurrentSongAlbumPic(QPixmap(":/image/middlewidget/lab_Author.png"));
         QFile file(ablumurl);
-        if(file.exists())//如果存在专辑图片 加载图片
+        if(file.exists()) //如果存在专辑图片 加载图片
             finalwid->setCurrentSongAlbumPic(QPixmap(ablumurl));
         else
             emit sig_requestAlbum(songname,ablumurl);
         //LRC REQUEST
-
-        if(file3.exists())//如果存在在D:ExcellentLrc中的话
+        if(file3.exists()) //如果存在在D:ExcellentLrc中的话
         {
             if(!file3.open(QIODevice::ReadOnly))
                 return;
-            QByteArray byt=file3.readAll();
+            QByteArray byt = file3.readAll();
             file3.close();
             m_middwid->m_rightWid->m_lrcwid->analyzeLrc(byt,path2lrc);
         }
-        else//如果两个地方都没有歌词文件
+        else //如果两个地方都没有歌词文件
         {
-            QString songdur= finalwid->currentSongDuration();
+            QString songdur = finalwid->currentSongDuration();
             QTime time= QTime::fromString(songdur,"mm:ss");
             int dur=time.minute()*60*1000+time.second()*1000;
             emit sig_requestLrc(songname,dur,path2lrc);

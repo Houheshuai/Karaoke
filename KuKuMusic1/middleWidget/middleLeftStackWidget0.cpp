@@ -35,6 +35,7 @@ middleLeftStackWidget0::middleLeftStackWidget0(QWidget*parent):myScrollArea(pare
     initConvientWidget();
     initConnection();
 }
+
 void middleLeftStackWidget0::slot_setlabelpic(QByteArray byt,QString songname)
 {
     if(!m_nowplayfinaltable)
@@ -75,6 +76,7 @@ void middleLeftStackWidget0::initConnection()
 {
     connect(this->verticalScrollBar(),SIGNAL(valueChanged(int)),this,SLOT(slot_verScrBarChange(int)));
 }
+
 void middleLeftStackWidget0::scrolltoCurrentPlayList()
 {
     if(m_nowplayfinaltable==NULL)

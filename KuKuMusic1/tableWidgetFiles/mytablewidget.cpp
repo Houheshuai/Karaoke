@@ -106,7 +106,6 @@ void myTableWidget::slot_menuRequest(QPoint)//请求菜单
     {
         act->deleteLater();
     }
-
 }
 void myTableWidget::slot_moveToPList()//添加到列表中
 {
@@ -320,20 +319,17 @@ void myTableWidget::slot_doublick(int r, int c,bool isMv)
 
     foreach (myTablePlayListFinal* wp, m_middleftStack0->myTablePlayListFinalVector())
     {
-        int curindex=wp->m_table->currentSongIndex();
+        int curindex = wp->m_table->currentSongIndex();
         wp->m_table->setRowHeight(curindex,32);
         wp->m_table->m_playingWid->hide();//把其它的都隐藏起来
         wp->m_table->m_playingWid->setCurrentSongItem(NULL);
-        if(wp->m_table->item(curindex,1)!=Q_NULLPTR)
+        if(wp->m_table->item(curindex,1) != Q_NULLPTR)
         {
             wp->m_table->item(curindex,1)->setFont(font1);
             wp->m_table->item(curindex,2)->setFont(font1);
         }
     }
-
-    /*
-     *we set the big font in order to look like invisible
-       */
+    //we set the big font in order to look like invisible
     QFont font2;
     font2.setPointSize(100);
     item(r,1)->setFont(font2);

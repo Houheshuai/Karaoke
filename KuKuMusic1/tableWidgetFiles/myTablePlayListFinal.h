@@ -3,18 +3,18 @@
 
 #include <QObject>
 #include <QWidget>
-#include<QScrollArea>
-#include<QDebug>
-#include<QWheelEvent>
+#include <QScrollArea>
+#include <QDebug>
+#include <QWheelEvent>
 
-#include"mytablewidget.h"
-#include"playingWidget.h"
-#include"myshowtablebutton.h"
-#include"myMediaList.h"
-#include"dataBase/myDataBase.h"
+#include "mytablewidget.h"
+#include "playingWidget.h"
+#include "myshowtablebutton.h"
+#include "myMediaList.h"
+#include "dataBase/myDataBase.h"
 class middleLeftStackWidget0;
 class middleWidgetLeft;
-
+//歌曲列表控件
 class myTablePlayListFinal:public baseWidget
 {
     Q_OBJECT
