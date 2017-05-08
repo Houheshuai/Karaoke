@@ -63,8 +63,18 @@ enum
 FormPlay::FormPlay(const String& type, const String& name):
     M3D_Form(type, name),d_playState(0)
 {
+	d_stateBar = nullptr;
+	d_playStaLab = nullptr;
+	d_nextStaLab = nullptr;
+	d_playSongIndex = nullptr;
+	d_nextSongIndex = nullptr;
+	d_playSongType = nullptr;
+	d_nextSongType = nullptr;
     d_playSongName = nullptr;
     d_nextSongName = nullptr;
+	d_repeat = nullptr;
+	d_pause = nullptr;
+	d_count = nullptr;
     d_log = nullptr;
     m_curSongName = "";
     //m_playSongName = "";
@@ -127,8 +137,24 @@ void FormPlay::onHidden(WindowEventArgs& e)
 void FormPlay::onCreated()
 {
     M3D_Form::onCreated();
-    d_playSongName = static_cast<M3D_Label*>(getChild(Res_FormPlay::playSongName));
-    d_nextSongName = static_cast<M3D_Label*>(getChild(Res_FormPlay::nextSongName));
+	d_stateBar = static_cast<M3D_Label*>(getChild(Res_FormPlay::PlayStateBar));
+    d_playSongName = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::PlaySongName));
+	d_playSongName->setStringShiftable(true, 0.02f, false);
+    d_nextSongName = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::NextSongName));
+	d_nextSongName->setStringShiftable(true, 0.02f, false);
+
+	d_playSongIndex = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::PlaySongIndex));
+	d_nextSongIndex = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::NextSongIndex));
+	d_playSongType = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::PlaySongType));
+	d_nextSongType = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::NextSongType));
+
+	d_playSongName = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::PlaySongName));
+	d_nextSongName = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::NextSongName));
+	d_playStaLab = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::PlayStaLab));
+	d_nextStaLab = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::NextStaLab));
+	d_repeat = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::Repeat));
+	d_pause = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::pause));
+	d_count = static_cast<M3D_Label*>(d_stateBar->getChild(Res_FormPlay::count));
 }
 //----------------------------------------------------------------------------//
 void FormPlay::onDestroyed()
@@ -320,21 +346,79 @@ void FormPlay::onActionEnd()
 void FormPlay::onTimeout(EventArgs& e)
 {
     TimerEventArgs& te = (TimerEventArgs&)e;
-    if (te.d_name == ShowTitle)
+	if(te.d_name == ProgCountTimer)
+	{
+		ReqPhoneDB* reqDB = (ReqPhoneDB*)ReqDB::getSingletonPtr();
+		if (d_initCount != reqDB->ReqReservedSongCount())
+		{
+			d_initCount = reqDB->ReqReservedSongCount();
+			char str[16];
+			sprintf(str, "%d", d_initCount);
+			d_count->setString(str);
+		}
+	}
+	else if (te.d_name == ShowTitle)
     {
         if (d_ShowNextInfoFlag == NEXT_SONGINFO_SHOW)
         {
             d_nextSongName->hide();
+			d_nextSongIndex->hide();
+			d_nextSongType->hide();
+			d_nextStaLab->hide();
+
             d_playSongName->show();
+			d_playSongIndex->show();
+			d_playSongType->show();
+			d_playStaLab->show();
             d_ShowNextInfoFlag = NEXT_SONGINFO_HIDE;
         }
         else if(d_ShowNextInfoFlag == NEXT_SONGINFO_HIDE)
         {
             d_nextSongName->show();
+			d_nextSongIndex->show();
+			d_nextSongType->show();
+			d_nextStaLab->show();
+
             d_playSongName->hide();
+			d_playSongIndex->hide();
+			d_playSongType->hide();
+			d_playStaLab->hide();
             d_ShowNextInfoFlag = NEXT_SONGINFO_SHOW;
         }
+		else if(d_ShowNextInfoFlag == NEXT_SONGINFO_LOAD_FAILED)
+		{
+			ReqPhoneDB* reqDb = (ReqPhoneDB*)ReqDB::getSingletonPtr();
+			if (reqDb->ReqReservedSongGetFirstEx(&d_NextInfo))
+			{
+				d_nextSongName->setString(String(" ") + d_NextInfo.SongName);	
+				d_nextSongName->show();
+				d_nextSongIndex->setString(" " + d_NextInfo.SongIndex);
+				d_nextSongIndex->show();
+				//d_nextSongType->setImage(d_nextSongType);
+				d_nextSongType->show();
+				d_nextStaLab->show();
+
+				d_playSongName->hide();
+				d_playSongIndex->hide();
+				d_playSongType->hide();
+				d_playStaLab->hide();
+
+				d_ShowNextInfoFlag = NEXT_SONGINFO_SHOW;
+			}
+		}
     }
+	else if(te.d_name == HideTitleTimer)
+	{
+		if(d_stateBar->isVisible())
+		{
+			setTitleStatus(0);
+		}
+		else
+		{
+			MKConfig* config = MKConfig::getSingletonPtr();
+			setTitleStatus(config->getValue("Title"));
+		}
+	}
 }
 //----------------------------------------------------------------------------//
 void FormPlay::onCharacter(KeyEventArgs& e)
@@ -509,9 +593,24 @@ void FormPlay::refreshPlayerInfo(M3D_Log *eventData)
     {
         destroyTimer(ShowTitle);
         d_playSongName->setString("");
+		d_playSongType->setString("");
+		d_playSongIndex->setString("");
+		d_playStaLab->setString("");
+
         d_nextSongName->setString("");
+		d_nextSongType->setString("");
+		d_nextSongIndex->setString("");
+		d_nextStaLab->setString("");
+
         d_playSongName->hide();
+		d_playSongIndex->hide();
+		d_playSongType->hide();
+		d_playStaLab->hide();
         d_nextSongName->hide();
+		d_nextSongIndex->hide();
+		d_nextSongType->hide();
+		d_nextStaLab->hide();
+
         d_ShowNextInfoFlag = NEXT_SONGINFO_SHOW;
         //songIndex = d_log->getParamInt(LogParam::fmParam_FocusSongIdx, 0);//歌曲下标
         //循环播放，如果这首歌不是最后一首且不是按Enter键停止播放的
@@ -553,10 +652,24 @@ void FormPlay::refreshSongInfo(void)
         destroyTimer(ShowTitle);
         destroyTimer(HideTitleTimer);
         //setTitleStatus(config->getValue("Title"));
-        d_playSongName->setString("");
-        d_nextSongName->setString("");
-        d_playSongName->show();
-        d_nextSongName->hide();
+		d_playSongName->setString("");
+		d_playSongType->setString("");
+		d_playSongIndex->setString("");
+		d_playStaLab->setString("");
+
+		d_nextSongName->setString("");
+		d_nextSongType->setString("");
+		d_nextSongIndex->setString("");
+		d_nextStaLab->setString("");
+
+		d_playSongName->hide();
+		d_playSongIndex->hide();
+		d_playSongType->hide();
+		d_playStaLab->hide();
+		d_nextSongName->hide();
+		d_nextSongIndex->hide();
+		d_nextSongType->hide();
+		d_nextStaLab->hide();
         //d_vocal->hide();
         //d_track->hide();
         //d_record->hide();
@@ -569,15 +682,20 @@ void FormPlay::refreshSongInfo(void)
         memset(&d_NextInfo, 0, sizeof(d_NextInfo));
         if (reqDb->ReqReservedSongGetFirstEx(&d_NextInfo))
         {
-            d_nextSongName->setString(String("Next : ") + d_NextInfo.SongName);
+            d_nextSongName->setString(d_NextInfo.SongName);
             d_nextSongName->hide();
+			//d_nextSongType->setString();
+			d_nextSongIndex->setString(" " + d_NextInfo.SongIndex);
+			d_nextSongIndex->hide();
+			d_nextStaLab->hide();
             d_ShowNextInfoFlag = NEXT_SONGINFO_HIDE;
         }
         else
         {
             d_ShowNextInfoFlag = NEXT_SONGINFO_LOAD_FAILED;
         }
-        d_playSongName->setString(String("Playing : ") + d_songName);
+        d_playSongName->setString(d_songName);
+		d_playSongIndex->setString(" " + d_songIndex);
         createTimer(ShowTitle, 10000.0f, true, 0);
         if(d_fileType == SONG_FILETYPE_MTV)
             createTimer(HideTitleTimer, 30000.0f, true, 0);
@@ -723,6 +841,7 @@ bool FormPlay::handleMOVIEClicked(const CEGUI::EventArgs& e)
 	getApp()->showForm(FrmShortMovie_ID);
 	return true;
 }
+
 void FormPlay::updatePlayerInfo(void)
 {
     MKPlayer* player = (MKPlayer*)MKPlayer::getSingletonPtr();
@@ -778,6 +897,18 @@ void FormPlay::playNextSong(int curSongIndex)
     playSong(songPath);
 }
 
+void FormPlay::setTitleStatus(int status)
+{
+	if(status) {
+		d_stateBar->show();
+		//static_cast<appKRK*>(getApp())->setCommentDown();
+	}
+	else {
+		d_stateBar->hide();
+		//static_cast<appKRK*>(getApp())->setCommentUp();
+	}
+}
+
 void FormPlay::hidePlayTitle(void)
 {
     MKPlayer* player = (MKPlayer*)MKPlayer::getSingletonPtr();
@@ -788,8 +919,10 @@ void FormPlay::hidePlayTitle(void)
     }
     //player->setScore(PLY_CMD_PARA_VALUE_ON);
     player->setLyric(PLY_CMD_PARA_VALUE_ON);
-    d_playSongName->hide();
-    d_nextSongName->hide();
+    d_stateBar->hide();
+	/*d_playSongName->hide();
+	
+    d_nextSongName->hide();*/
 
     //if (config->getValue("Title"))
     //{

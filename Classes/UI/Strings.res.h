@@ -39,4 +39,6 @@
 #define STRING_5024 0x5024//High
 #define STRING_5025 0x5025//Mic 1
 #define STRING_5026 0x5026//Mic 2
+#define STRING_5027 0x5027//Playing:
+#define STRING_5028 0x5028//Next:
 #endif

@@ -76,9 +76,19 @@ namespace CEGUI
 		std::string getSongName(void);
 		void updatePlayerInfo(void);
 	private:
-		M3D_Log *d_log;
-		M3D_Label* d_playSongName;
-		M3D_Label* d_nextSongName;
+		M3D_Label*		d_stateBar;
+		M3D_Label*		d_playStaLab;
+		M3D_Label*		d_nextStaLab;
+		M3D_Label*		d_playSongIndex;
+		M3D_Label*		d_nextSongIndex;
+		M3D_Label*		d_playSongType;
+		M3D_Label*		d_nextSongType;
+		M3D_Label*		d_playSongName;
+		M3D_Label*		d_nextSongName;
+		M3D_Label*		d_repeat;
+		M3D_Label*		d_pause;
+		M3D_Label*		d_count;
+		M3D_Log*		d_log;
 		//player 
 		int				d_songIndex;
 		std::string		d_songName;
@@ -108,6 +118,7 @@ namespace CEGUI
 		bool handleMOVIEClicked(const CEGUI::EventArgs& e);
 		bool handleMTVClicked(const CEGUI::EventArgs& e);
 		bool handleMP3Clicked(const CEGUI::EventArgs& e);
+		void setTitleStatus(int status);
 		int	d_playState;
 		int		d_songType;
 		int		d_fileType;
@@ -118,6 +129,7 @@ namespace CEGUI
 		EventListenerCustom * playerListener;
 		std::vector<EventListenerCustom *> listenerList;
 		int d_showStatusFlag;
+		int d_initCount;
 	};
 }
 #endif
