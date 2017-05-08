@@ -1,0 +1,41 @@
+	usr:count		id
+	usr:[username]	id			//这里最好是邮箱地址，是否需要将@ . _ 替换掉
+
+	usr:[id]		username
+	usr:[id]:password	string
+	usr:[id]:nickname	string
+	usr:[id]:history	list(string)
+	usr:[id]:status 	enum(online/offline)		//当前用户账户的登陆状态
+	usr:[id]:available 	enum(open/locked/delete)	//当前用户账户的有效状态
+	usr:[id]:info	hashes
+		region	
+		age
+		sex
+		address
+		homenumber
+		mobilenumber
+
+	usr:[id]:level	number
+	usr:[id]:time	number
+	
+	usr:[id]:song	list(id)
+	usr:[id]:maxs	number			//最大歌曲数量
+
+	usr:[id]:following	set(id)			//关注
+	usr:[id]:followed	set(id)			//粉丝
+	usr:[id]:friends	set(id)			//好友
+
+	usr:[id]:rec	list(id)
+	usr:[id]:rec:[id]:score	 string
+	usr:[id]:rec:[id]:listen	string
+
+	usr:[id]:prop	list(id)			//用户道具列表
+
+	sog:all		list(id)	
+	sog:[songnum]:tim    人气
+	sog:[songnum]:sco   最高分
+	sog:[songnum]:sid    最高分演唱者id号
+	sog:[songnum]:nic    最高分演唱者昵称
+
+	sog:anno		字符串
+
