@@ -1,0 +1,15 @@
+@echo off
+mergePNG -m -o 1010 -d 1  Images.txt
+copy /y new\Images.txt .            
+mergePNG -m -o 1011 -d 1  Images.txt
+copy /y new\Images.txt .      
+mergePNG -m -o 1012 -d 1  Images.txt
+copy /y new\Images.txt .      
+mergePNG -m -o 1013 -d 1  Images.txt
+copy /y new\Images.txt .      
+mergePNG -m -o 1014 -d 1  Images.txt
+copy /y new\Images.txt .        
+mergePNG -m -o 1016 -d 1  Images.txt
+copy /y new\Images.txt .       
+     
+pause

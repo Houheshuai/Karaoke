@@ -1,0 +1,11 @@
+copy .\Resources\RES\m3d.res ..\..\..\Simulator\RES\en\M3D_EN.res
+
+copy .\Resources\RES\Strings.res.h ..\..\..\Classes\UI\Strings.res.h
+copy .\Resources\RES\Styles.res.h ..\..\..\Classes\UI\Styles.res.h
+      
+copy .\Resources\RES\FormMain.res.h ..\..\..\Classes\UI\FormMain.res.h
+copy .\Resources\RES\FormPlay.res.h ..\..\..\Classes\UI\FormPlay.res.h
+
+copy .\Resources\PNG\* ..\..\Simulator\RES\en\png\
+
+pause
