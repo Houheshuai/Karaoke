@@ -56,7 +56,7 @@ public:
     void setAutoLayoutSize();
     void updatePlayingWidgetPos();
     void removeSong(int row,bool setAutoLayout=true);
-
+    void addToPListByListName(const int row, const QString listName);
     playingWidget *m_playingWid;
 protected:
     virtual  void resizeEvent(QResizeEvent*);
@@ -122,7 +122,7 @@ private:
     pushButtonCrossWidget *m_crossWid;
     pushButtonGroupWidget *m_groupWid;
 
-    myTablePlayListFinal*m_finalWidget;
+    myTablePlayListFinal* m_finalWidget;
     middleLeftStackWidget0 *m_middleftStack0;
 };
 

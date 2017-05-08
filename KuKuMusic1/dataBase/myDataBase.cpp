@@ -1,11 +1,11 @@
 #include "myDataBase.h"
-#include<QSqlError>
-#include<QSqlDatabase>
-#include<QSqlQuery>
-#include<QDebug>
-#include<qsqlrecord.h>
+#include <QSqlError>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QDebug>
+#include <qsqlrecord.h>
 
-////////////////////////////////////////////////加载列表
+//加载列表
 QStringList myDataBase::loadPlayList()//只要运行一次就okay了
 {
     connectListinfo();
@@ -18,6 +18,7 @@ QStringList myDataBase::loadPlayList()//只要运行一次就okay了
     }
     return list;
 }
+
 void myDataBase::removePlayList(const QString&  name)
 {
     connectListinfo();
@@ -36,10 +37,9 @@ void myDataBase::connectListinfo()
     else
         datebase = QSqlDatabase::addDatabase("QSQLITE");
     datebase.setDatabaseName("SongDateBase.db");
-
     datebase.open();
-    datebase.exec(QString("CREATE TABLE IF NOT EXISTS listinfo(id integer primary key,listname TEXT)"));//create table
-
+    //如果此表不存在，创建
+    datebase.exec(QString("CREATE TABLE IF NOT EXISTS listinfo(id integer primary key,listname TEXT)"));
 }
 
 void myDataBase::connectSongInfo() //just connect once;
@@ -89,7 +89,7 @@ QVector<QStringList> myDataBase::readListSongInfo(const QString&  listname)
     return vec;
 }
 
-void myDataBase::renameList(const QString&  oldname, const QString&  newname)
+void myDataBase::renameList(const QString& oldname, const QString& newname)
 {
     connectListinfo();
     connectSongInfo();
@@ -121,7 +121,7 @@ void myDataBase::takeAndInsert(const QString &from, const QString &to)
     addPlayList(listname);
 }
 
-void myDataBase::emptyList(const QString&  listname)
+void myDataBase::emptyList(const QString& listname)
 {
     connectListinfo();
     connectSongInfo();

@@ -12,7 +12,8 @@ public:
     static void connectSongInfo();
     /*insert
     */
-    static void addSong(const QString& listname,const QString&  songname,const QString&  url,const QString&  duration); //添加歌曲
+    static void addSong(const QString& listname,const QString&  songname,const QString&  url,
+                        const QString&  duration); //添加歌曲
     static void addPlayList(const QString&  plistName);         //添加列表
     /*delete
     */
@@ -21,7 +22,7 @@ public:
     static void removePlayList(const QString& );//移除table
     /*update
     */
-    static void renameList(const QString& oldname,const QString& newname);  //重命名
+    static void renameList(const QString& oldname,const QString& newname);  //重命名列表
     static void swapList(const QString&,int index,const QString &,int index2);
     static void takeAndInsert(const QString&from,const QString &to);
     /*select

@@ -5,6 +5,7 @@
 #include <qgridlayout.h>
 #include <QMessageBox>
 #include <QVBoxLayout>
+#include <QString>
 
 #include "myTablePlayListFinal.h"
 #include "middleLeftStackWidget0.h"
@@ -53,14 +54,15 @@ void myTableWidget::slot_removeHoverRow()
 {
     removeSong(m_prebgItem);
 }
+
 void myTableWidget::initMenu()
 {
     m_menu = new QMenu;
     m_Addtoplistmenu = new QMenu("添加到列表",m_menu);//submenu
 
-    QAction*act_del = new QAction("删除",m_menu);
-    QAction*act_play = new QAction("播放",m_menu);
-    QAction*act_addsong = new QAction("添加歌曲",m_menu);
+    QAction* act_del = new QAction("删除",m_menu);
+    QAction* act_play = new QAction("播放",m_menu);
+    QAction* act_addsong = new QAction("添加歌曲",m_menu);
 
     m_menu->addAction(act_play);
     m_menu->addAction(act_addsong);
@@ -73,27 +75,28 @@ void myTableWidget::initMenu()
     connect(act_del,SIGNAL(triggered(bool)),this,SLOT(slot_removeRow()));
     connect(act_play,SIGNAL(triggered(bool)),this,SLOT(slot_actplay()));
 }
+
 void myTableWidget::slot_menuRequest(QPoint)//请求菜单
 {
     QVector<myTablePlayListFinal*> &plist=m_middleftStack0->myTablePlayListFinalVector();
 
-    int index=0;
+    int index = 0;
     foreach (myTablePlayListFinal*final, plist)
     {
-        QAction* act=new QAction(final->ShowButtonName(),m_Addtoplistmenu);
+        QAction* act = new QAction(final->ShowButtonName(),m_Addtoplistmenu);
         act->setObjectName(QString::number(index));
         m_Addtoplistmenu->addAction(act);
         connect(act,SIGNAL(triggered(bool)),this,SLOT(slot_moveToPList()));
         index++;
-        if(final==m_finalWidget)
+        if(final == m_finalWidget)
         {
             act->setEnabled(false);
         }
     }
-    if(rowCount()==0)
+    if(rowCount() == 0)
         return;
     int height2=QApplication::desktop()->height()-QCursor::pos().y();
-    if(height2<m_menu->height())
+    if(height2 < m_menu->height())
     {
         m_menu->exec(QPoint(QCursor::pos().x(),height2));
     }
@@ -101,39 +104,39 @@ void myTableWidget::slot_menuRequest(QPoint)//请求菜单
     {
         m_menu->exec(QCursor::pos());
     }
-    QList<QAction*> actlist=  m_Addtoplistmenu->actions();
+    QList<QAction*> actlist = m_Addtoplistmenu->actions();
     foreach (QAction* act, actlist)
     {
         act->deleteLater();
     }
 }
+
 void myTableWidget::slot_moveToPList()//添加到列表中
 {
+    QVector<myTablePlayListFinal*> &plist = m_middleftStack0->myTablePlayListFinalVector();
+    myTablePlayListFinal* final = plist.value(sender()->objectName().toInt());
 
-    QVector<myTablePlayListFinal*> &plist=m_middleftStack0->myTablePlayListFinalVector();
-    myTablePlayListFinal* final=plist.value(sender()->objectName().toInt());
+    QList<QTableWidgetItem*> items = selectedItems();
 
-    QList<QTableWidgetItem*> items=selectedItems();
-
-    int songcount=items.count();
-    if(songcount==0)
+    int songcount = items.count();
+    if(songcount == 0)
         return;
 
-    for(int i=0; i<songcount; i++)
+    for(int i = 0; i < songcount; ++i)
     {
-        QTableWidgetItem*it=items.at(i);
-        int row= it->row();
+        QTableWidgetItem* it = items.at(i);
+        int row = it->row();
 
         if(!final->songUrlList().contains(m_finalWidget->songUrlList().at(row)))//url判断在不在列表中
         {
-            QString songname=item(row,1)->text();
-            QString duration=item(row,2)->text();
-            QString url= m_finalWidget->songUrlList().at(row).toString();
+            QString songname = item(row,1)->text();
+            QString duration = item(row,2)->text();
+            QString url = m_finalWidget->songUrlList().at(row).toString();
             final->addToPlayList(songname,url,duration.simplified());
         }
     }
-
 }
+
 void myTableWidget::slot_actplay()
 {
     if(rowCount()==0)
@@ -187,6 +190,7 @@ void myTableWidget::init()
 
     emit sig_RowCountChange();//发信号
 }
+
 void myTableWidget::slot_cellClicked(int, int)
 {
     QVector<myTablePlayListFinal *> &wList=m_middleftStack0->myTablePlayListFinalVector();
@@ -198,9 +202,9 @@ void myTableWidget::slot_cellClicked(int, int)
         }
     }
 }
-bool myTableWidget::eventFilter(QObject *o, QEvent *e)
+bool myTableWidget::eventFilter(QObject *obj, QEvent *e)
 {
-    if(o==m_playingWid)
+    if(obj == m_playingWid)
     {
         QWheelEvent *ev=static_cast<QWheelEvent*>(e);
         if(e->type()==QEvent::Wheel)
@@ -227,7 +231,7 @@ bool myTableWidget::eventFilter(QObject *o, QEvent *e)
             slot_doublick(currentSongIndex(),0);
         }
     }
-    return QObject::eventFilter(o,e);
+    return QObject::eventFilter(obj,e);
 }
 
 void myTableWidget::mousePressEvent(QMouseEvent *event)
@@ -254,11 +258,11 @@ void myTableWidget::slot_mvclicked()
 
 void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by playingwidget's lovebtn
 {
-    int index=currentSongIndex();
-    if(index==-1)
+    int index = currentSongIndex();
+    if(index == -1)
         return;
-    myTablePlayListFinal*plovelist= m_middleftStack0->myTablePlayListFinalVector().last();
-    if(plovelist==m_finalWidget)//if this table is the nowplaytable
+    myTablePlayListFinal* plovelist = m_middleftStack0->myTablePlayListFinalVector().last();
+    if(plovelist == m_finalWidget)//if this table is the nowplaytable
     {
         removeSong(index);
         m_middleftStack0->showRemovetips(); //show the tips that removed successfully
@@ -266,9 +270,9 @@ void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by p
     }
     else//need to add or delete
     {
-        if(plovelist->songUrlList().contains(m_finalWidget->songUrlList().value(index)))//if true  then delete
+        if(plovelist->songUrlList().contains(m_finalWidget->songUrlList().value(index)))//if true then delete
         {
-            int plistindex=  plovelist->songUrlList().indexOf(m_finalWidget->songUrlList().value(index));
+            int plistindex = plovelist->songUrlList().indexOf(m_finalWidget->songUrlList().value(index));
             plovelist->m_table->slot_cellEnter(-1,0);
             plovelist->m_table->removeRow(plistindex);
             emit plovelist->m_table->sig_delIndex(plistindex);
@@ -280,8 +284,8 @@ void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by p
         }
         else          //add
         {
-            QString songname=item(index,1)->text();
-            QString url=m_finalWidget->songUrlList().value(index).toString();
+            QString songname = item(index,1)->text();
+            QString url = m_finalWidget->songUrlList().value(index).toString();
             plovelist->addToPlayList(songname,url,m_text.simplified());
 
             m_playingWid->setLoveState();
@@ -290,6 +294,7 @@ void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by p
         }
     }
 }
+
 void myTableWidget::initPlayingWidget()
 {
     m_playingWid=new playingWidget(this);
@@ -307,10 +312,12 @@ void myTableWidget::initPlayingWidget()
     connect(m_addWid->m_addFolder, SIGNAL(clicked(bool)), this, SIGNAL(sig_addSongFolder()));
     connect(m_playingWid->m_btnDel, SIGNAL(clicked(bool)), this, SLOT(slot_playingWidgetDelBtnClicked()));
     connect(m_playingWid->m_btnLove, SIGNAL(clicked(bool)), this, SLOT(slot_playingWidgetLoveBtnClicked()));
-
 }
+
 void myTableWidget::slot_doublick(int r, int c,bool isMv)
 {
+    //添加到最近播放？
+    addToPListByListName(r, "最近播放");
     if(rowCount()==0)
         return;
 
@@ -468,6 +475,27 @@ void myTableWidget::removeSong(int row,bool setAutoLayout)
         setAutoLayoutSize();
 }
 
+void myTableWidget::addToPListByListName(const int row, const QString listName)
+{
+    QVector<myTablePlayListFinal*>& pList = m_middleftStack0->myTablePlayListFinalVector();
+    myTablePlayListFinal* final = NULL;
+    for (int id = 0; id < pList.size(); ++id) {
+        if (pList.at(id)->ShowButtonName() == listName) {
+            final = pList.at(id);
+            break;
+        }
+    }
+    if (final == NULL)
+        return;
+    if (!final->songUrlList().contains(m_finalWidget->songUrlList().at(row)))//url判断在不在列表中
+    {
+        QString songname = item(row,1)->text();
+        QString duration = item(row,2)->text();
+        QString url = m_finalWidget->songUrlList().at(row).toString();
+        final->addToPlayList(songname,url,duration.simplified());
+    }
+}
+
 void myTableWidget::showEvent(QShowEvent *e)
 {
     QTableWidget::showEvent(e);
@@ -511,9 +539,10 @@ void myTableWidget::leaveEvent(QEvent *e)
     slot_cellEnter(-1, 0);
     QTableWidget::leaveEvent(e);
 }
+
 void myTableWidget::slot_cellEnter(int row, int c)
 {
-    if(item(m_prebgItem,c)!=Q_NULLPTR&&row!=m_prebgItem)
+    if(item(m_prebgItem,c) != Q_NULLPTR && row != m_prebgItem)
     {
         removeCellWidget(m_prebgItem,0);
         removeCellWidget(m_prebgItem,2);
@@ -525,11 +554,10 @@ void myTableWidget::slot_cellEnter(int row, int c)
         item(m_prebgItem,1)->setBackgroundColor(Qt::transparent);
         item(m_prebgItem,2)->setBackgroundColor(Qt::transparent);
     }
-    if(row!=m_prebgItem)
+    if(row != m_prebgItem)
     {
         if(item(row,2)!=Q_NULLPTR)//防止内存无用增加
         {
-
             if(m_middleftStack0->myTablePlayListFinalVector().last()==m_finalWidget)//如果是正在我的最爱列表 全部都是红色的
             {
 

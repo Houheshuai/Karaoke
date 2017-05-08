@@ -30,7 +30,7 @@ myTablePlayListFinal::myTablePlayListFinal(QWidget*parent):baseWidget(parent)
     m_table = new myTableWidget(this);
     m_table->setinitMyTableFinal(this);//some connection was initialized here
 
-    m_Btntable=new myShowTableButton(this);
+    m_Btntable = new myShowTableButton(this);
     m_Btntable->setFinalWidget(this);
 
     connect(m_Btntable,SIGNAL(sig_emptyList()),this,SLOT(slot_emptyList()));//清空列表
@@ -56,9 +56,9 @@ void myTablePlayListFinal::addToPlayList(const QString &name,const QString &url,
 {
     int rowcount = m_table->rowCount();//歌曲数
     m_table->insertRow(rowcount);
-    m_table->setItem(rowcount,0,new QTableWidgetItem(""));
-    m_table->setItem(rowcount,1, new QTableWidgetItem(name));
-    m_table->setItem(rowcount,2, new QTableWidgetItem(QString(dur+"    ")));
+    m_table->setItem(rowcount, 0, new QTableWidgetItem(""));
+    m_table->setItem(rowcount, 1, new QTableWidgetItem(name));
+    m_table->setItem(rowcount, 2, new QTableWidgetItem(QString(dur+"    ")));
     m_table->item(rowcount,2)->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
 
     m_playList->addPlayList(url);
@@ -93,15 +93,15 @@ void myTablePlayListFinal::dropEvent(QDropEvent *event)
     QList<QUrl> files = event->mimeData()->urls();
     QMediaPlayer player;
     QEventLoop lp;
-    for(int i=0; i<files.count(); i++)
+    for(int i = 0; i < files.count(); ++i)
     {
         if(files.value(i).toString().contains(".mp3"))
         {
             QFileInfo info(files.value(i).toLocalFile());
-            QString m_name=info.completeBaseName();
+            QString m_name = info.completeBaseName();
             if(!m_playList->m_list.contains(files.value(i)))
             {
-                QString filePath=files.value(i).toLocalFile();
+                QString filePath = files.value(i).toLocalFile();
                 player.setMedia(QUrl(filePath));
                 //prevent the loop dont stop
                 QTimer timer;
@@ -114,35 +114,34 @@ void myTablePlayListFinal::dropEvent(QDropEvent *event)
 
                 connect(&player,SIGNAL(durationChanged(qint64)),&lp,SLOT(quit()));
                 lp.exec();
-                qint64 musicTime= player.duration();
-                QTime total_time(0, (musicTime/60000)%60, (musicTime/1000)%60);
-                QString duration=total_time.toString("mm:ss");
+                qint64 musicTime = player.duration();
+                QTime total_time(0, (musicTime / 60000) % 60, (musicTime / 1000) % 60);
+                QString duration = total_time.toString("mm:ss");
 
                 addToPlayList(m_name,files.value(i).toLocalFile(),duration);
                 setAutoLayout();
             }
         }
     }
-
 }
 
 void myTablePlayListFinal::slot_emptyList()//清空列表
 {
-    int i=0;
-    int count=m_table->rowCount();
-    int mb= QMessageBox::warning(NULL,"warning","确定要清空？",QMessageBox::Ok|QMessageBox::Cancel);
-    if(mb==QMessageBox::Cancel)
+    int count = m_table->rowCount();  //此列表歌曲个数
+    int mb = QMessageBox::warning(NULL,"warning","确定要清空？",QMessageBox::Ok|QMessageBox::Cancel);
+    if(mb == QMessageBox::Cancel)
         return;
 
-    myDataBase::emptyList(ShowButtonName());
+    myDataBase::emptyList(ShowButtonName());    //先清数据库
 
-    if(m_midleft0->nowPlayFinalTable()==this)//如果正在播放的
+    if(m_midleft0->nowPlayFinalTable() == this)//如果正在播放的
     {
         stopCurrentSong();
     }
-    while(i<count)
+    int i = 0;
+    while(i < count)
     {
-        int row=m_table->rowCount()-1;
+        int row = m_table->rowCount() - 1;
         m_table->slot_cellEnter(-1,0);
         emit m_table->sig_delIndex(row);
         m_table->removeRow(row);
