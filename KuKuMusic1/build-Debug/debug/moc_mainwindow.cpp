@@ -21,7 +21,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_mainWindow_t {
     QByteArrayData data[24];
-    char stringdata0[429];
+    char stringdata0[413];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -31,37 +31,37 @@ struct qt_meta_stringdata_mainWindow_t {
 static const qt_meta_stringdata_mainWindow_t qt_meta_stringdata_mainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "mainWindow"
-QT_MOC_LITERAL(1, 11, 13), // "sig_requestMv"
-QT_MOC_LITERAL(2, 25, 0), // ""
-QT_MOC_LITERAL(3, 26, 16), // "sig_requestBgPic"
-QT_MOC_LITERAL(4, 43, 14), // "sig_requestLrc"
-QT_MOC_LITERAL(5, 58, 16), // "sig_requestAlbum"
-QT_MOC_LITERAL(6, 75, 22), // "slot_currentMediaError"
-QT_MOC_LITERAL(7, 98, 25), // "slot_setPlayerPlayOrPause"
-QT_MOC_LITERAL(8, 124, 19), // "slot_OpenDeskTopLrc"
-QT_MOC_LITERAL(9, 144, 22), // "slot_timelineAnimation"
-QT_MOC_LITERAL(10, 167, 13), // "slot_setBgPix"
-QT_MOC_LITERAL(11, 181, 16), // "QVector<QPixmap>"
-QT_MOC_LITERAL(12, 198, 12), // "slot_quitApp"
-QT_MOC_LITERAL(13, 211, 16), // "slot_setPlayMode"
-QT_MOC_LITERAL(14, 228, 8), // "PlayMode"
-QT_MOC_LITERAL(15, 237, 22), // "slot_setPlayModeWidget"
-QT_MOC_LITERAL(16, 260, 24), // "slot_currentMediaChanged"
-QT_MOC_LITERAL(17, 285, 4), // "isMV"
-QT_MOC_LITERAL(18, 290, 18), // "slot_iconIsActived"
-QT_MOC_LITERAL(19, 309, 33), // "QSystemTrayIcon::ActivationRe..."
-QT_MOC_LITERAL(20, 343, 19), // "slot_positionChange"
-QT_MOC_LITERAL(21, 363, 24), // "slot_playerStatusChanged"
-QT_MOC_LITERAL(22, 388, 12), // "PlayerStatus"
-QT_MOC_LITERAL(23, 401, 27) // "slot_adjustWindowNormalSize"
+QT_MOC_LITERAL(1, 11, 9), // "sig_reqMv"
+QT_MOC_LITERAL(2, 21, 0), // ""
+QT_MOC_LITERAL(3, 22, 12), // "sig_reqBgPic"
+QT_MOC_LITERAL(4, 35, 10), // "sig_reqLrc"
+QT_MOC_LITERAL(5, 46, 12), // "sig_reqAlbum"
+QT_MOC_LITERAL(6, 59, 22), // "slot_currentMediaError"
+QT_MOC_LITERAL(7, 82, 25), // "slot_setPlayerPlayOrPause"
+QT_MOC_LITERAL(8, 108, 19), // "slot_OpenDeskTopLrc"
+QT_MOC_LITERAL(9, 128, 22), // "slot_timelineAnimation"
+QT_MOC_LITERAL(10, 151, 13), // "slot_setBgPix"
+QT_MOC_LITERAL(11, 165, 16), // "QVector<QPixmap>"
+QT_MOC_LITERAL(12, 182, 12), // "slot_quitApp"
+QT_MOC_LITERAL(13, 195, 16), // "slot_setPlayMode"
+QT_MOC_LITERAL(14, 212, 8), // "PlayMode"
+QT_MOC_LITERAL(15, 221, 22), // "slot_setPlayModeWidget"
+QT_MOC_LITERAL(16, 244, 24), // "slot_currentMediaChanged"
+QT_MOC_LITERAL(17, 269, 4), // "isMV"
+QT_MOC_LITERAL(18, 274, 18), // "slot_iconIsActived"
+QT_MOC_LITERAL(19, 293, 33), // "QSystemTrayIcon::ActivationRe..."
+QT_MOC_LITERAL(20, 327, 19), // "slot_positionChange"
+QT_MOC_LITERAL(21, 347, 24), // "slot_playerStatusChanged"
+QT_MOC_LITERAL(22, 372, 12), // "PlayerStatus"
+QT_MOC_LITERAL(23, 385, 27) // "slot_adjustWindowNormalSize"
 
     },
-    "mainWindow\0sig_requestMv\0\0sig_requestBgPic\0"
-    "sig_requestLrc\0sig_requestAlbum\0"
-    "slot_currentMediaError\0slot_setPlayerPlayOrPause\0"
-    "slot_OpenDeskTopLrc\0slot_timelineAnimation\0"
-    "slot_setBgPix\0QVector<QPixmap>\0"
-    "slot_quitApp\0slot_setPlayMode\0PlayMode\0"
+    "mainWindow\0sig_reqMv\0\0sig_reqBgPic\0"
+    "sig_reqLrc\0sig_reqAlbum\0slot_currentMediaError\0"
+    "slot_setPlayerPlayOrPause\0slot_OpenDeskTopLrc\0"
+    "slot_timelineAnimation\0slot_setBgPix\0"
+    "QVector<QPixmap>\0slot_quitApp\0"
+    "slot_setPlayMode\0PlayMode\0"
     "slot_setPlayModeWidget\0slot_currentMediaChanged\0"
     "isMV\0slot_iconIsActived\0"
     "QSystemTrayIcon::ActivationReason\0"
@@ -134,10 +134,10 @@ void mainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         mainWindow *_t = static_cast<mainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sig_requestMv((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 1: _t->sig_requestBgPic((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 2: _t->sig_requestLrc((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< qint64(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3]))); break;
-        case 3: _t->sig_requestAlbum((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 0: _t->sig_reqMv((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 1: _t->sig_reqBgPic((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 2: _t->sig_reqLrc((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< qint64(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3]))); break;
+        case 3: _t->sig_reqAlbum((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 4: _t->slot_currentMediaError(); break;
         case 5: _t->slot_setPlayerPlayOrPause(); break;
         case 6: _t->slot_OpenDeskTopLrc(); break;
@@ -169,28 +169,28 @@ void mainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (mainWindow::*_t)(const QString & );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_requestMv)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_reqMv)) {
                 *result = 0;
                 return;
             }
         }
         {
             typedef void (mainWindow::*_t)(const QString & );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_requestBgPic)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_reqBgPic)) {
                 *result = 1;
                 return;
             }
         }
         {
             typedef void (mainWindow::*_t)(const QString & , qint64 , const QString & );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_requestLrc)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_reqLrc)) {
                 *result = 2;
                 return;
             }
         }
         {
             typedef void (mainWindow::*_t)(const QString & , const QString & );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_requestAlbum)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mainWindow::sig_reqAlbum)) {
                 *result = 3;
                 return;
             }
@@ -235,28 +235,28 @@ int mainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void mainWindow::sig_requestMv(const QString & _t1)
+void mainWindow::sig_reqMv(const QString & _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void mainWindow::sig_requestBgPic(const QString & _t1)
+void mainWindow::sig_reqBgPic(const QString & _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void mainWindow::sig_requestLrc(const QString & _t1, qint64 _t2, const QString & _t3)
+void mainWindow::sig_reqLrc(const QString & _t1, qint64 _t2, const QString & _t3)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void mainWindow::sig_requestAlbum(const QString & _t1, const QString & _t2)
+void mainWindow::sig_reqAlbum(const QString & _t1, const QString & _t2)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);

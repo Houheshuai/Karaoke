@@ -152,16 +152,16 @@ void middleWidgetRight::slot_search(const QString& text)
     m_searchwid->m_checkbox->setCheckState(Qt::Unchecked);
     m_searchwid->setFocus();
     m_searchwid->showLoadingWidget();
-    m_searchwid->setRequestisFinished(false); // request the song we give the bool variable a false value
+    m_searchwid->setRequestisFinished(false);
 
-    for(int i=0; i<m_listbtn.count(); i++) //do not select
+    for(int i=0; i<m_listbtn.count(); i++)
     {
         m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(68,68,68);font-size:17px;font-family:黑体;}"
                                        "QPushButton:hover{color:rgb(40,143,231);}");
     }
     m_stackWid->setCurrentIndex(m_listbtn.count());//the last
 
-    emit sig_requestSong(text.simplified());
+    emit sig_reqSong(text.simplified());
 }
 
 void middleWidgetRight::slot_setLrcShowStack()
@@ -189,7 +189,7 @@ void middleWidgetRight::slot_curStackChange(int index)
             m_listbtn.at(i)->setStyleSheet("QPushButton{color:rgb(68,68,68);font-size:17px;font-family:黑体;}"
                                            "QPushButton:hover{color:rgb(40,143,231);}");
     }
-    if(index==5)//lrc widget
+    if(index==5)
     {
         m_mainWindow->m_mainwid->setCurrentIndex(5);
         m_middlewidget->setStyleSheet("background:transparent;");
@@ -200,7 +200,7 @@ void middleWidgetRight::slot_curStackChange(int index)
                                            "QPushButton:hover{color:rgb(40,143,231);}");
         }
         m_listbtn.at(5)->setStyleSheet("QPushButton{border-image: url(:/image/middlewidget/btn_mask.png); color:rgb(40,143,231);font-size:17px;font-family:黑体;}");
-        m_middlewidget->setBtnShowHide(true);//the button was used to show or hide the lefttable
+        m_middlewidget->setBtnShowHide(true);
         setDrawLine(false);
         update();
     }
@@ -226,7 +226,7 @@ void middleWidgetRight::slot_imageMV(QImage img)
 
 void middleWidgetRight::slot_btnClick()
 {
-    int index=sender()->objectName().toInt();
+    int index = sender()->objectName().toInt();
     m_stackWid->setCurrentIndex(index);
 }
 

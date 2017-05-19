@@ -39,7 +39,7 @@ private:
 
     QString m_Text1;
     QString m_Text2;
-    bool m_isDrawTop; //linearGradient will draw on the text base on this value;
+    bool m_isDrawTop;
     bool m_isDrawBrush;
     bool m_isOriginalState;
 

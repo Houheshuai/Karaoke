@@ -18,24 +18,24 @@ public:
     ~MyNetWork();
     const QImage &BgWhiteChange(QImage& image , int brightness);
 signals:
-    void sig_requestMvfinished(const QString&);
-    void sig_reqSongfinished(const QByteArray&);
+    void sig_reqMvfinished(const QString&);
+    void sig_reqSongFinished(const QByteArray&);
     void sig_reqSongNextPagefinished(const QByteArray&);
 
     void dolrcworkfinished(const QByteArray&,const QString&);
     void setpic(const QByteArray&,const QString&);
     void sig_setBgpix(const QVector<QPixmap>&,const QString& author);
 public slots:
-    void requestMv(const QString&);
-    void requestalbum(const QString &name,const QString &savelocal);
-    void requestSong(const QString&);
-    void requestSongNextPage();
-    void requestlrc(const QString &,qint64 totaltime,const QString &saveloaction);
-    void requestBgPic(const QString &author);
+    void reqMv(const QString&);
+    void reqAlbum(const QString &name,const QString &savelocal);
+    void reqSong(const QString&);
+    void reqSongNextPage();
+    void reqLrc(const QString &,qint64 totaltime,const QString &saveloaction);
+    void reqBgPic(const QString &author);
 private:
 
     int m_pageindex;
-    QString m_songname;
+    QString m_songName;
 };
 
 #endif // MYNETWORK_H

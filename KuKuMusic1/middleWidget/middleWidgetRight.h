@@ -13,7 +13,6 @@
 class mainWindow;
 class middleSearchWidget;
 class LyricLabel;
-//class myPushButton;
 class middleWidgets;
 
 class middleWidgetRight:public baseWidget
@@ -52,7 +51,7 @@ protected:
     void resizeEvent(QResizeEvent*);
     void paintEvent(QPaintEvent *);
 signals:
-    void sig_requestSong(const QString&);
+    void sig_reqSong(const QString&);
 
 private:
     bool m_isdrawline;
@@ -62,13 +61,6 @@ private:
     middleWidgets *m_middlewidget;
     mainWindow *m_mainWindow;
     baseWidget*m_wid;
-
-
-//    WebWidget *m_web0;
-//    WebWidget *m_web1;
-//    WebWidget *m_web2;
-//    WebWidget *m_web3;
-//    WebWidget *m_web4;
 };
 
 #endif // MIDDLEWIDGETRIGHT_H

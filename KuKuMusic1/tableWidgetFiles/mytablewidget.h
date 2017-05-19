@@ -95,7 +95,7 @@ public Q_SLOTS:
     void slot_playingWidgetDelBtnClicked();
 
 signals:
-    void sig_requestMv(QString);
+    void sig_reqMv(QString);
     void sig_setLoveState(bool);
 
     void sig_playMv(int);

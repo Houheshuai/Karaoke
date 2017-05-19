@@ -54,11 +54,11 @@ protected:
     virtual void resizeEvent(QResizeEvent *);
 
 public slots:
-    void slot_addRequestSong(const QByteArray&);
+    void slot_addreqSong(const QByteArray&);
 
     void slot_autoRequestNextPage(int);
 
-    void slot_requestSong(const QByteArray&);
+    void slot_reqSong(const QByteArray&);
 
     void slot_btnplayclicked();
     void slot_btnaddclicked();
@@ -68,7 +68,7 @@ public slots:
 private slots:
     void slot_menuWork();
 signals:
-    void sig_requestSongNextPage();
+    void sig_reqSongNextPage();
 
     void sig_btnPlayClickInfo(const QStringList &songname,const QStringList &songurl,const QStringList &dur);
 

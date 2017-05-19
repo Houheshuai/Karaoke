@@ -2,17 +2,15 @@
 #define SKINWIDGET_H
 
 #include <QObject>
-#include<QSignalMapper>
-#include<QDebug>
+#include <QSignalMapper>
+#include <QDebug>
 
-#include"basewindow.h"
-#include"baseWidget.h"
-#include"baseDialog.h"
-#include"myPushButton.h"
-#include"skinWidgetSliderWidget.h"
+#include "basewindow.h"
+#include "baseWidget.h"
+#include "baseDialog.h"
+#include "myPushButton.h"
+#include "skinWidgetSliderWidget.h"
 class skinWidget;
-
-
 
 class skinWidgetContentItem:public baseWidget
 {
@@ -24,12 +22,14 @@ public:
     void setPixmap(const QString &);
     void loadFromPath(const QString& path);
     void setMaskText(const QString&);
-   const QString PixPath(){return m_path;}
+    const QString PixPath()
+    {
+        return m_path;
+    }
 protected:
     void paintEvent(QPaintEvent *);
     void enterEvent(QEvent *);
     void leaveEvent(QEvent *);
-
 
     void mouseReleaseEvent(QMouseEvent *);
 signals:
@@ -46,15 +46,18 @@ private:
 
 class skinContentWidget:public baseWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-   explicit skinContentWidget(QWidget*p=0);
-   void setSkinWidget(skinWidget*);
-   void addSkin(skinWidgetContentItem*);
-   void loadFromDir(const QString &dir);
+    explicit skinContentWidget(QWidget*p=0);
+    void setSkinWidget(skinWidget*);
+    void addSkin(skinWidgetContentItem*);
+    void loadFromDir(const QString &dir);
     void setDefaultSkin();
     void UpdateSkin();
-   QSignalMapper *signalMapper(){return m_sigmap;}
+    QSignalMapper *signalMapper()
+    {
+        return m_sigmap;
+    }
 
 public slots:
     void slot_itemClicked();
@@ -62,18 +65,21 @@ signals:
     void sig_setBackground(QString);
 
 private:
-   QVector<skinWidgetContentItem*> m_vector;
-   skinWidget *m_skinWid;
-   QSignalMapper *m_sigmap;
+    QVector<skinWidgetContentItem*> m_vector;
+    skinWidget *m_skinWid;
+    QSignalMapper *m_sigmap;
 };
-////////////////////////////////////////////////////
+
 class skinWidget : public baseDialog
 {
     Q_OBJECT
 public:
     explicit skinWidget(QWidget *parent = 0);
     void initTopLayout();
-    QSignalMapper *signalMapper(){return m_skincontwid->signalMapper();}
+    QSignalMapper *signalMapper()
+    {
+        return m_skincontwid->signalMapper();
+    }
     void setdefaultSkin();
     void initBottomLayout();
 

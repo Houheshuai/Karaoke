@@ -110,7 +110,7 @@ int loadingWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 struct qt_meta_stringdata_middleSearchWidget_t {
     QByteArrayData data[15];
-    char stringdata0[246];
+    char stringdata0[234];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -120,29 +120,28 @@ struct qt_meta_stringdata_middleSearchWidget_t {
 static const qt_meta_stringdata_middleSearchWidget_t qt_meta_stringdata_middleSearchWidget = {
     {
 QT_MOC_LITERAL(0, 0, 18), // "middleSearchWidget"
-QT_MOC_LITERAL(1, 19, 23), // "sig_requestSongNextPage"
-QT_MOC_LITERAL(2, 43, 0), // ""
-QT_MOC_LITERAL(3, 44, 20), // "sig_btnPlayClickInfo"
-QT_MOC_LITERAL(4, 65, 8), // "songname"
-QT_MOC_LITERAL(5, 74, 7), // "songurl"
-QT_MOC_LITERAL(6, 82, 3), // "dur"
-QT_MOC_LITERAL(7, 86, 19), // "slot_addRequestSong"
-QT_MOC_LITERAL(8, 106, 24), // "slot_autoRequestNextPage"
-QT_MOC_LITERAL(9, 131, 16), // "slot_requestSong"
-QT_MOC_LITERAL(10, 148, 19), // "slot_btnplayclicked"
-QT_MOC_LITERAL(11, 168, 18), // "slot_btnaddclicked"
-QT_MOC_LITERAL(12, 187, 23), // "slot_btndownloadclicked"
-QT_MOC_LITERAL(13, 211, 20), // "slot_checkBoxClicked"
-QT_MOC_LITERAL(14, 232, 13) // "slot_menuWork"
+QT_MOC_LITERAL(1, 19, 19), // "sig_reqSongNextPage"
+QT_MOC_LITERAL(2, 39, 0), // ""
+QT_MOC_LITERAL(3, 40, 20), // "sig_btnPlayClickInfo"
+QT_MOC_LITERAL(4, 61, 8), // "songname"
+QT_MOC_LITERAL(5, 70, 7), // "songurl"
+QT_MOC_LITERAL(6, 78, 3), // "dur"
+QT_MOC_LITERAL(7, 82, 15), // "slot_addreqSong"
+QT_MOC_LITERAL(8, 98, 24), // "slot_autoRequestNextPage"
+QT_MOC_LITERAL(9, 123, 12), // "slot_reqSong"
+QT_MOC_LITERAL(10, 136, 19), // "slot_btnplayclicked"
+QT_MOC_LITERAL(11, 156, 18), // "slot_btnaddclicked"
+QT_MOC_LITERAL(12, 175, 23), // "slot_btndownloadclicked"
+QT_MOC_LITERAL(13, 199, 20), // "slot_checkBoxClicked"
+QT_MOC_LITERAL(14, 220, 13) // "slot_menuWork"
 
     },
-    "middleSearchWidget\0sig_requestSongNextPage\0"
+    "middleSearchWidget\0sig_reqSongNextPage\0"
     "\0sig_btnPlayClickInfo\0songname\0songurl\0"
-    "dur\0slot_addRequestSong\0"
-    "slot_autoRequestNextPage\0slot_requestSong\0"
-    "slot_btnplayclicked\0slot_btnaddclicked\0"
-    "slot_btndownloadclicked\0slot_checkBoxClicked\0"
-    "slot_menuWork"
+    "dur\0slot_addreqSong\0slot_autoRequestNextPage\0"
+    "slot_reqSong\0slot_btnplayclicked\0"
+    "slot_btnaddclicked\0slot_btndownloadclicked\0"
+    "slot_checkBoxClicked\0slot_menuWork"
 };
 #undef QT_MOC_LITERAL
 
@@ -196,11 +195,11 @@ void middleSearchWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         middleSearchWidget *_t = static_cast<middleSearchWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sig_requestSongNextPage(); break;
+        case 0: _t->sig_reqSongNextPage(); break;
         case 1: _t->sig_btnPlayClickInfo((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3]))); break;
-        case 2: _t->slot_addRequestSong((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
+        case 2: _t->slot_addreqSong((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
         case 3: _t->slot_autoRequestNextPage((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->slot_requestSong((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
+        case 4: _t->slot_reqSong((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
         case 5: _t->slot_btnplayclicked(); break;
         case 6: _t->slot_btnaddclicked(); break;
         case 7: _t->slot_btndownloadclicked(); break;
@@ -213,7 +212,7 @@ void middleSearchWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (middleSearchWidget::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&middleSearchWidget::sig_requestSongNextPage)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&middleSearchWidget::sig_reqSongNextPage)) {
                 *result = 0;
                 return;
             }
@@ -265,7 +264,7 @@ int middleSearchWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void middleSearchWidget::sig_requestSongNextPage()
+void middleSearchWidget::sig_reqSongNextPage()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }

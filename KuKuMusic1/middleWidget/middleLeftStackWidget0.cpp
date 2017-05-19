@@ -253,19 +253,19 @@ void middleLeftStackWidget0::slot_removePlayList()//移除播放列表
     setAutoLayout();
 }
 
-void middleLeftStackWidget0::slot_btnnextSong()//下一曲
+void middleLeftStackWidget0::slot_btnnextSong()//下一曲，相当于双击列表的下一首歌曲
 {
-    if(m_nowplayfinaltable==NULL)
+    if(m_nowplayfinaltable == NULL)
         return;
-    int index= m_nowplayfinaltable->playList()->nextMediaIndex();
+    int index = m_nowplayfinaltable->playList()->nextMediaIndex();
     m_nowplayfinaltable->m_table->slot_doublick(index,0);
 }
 
 void middleLeftStackWidget0::slot_btnpreSong()//上一曲
 {
-    if(m_nowplayfinaltable==NULL)
+    if(m_nowplayfinaltable == NULL)
         return;
-    int index= m_nowplayfinaltable->playList()->preMediaIndex();
+    int index = m_nowplayfinaltable->playList()->preMediaIndex();
     m_nowplayfinaltable->m_table->slot_doublick(index,0);
 }
 
@@ -295,14 +295,14 @@ void middleLeftStackWidget0::updateBGColor()
 
 bool middleLeftStackWidget0::isEnableMoveList(myTablePlayListFinal *list)
 {
-    if(list==m_Vector.first()||list==m_Vector.last())
+    if(list == m_Vector.first() || list == m_Vector.last())
         return 0;
     return 1;
 }
 
 void middleLeftStackWidget0::setPlayListConnection()
 {
-    for(int i=0; i<m_Vector.count(); i++)
+    for(int i = 0; i < m_Vector.count(); i++)
     {
         disconnect(m_Vector.at(i)->m_Btntable,SIGNAL(sig_addPlayList()),this,SLOT(slot_addPlayListWithRename()));//添加播放列表
         connect(m_Vector.at(i)->m_Btntable,SIGNAL(sig_addPlayList()),this,SLOT(slot_addPlayListWithRename()));
@@ -324,58 +324,51 @@ void middleLeftStackWidget0::setPlayListConnection()
         disconnect(m_Vector.at(i)->m_table->m_playingWid->m_btnLab,SIGNAL(clicked(bool)),m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_setLrcShowStack()));
         connect(m_Vector.at(i)->m_table->m_playingWid->m_btnLab,SIGNAL(clicked(bool)),m_mainWindow->middleWidget()->m_rightWid,SLOT(slot_setLrcShowStack()));
 
-        disconnect(m_Vector.at(i)->m_table,SIGNAL(sig_requestMv(QString)),m_mainWindow,SIGNAL(sig_requestMv(QString)));
-        connect(m_Vector.at(i)->m_table,SIGNAL(sig_requestMv(QString)),m_mainWindow,SIGNAL(sig_requestMv(QString)));
+        disconnect(m_Vector.at(i)->m_table,SIGNAL(sig_reqMv(QString)),m_mainWindow,SIGNAL(sig_reqMv(QString)));
+        connect(m_Vector.at(i)->m_table,SIGNAL(sig_reqMv(QString)),m_mainWindow,SIGNAL(sig_reqMv(QString)));
     }
 }
 
 void middleLeftStackWidget0::setSwapList( myTablePlayListFinal *begin,  myTablePlayListFinal *after)
 {
-    if(!begin||!after||begin==after)
+    if(!begin || !after || begin == after)
         return;
-    int beginindex=m_Vector.indexOf(begin);
-    int afterindex=m_Vector.indexOf(after);
+    int beginindex = m_Vector.indexOf(begin);
+    int afterindex = m_Vector.indexOf(after);
 
     m_Vector.replace(afterindex,begin);
     m_Vector.replace(beginindex,after);
-    /**/
-    int loindex= vlyout1->indexOf(begin);
+
+    int loindex = vlyout1->indexOf(begin);
     vlyout1->removeWidget(begin);
-    int loindex2=vlyout1->indexOf(after);
+    int loindex2 = vlyout1->indexOf(after);
     vlyout1->removeWidget(after);
 
     vlyout1->insertWidget(loindex2,begin);
     vlyout1->insertWidget(loindex,after);
-    /**/
+
     myDataBase::swapList(begin->ShowButtonName(),beginindex,after->ShowButtonName(),afterindex);
 }
 
 void middleLeftStackWidget0::setListTakeAndInsert(myTablePlayListFinal *from, myTablePlayListFinal *after)
 {
-    if(!from||!after||from==after)
+    if(!from || !after || from == after)
         return;
 
     m_Vector.removeOne(from);
-    int afterindex= m_Vector.indexOf(after);
-    m_Vector.insert(afterindex+1,from);
-    /*
-     * vector was successfully to be inserted
-    */
+    int afterindex = m_Vector.indexOf(after);
+    m_Vector.insert(afterindex + 1,from);
+
     vlyout1->removeWidget(from);
     int afterindex2=vlyout1->indexOf(after);
     vlyout1->insertWidget(afterindex2+1,from);
-    /*
-     * Layout was successfully to be changed
-    */
+
     myDataBase::takeAndInsert(from->ShowButtonName(),after->ShowButtonName());
-    /*
-     * DateBase was  successfully to be updated
-    */
 }
 
 void middleLeftStackWidget0::slot_playMVIndex(int index)
 {
-    m_nowplayfinaltable=(myTablePlayListFinal*)sender()->parent();
+    m_nowplayfinaltable = (myTablePlayListFinal*)sender()->parent();
     m_nowplayfinaltable->playList()->setCurIndex(index); //用于MV播放完了~知道自己的位置
 }
 
@@ -389,22 +382,22 @@ void middleLeftStackWidget0::slot_searchSong(const QString &words)
 
     foreach(myTablePlayListFinal*f,m_Vector)
     {
-        int row= f->m_table->currentSongIndex();
-        int count=f->m_table->rowCount();
+        int row = f->m_table->currentSongIndex();
+        int count = f->m_table->rowCount();
         for(int i=0; i<count; i++)
         {
             f->m_table->setRowHeight(i,0);
             if(f->m_table->item(i,1)->text().contains(words))
             {
                 f->m_table->show();
-                if(row!=i)
+                if(row != i)
                     f->m_table->setRowHeight(i,32);
                 else
                     f->m_table->setRowHeight(i,52);
             }
-            if(words=="")
+            if(words == "")
             {
-                if(row!=i)
+                if(row != i)
                     f->m_table->setRowHeight(i,32);
                 else
                     f->m_table->setRowHeight(i,52);
@@ -416,13 +409,13 @@ void middleLeftStackWidget0::slot_searchSong(const QString &words)
 }
 void middleLeftStackWidget0::slot_verScrBarChange(int value)
 {
-    if(value!=0)
+    if(value != 0)
         m_convtwowid->show();
-    myTablePlayListFinal*final=NULL;
-    foreach (myTablePlayListFinal*f,m_Vector)
+    myTablePlayListFinal* final = NULL;
+    foreach (myTablePlayListFinal* f, m_Vector)
     {
         if(!f->m_table->isHidden())
-            final=f;
+            final = f;
     }
     if(final)
         final->updateConvientButton();
@@ -441,7 +434,4 @@ myScrollArea::myScrollArea(QWidget *parent):QScrollArea(parent)
                                        "QScrollBar::add-line:vertical{border:1px rgb(230,230,230,150);height: 1px;}"
                                        "QScrollBar::sub-line:vertical{border:1px rgb(230,230,230,150);height: 1px;}"
                                        "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background:transparent;}");
-
-//用于最外边
-
 }

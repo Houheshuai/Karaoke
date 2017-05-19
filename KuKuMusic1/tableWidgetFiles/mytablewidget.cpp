@@ -253,7 +253,7 @@ void myTableWidget::slot_mvclicked()
     QString mvname= item(row,1)->text();
 
     slot_doublick(m_prebgItem,1,true); //mv
-    emit sig_requestMv(mvname);
+    emit sig_reqMv(mvname);
 }
 
 void myTableWidget::slot_playingWidgetLoveBtnClicked()  //this slot is used by playingwidget's lovebtn
@@ -314,10 +314,10 @@ void myTableWidget::initPlayingWidget()
     connect(m_playingWid->m_btnLove, SIGNAL(clicked(bool)), this, SLOT(slot_playingWidgetLoveBtnClicked()));
 }
 
-void myTableWidget::slot_doublick(int r, int c,bool isMv)
+void myTableWidget::slot_doublick(int row, int c,bool isMv)
 {
-    //添加到最近播放？
-    addToPListByListName(r, "最近播放");
+    //添加到最近播放
+    addToPListByListName(row, "最近播放");
     if(rowCount()==0)
         return;
 
@@ -339,21 +339,21 @@ void myTableWidget::slot_doublick(int r, int c,bool isMv)
     //we set the big font in order to look like invisible
     QFont font2;
     font2.setPointSize(100);
-    item(r,1)->setFont(font2);
-    item(r,2)->setFont(font2);
+    item(row,1)->setFont(font2);
+    item(row,2)->setFont(font2);
 
-    setRowHeight(r,52);
-    m_playingWid->setCurrentSongItem(item(r,c));
-    m_playingWid->setSongName(item(r,1)->text());
+    setRowHeight(row,52);
+    m_playingWid->setCurrentSongItem(item(row,c));
+    m_playingWid->setSongName(item(row,1)->text());
     m_playingWid->show();
     updatePlayingWidgetPos();
 
     if(isMv)
-        emit sig_playMv(r);
+        emit sig_playMv(row);
     else
-        emit sig_play(r);
+        emit sig_play(row);
 
-    if(m_middleftStack0->myTablePlayListFinalVector().last()->songUrlList().contains(m_finalWidget->songUrlList().value(r)))
+    if(m_middleftStack0->myTablePlayListFinalVector().last()->songUrlList().contains(m_finalWidget->songUrlList().value(row)))
     {
         m_playingWid->setLoveState();
         emit sig_setLoveState(true);
@@ -474,12 +474,15 @@ void myTableWidget::removeSong(int row,bool setAutoLayout)
     if(setAutoLayout)
         setAutoLayoutSize();
 }
-
+/* 添加歌曲到最近播放
+ * row：歌曲所在行数
+ * listName：添加到的列表名
+*/
 void myTableWidget::addToPListByListName(const int row, const QString listName)
 {
     QVector<myTablePlayListFinal*>& pList = m_middleftStack0->myTablePlayListFinalVector();
     myTablePlayListFinal* final = NULL;
-    for (int id = 0; id < pList.size(); ++id) {
+    for (int id = 0; id < pList.size(); ++id) {     //找到歌曲要添加到的列表
         if (pList.at(id)->ShowButtonName() == listName) {
             final = pList.at(id);
             break;
@@ -487,8 +490,8 @@ void myTableWidget::addToPListByListName(const int row, const QString listName)
     }
     if (final == NULL)
         return;
-    if (!final->songUrlList().contains(m_finalWidget->songUrlList().at(row)))//url判断在不在列表中
-    {
+    //url判断在不在列表中，如果不在就添加歌曲，在的话不做操作
+    if (!final->songUrlList().contains(m_finalWidget->songUrlList().at(row))) {
         QString songname = item(row,1)->text();
         QString duration = item(row,2)->text();
         QString url = m_finalWidget->songUrlList().at(row).toString();

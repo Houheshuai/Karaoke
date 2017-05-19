@@ -125,7 +125,6 @@ void skinWidget::slot_setOpacityText(int opa)
    int value=  100*opa/255;
    m_btnOpacity->setText(QString::number(value)+"%");
 }
-////////////////////////////////////////////////////////////////////////////widget
 
 skinContentWidget::skinContentWidget(QWidget *p):baseWidget(p)
 {
@@ -135,6 +134,7 @@ skinContentWidget::skinContentWidget(QWidget *p):baseWidget(p)
     it->setMaskText("默认");
     addSkin(it);
 
+    QString path = QApplication::applicationDirPath();
     loadFromDir(QApplication::applicationDirPath()+"/skin");//本地自动加载
 }
 

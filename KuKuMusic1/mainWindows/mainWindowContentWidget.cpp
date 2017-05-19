@@ -60,7 +60,7 @@ void playModeWidget::slot_setCurrentMode()
 
 volSliderWidget::volSliderWidget(QWidget *p):baseWidget(p)
 {
-    QHBoxLayout *hlyout=new QHBoxLayout;
+    QHBoxLayout *hlyout = new QHBoxLayout;
     setStyleSheet("QWidget{background-color:rgb(64,64,64,200);border-radius:5px;}");
     m_slider = new mySlider(Qt::Vertical,this);
 
@@ -98,6 +98,7 @@ AddLoveListTips::AddLoveListTips(QWidget *p):baseWidget(p)
     QLabel *label = new QLabel(this);
     m_closebtn = new myPushButton(this);
     m_tipslab = new QLabel(this);
+    m_tipslab->setStyleSheet("QLabel{font-family:微软雅黑}");
 
     label->setFixedSize(16,16);
     m_closebtn->setStyleSheet("QPushButton{border-image:url(:/image/middlewidget/btn_addtips (1).png);}"

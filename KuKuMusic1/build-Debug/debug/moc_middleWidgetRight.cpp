@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_middleWidgetRight_t {
     QByteArrayData data[9];
-    char stringdata0[135];
+    char stringdata0[131];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,17 +30,17 @@ struct qt_meta_stringdata_middleWidgetRight_t {
 static const qt_meta_stringdata_middleWidgetRight_t qt_meta_stringdata_middleWidgetRight = {
     {
 QT_MOC_LITERAL(0, 0, 17), // "middleWidgetRight"
-QT_MOC_LITERAL(1, 18, 15), // "sig_requestSong"
-QT_MOC_LITERAL(2, 34, 0), // ""
-QT_MOC_LITERAL(3, 35, 19), // "slot_setSearchStack"
-QT_MOC_LITERAL(4, 55, 11), // "slot_search"
-QT_MOC_LITERAL(5, 67, 20), // "slot_setLrcShowStack"
-QT_MOC_LITERAL(6, 88, 13), // "slot_btnClick"
-QT_MOC_LITERAL(7, 102, 19), // "slot_curStackChange"
-QT_MOC_LITERAL(8, 122, 12) // "slot_imageMV"
+QT_MOC_LITERAL(1, 18, 11), // "sig_reqSong"
+QT_MOC_LITERAL(2, 30, 0), // ""
+QT_MOC_LITERAL(3, 31, 19), // "slot_setSearchStack"
+QT_MOC_LITERAL(4, 51, 11), // "slot_search"
+QT_MOC_LITERAL(5, 63, 20), // "slot_setLrcShowStack"
+QT_MOC_LITERAL(6, 84, 13), // "slot_btnClick"
+QT_MOC_LITERAL(7, 98, 19), // "slot_curStackChange"
+QT_MOC_LITERAL(8, 118, 12) // "slot_imageMV"
 
     },
-    "middleWidgetRight\0sig_requestSong\0\0"
+    "middleWidgetRight\0sig_reqSong\0\0"
     "slot_setSearchStack\0slot_search\0"
     "slot_setLrcShowStack\0slot_btnClick\0"
     "slot_curStackChange\0slot_imageMV"
@@ -91,7 +91,7 @@ void middleWidgetRight::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         middleWidgetRight *_t = static_cast<middleWidgetRight *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sig_requestSong((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 0: _t->sig_reqSong((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 1: _t->slot_setSearchStack(); break;
         case 2: _t->slot_search((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 3: _t->slot_setLrcShowStack(); break;
@@ -105,7 +105,7 @@ void middleWidgetRight::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (middleWidgetRight::*_t)(const QString & );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&middleWidgetRight::sig_requestSong)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&middleWidgetRight::sig_reqSong)) {
                 *result = 0;
                 return;
             }
@@ -150,7 +150,7 @@ int middleWidgetRight::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void middleWidgetRight::sig_requestSong(const QString & _t1)
+void middleWidgetRight::sig_reqSong(const QString & _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

@@ -9,12 +9,12 @@
 #include <qmetatype.h>
 #include <stdio.h>
 
-#include"FFmpegPlayer.h"
-#include"myMediaList.h"
-#include"basewindow.h"
-#include"baseWidget.h"
+#include "FFmpegPlayer.h"
+#include "myMediaList.h"
+#include "basewindow.h"
+#include "baseWidget.h"
 #include "middleWidgets.h"
-//class middleWidgets;
+
 class TopWidgets;
 class MyNetWork;
 class loadPixThread;
@@ -114,10 +114,10 @@ protected:
     QVector<QPixmap> m_pixvector;
     QTimer *_timer;
 signals:
-    void sig_requestMv(const QString&);
-    void sig_requestBgPic(const QString&);
-    void sig_requestLrc(const QString &,qint64,const QString&);
-    void sig_requestAlbum(const QString&,const QString&);
+    void sig_reqMv(const QString&);
+    void sig_reqBgPic(const QString&);
+    void sig_reqLrc(const QString &,qint64,const QString&);
+    void sig_reqAlbum(const QString&,const QString&);
 private:
     volSliderWidget *m_volwid;
     playModeWidget *m_playModeWid;
@@ -129,11 +129,10 @@ private:
     QSystemTrayIcon * system_tray;
     trayIconMenu *m_traymenu;
     MyNetWork *m_net;
-    PlayMode pMode; //use for saving the now playmode when exited
+    PlayMode pMode; //退出时保存当前的播放模式
     deskTopLrcWidget *m_deskTopLrc;
     FFmpegPlayer *m_ffplayer;
     middleLeftStackWidget0* m_midstack0;
-
 };
 
 #endif // MAINWINDOW_H

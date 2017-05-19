@@ -79,10 +79,10 @@ void TopWidgets::initWidget()
     hyout2->setContentsMargins(0,0,0,0);
 
     //第三块布局
-    QHBoxLayout *hyout3=new QHBoxLayout;
-    m_btnexit=new myPushButton(this);       //退出按钮
-    m_btnmini=new myPushButton(this);       //最小化按钮
-    m_btnskin=new myPushButton(this);       //皮肤按钮
+    QHBoxLayout *hyout3 = new QHBoxLayout;
+    m_btnexit = new myPushButton(this);       //退出按钮
+    m_btnmini = new myPushButton(this);       //最小化按钮
+    m_btnskin = new myPushButton(this);       //皮肤按钮
 
     m_btnexit->setFixedSize(18,18);
     m_btnmini->setFixedSize(16,16);

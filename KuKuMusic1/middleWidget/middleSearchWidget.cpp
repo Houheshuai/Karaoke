@@ -78,7 +78,7 @@ middleSearchWidget::middleSearchWidget(QWidget*p):baseWidget(p)
     initMaskWidget();
 }
 
-void middleSearchWidget::slot_addRequestSong(const QByteArray& byt)
+void middleSearchWidget::slot_addreqSong(const QByteArray& byt)
 {
 #if USE_NETCLOUD
     QJsonDocument doc=QJsonDocument::fromJson(byt);
@@ -150,7 +150,7 @@ void middleSearchWidget::initMaskWidget()
     m_maskwid->show();
 }
 
-void middleSearchWidget::slot_requestSong(const QByteArray &byt)//返回的chao
+void middleSearchWidget::slot_reqSong(const QByteArray &byt)//返回的chao
 {
     m_maskwid->hide();
     m_songlist.clear();
@@ -159,7 +159,7 @@ void middleSearchWidget::slot_requestSong(const QByteArray &byt)//返回的chao
     {
         m_table->removeRow(0); //不是一个好办法 的没办法
     }
-    slot_addRequestSong(byt);
+    slot_addreqSong(byt);
 }
 
 void middleSearchWidget::resizeEvent(QResizeEvent *e)
@@ -190,7 +190,7 @@ void middleSearchWidget::slot_autoRequestNextPage(int value)
     {
         if(m_isRequestFinished)
         {
-            emit sig_requestSongNextPage();
+            emit sig_reqSongNextPage();
             setRequestisFinished(false);//prevent to request network for several times;
         }
     }
@@ -198,28 +198,35 @@ void middleSearchWidget::slot_autoRequestNextPage(int value)
 
 void middleSearchWidget::init()
 {
-    QHBoxLayout *hlyout=new QHBoxLayout;
-    QHBoxLayout *hlyout1=new QHBoxLayout;
-    QVBoxLayout *vlyout=new QVBoxLayout;
+    QHBoxLayout *hlyout = new QHBoxLayout;
+    QHBoxLayout *hlyout1 = new QHBoxLayout;
+    QVBoxLayout *vlyout = new QVBoxLayout;
 
-    m_table=new middleSearchTableWidget(this);
+    m_table = new middleSearchTableWidget(this);
     m_table->setInitSearchTableWidget(this);
 
-    baseWidget *wid1=new baseWidget(this);
+    baseWidget *wid1 = new baseWidget(this);
     wid1->setFixedHeight(36);
 
-    QLabel *label=new QLabel("搜索到",this);
-    m_labtext=new QLabel("",this);
-    QLabel *label1=new QLabel("的相关歌曲",this);
+    QLabel *label = new QLabel("搜索到",this);
+    label->setStyleSheet("QLabel{font-family:微软雅黑;}");
+    m_labtext = new QLabel("",this);
+    QLabel *label1 = new QLabel("的相关歌曲",this);
+    label1->setStyleSheet("QLabel{font-family:微软雅黑;}");
 
-    m_btnplay=new myPushButton("播放",this);
-    m_btnadd=new myPushButton("添加",this);
-    m_btndownload=new myPushButton("下载",this);
+    m_btnplay = new myPushButton("播放",this);
 
-    m_labtext->setStyleSheet("QLabel{color:red;}");
+    m_btnadd = new myPushButton("添加",this);
+    m_btndownload = new myPushButton("下载",this);
 
-    m_btnplay->setStyleSheet("QPushButton{border:1px;color:white;background:rgb(22,154,243);border-radius:2px;}"
+    m_labtext->setStyleSheet("QLabel{color:red; font-family:微软雅黑}");
+
+    m_btnplay->setStyleSheet("QPushButton{border:1px;color:white;background:rgb(22,154,243);border-radius:2px;"
+                             "font-size:14px; font-family:微软雅黑;}"
                              "QPushButton:hover{background:rgb(21,143,225);}");
+
+    m_btnadd->setStyleSheet("QPushButton{font-size:14px; font-family:微软雅黑;}");
+    m_btndownload->setStyleSheet("QPushButton{font-size:14px; font-family:微软雅黑;}");
 
     m_btnplay->setFixedSize(53,26);
     m_btnadd->setFixedSize(40,26);
@@ -235,6 +242,8 @@ void middleSearchWidget::init()
     wid1->setContentsMargins(0,0,0,0);
     wid1->setLayout(hlyout);
 
+    m_btndownload->hide();
+
     baseWidget *wid2=new baseWidget(this);
     wid2->setFixedHeight(32);
     wid2->setStyleSheet("QWidget{background:rgb(245,245,245);}");
@@ -245,7 +254,12 @@ void middleSearchWidget::init()
     QLabel *label5=new QLabel("操作",this);
 
     m_checkbox->setStyleSheet("QCheckBox::indicator:checked{border-image:url(:/image/middlewidget/checked.png)}"
-                              "QCheckBox::indicator:unchecked{border-image:url(:/image/middlewidget/unchecked.png)}");
+                              "QCheckBox::indicator:unchecked{border-image:url(:/image/middlewidget/unchecked.png)}"
+                              "QCheckBox{font-family:微软雅黑}");
+    m_labelSinger->setStyleSheet("QLabel{font-family:微软雅黑}");
+    m_labelAlbum->setStyleSheet("QLabel{font-family:微软雅黑}");
+    label4->setStyleSheet("QLabel{font-family:微软雅黑}");
+    label5->setStyleSheet("QLabel{font-family:微软雅黑}");
 
     m_labelSinger->adjustSize();
     m_labelAlbum->adjustSize();
@@ -264,7 +278,6 @@ void middleSearchWidget::init()
     hlyout1->setSpacing(0);
     hlyout1->setContentsMargins(0,0,0,0);
     wid2->setLayout(hlyout1);
-
 
     vlyout->addWidget(wid1);
     vlyout->addSpacing(10);
@@ -311,9 +324,9 @@ void middleSearchWidget::slot_menuWork()
     int count=m_table->rowCount();
     for(int i=0; i<count; i++)
     {
-        QCheckBox* box= (QCheckBox*)m_table->cellWidget(i,0);
+        QCheckBox* box = (QCheckBox*)m_table->cellWidget(i,0);
         playingWidgetBtn *btn=NULL;
-        if(box->checkState()==Qt::Checked)//如果选中项
+        if(box->checkState() == Qt::Checked)//如果选中项
         {
             btn=(playingWidgetBtn*)m_table->cellWidget(i,2);
             list_name<<btn->text()+"-"+m_table->item(i,1)->text();
@@ -357,14 +370,15 @@ void middleSearchWidget::slot_btnplayclicked()//obviously,playbutton
     else
         QMessageBox::information(NULL,"提示","请选择一首歌曲");
 }
+
 void middleSearchWidget::slot_btnaddclicked()
 {
     QMenu menu;
     menu.setContentsMargins(4,5,4,10);
-    int index=0;
-    foreach(myTablePlayListFinal*f,midstack0Pointer->myTablePlayListFinalVector())
+    int index = 0;
+    foreach(myTablePlayListFinal* f, midstack0Pointer->myTablePlayListFinalVector())
     {
-        QAction *act=new QAction(f->ShowButtonName(),&menu);
+        QAction *act = new QAction(f->ShowButtonName(),&menu);
         act->setObjectName(QString::number(index));
         connect(act,&QAction::triggered,this,&middleSearchWidget::slot_menuWork);
         menu.addAction(act);
@@ -372,7 +386,7 @@ void middleSearchWidget::slot_btnaddclicked()
     }
     menu.exec(QCursor::pos());
 
-    QList<QAction*> actlist=  menu.actions();
+    QList<QAction*> actlist = menu.actions();
     foreach (QAction* act, actlist)
     {
         act->deleteLater();

@@ -9,12 +9,12 @@
 //#define USE_NETCLOUD 0
 #define USE_NETCLOUD 1
 
-const static QString bgurl="http://artistpicserver.kuwo.cn/pic.web?type=big_artist_pic&pictype=url&content=list&&id=0&from=pc&json=1&version=1&width=1920&height=1080&name=%1";
+const static QString bgurl="http://artistpicserver.kuwo.cn/pic.web?type=big_artist_pic&pictype=url&content=list&&strId=0&from=pc&json=1&version=1&width=1920&height=1080&name=%1";
 const static QString songurl="http://itwusun.com/search/wy/%1?&f=json&size=50&p=%2&sign=itwusun";
 //下载酷狗歌词有关
 const static QString KGLrcPart0="http://songsearch.kugou.com/song_search_v2?keyword=%1&page=1&pagesize=40&filter=0&bitrate=0&isfuzzy=0&inputtype=2&platform=PcFilter&userid=312986171&clientver=8100&iscorrection=3";
-const static QString KGLrcPart1="http://lyrics.kugou.com/search?ver=1&man=no&client=pc&keyword=%1&duration=%2&hash=%3";//&hash=9c6fd9b90800f7a37f6821c07bc0f906 9C6FD9B90800F7A37F6821C07BC0F906 b3c9045aa086236dc78a59357bdf73ac
-const static QString KGLrcPart2="http://lyrics.kugou.com/download?ver=1&client=pc&id=%1&accesskey=%2&fmt=krc";
+const static QString KGLrcPart1="http://lyrics.kugou.com/search?ver=1&man=no&client=pc&keyword=%1&duration=%2&strHash=%3";//&strHash=9c6fd9b90800f7a37f6821c07bc0f906 9C6FD9B90800F7A37F6821C07BC0F906 b3c9045aa086236dc78a59357bdf73ac
+const static QString KGLrcPart2="http://lyrics.kugou.com/download?ver=1&client=pc&id=%1&strAccKey=%2&fmt=krc";
 
 const static QString ITWUSUN="http://api.itwusun.com/music/search/wy/%1?format=json&keyword=%2&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";
 /*
@@ -22,7 +22,7 @@ const static QString ITWUSUN="http://api.itwusun.com/music/search/wy/%1?format=j
  *  a new API too-----> http://api.itwusun.com/music/search/wy/2?format=json&keyword=陈奕迅&sign=a5cc0a8797539d3a1a4f7aeca5b695b9
 */
 
-/*{"SongName":"告白气球",
+/*{"songName":"告白气球",
 "OwnerCount":1874763,
 "MvType":2,
 "SQFailProcess":4,
@@ -45,13 +45,13 @@ const static QString ITWUSUN="http://api.itwusun.com/music/search/wy/%1?format=j
 "Grp":{},
 "AlbumPrivilege":8,
 "AlbumID":"1645030",
-"SuperFileHash":"",
+"SuperFilestrHash":"",
 "ASQPrivilege":10,
 "M4aSize":887266,
 "AlbumName":"周杰伦的床边故事",
 "Privilege":8,
 "ResBitrate":1632,
-"FileHash":"3C3D93A5615FB42486CAB22024945264",
+"FilestrHash":"3C3D93A5615FB42486CAB22024945264",
 "SQPayType":3,
 "HQPrice":200,
 "SourceID":0,
@@ -59,13 +59,13 @@ const static QString ITWUSUN="http://api.itwusun.com/music/search/wy/%1?format=j
 "ID":"9dba44e08f30315c565a0fb773289dea",
 "SuperFileSize":0,
 "QualityLevel":3,
-"SQFileHash":"B2C0A23919EEE8B47831FFAA2604107F",
+"SQFilestrHash":"B2C0A23919EEE8B47831FFAA2604107F",
 "HQPrivilege":10,
 "SuperBitrate":0,
 "SuperDuration":0,
-"ResFileHash":"05CCCE134338BD3B2AAB176218FCB0F9",
+"ResFilestrHash":"05CCCE134338BD3B2AAB176218FCB0F9",
 "PublishAge":255,
-"HQFileHash":"4C285C68EBEFAD7D8602D2D14D48F725",
+"HQFilestrHash":"4C285C68EBEFAD7D8602D2D14D48F725",
 "A320Privilege":10,
 "HQPayType":3,
 "TopicUrl":"",
@@ -82,7 +82,7 @@ const static QString ITWUSUN="http://api.itwusun.com/music/search/wy/%1?format=j
 "AudioCdn":100,
 "SingerName":"周杰伦",
 "SQBitrate":931,
-"MvHash":"AFF3B6219C15D030F957B82FF50AA91E",
+"MvstrHash":"AFF3B6219C15D030F957B82FF50AA91E",
 "SQPrivilege":10,
 "HQDuration":215,
 "OtherName":"",
@@ -92,7 +92,7 @@ const static QString ITWUSUN="http://api.itwusun.com/music/search/wy/%1?format=j
 
 
 check this out===>http://trackercdn.kugou.com/i/v2/?cmd=24
-&hash=3c3d93a5615fb42486cab22024945264
+&strHash=3c3d93a5615fb42486cab22024945264
 &key=0b8d4d681d6cd4403ea2a47907935ae0
 &pid=1
 &vipToken=
@@ -112,26 +112,26 @@ check this out===>http://trackercdn.kugou.com/i/v2/?cmd=24
 MyNetWork::MyNetWork(QObject *parent) : QObject(parent)
 {
     m_pageindex=1;
-    m_songname="";
+    m_songName="";
 }
 
 MyNetWork::~MyNetWork()
 {
 }
 
-void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
+void MyNetWork::reqAlbum(const QString &name,const QString &savelocal)
 {
-    QString songname=name;
-    QByteArray songencod(songname.replace("&"," ").toUtf8().toPercentEncoding());
-    QNetworkRequest requestalbum1;
+    QString songName=name;
+    QByteArray songencod(songName.replace("&"," ").toUtf8().toPercentEncoding());
+    QNetworkRequest reqAlbum1;
     QNetworkAccessManager mangeralbum1;
-    requestalbum1.setUrl(QUrl("http://music.163.com/api/search/pc"));
-    requestalbum1.setRawHeader("Cookie","os=pc");
-    requestalbum1.setRawHeader("Host","music.163.com");
-    requestalbum1.setRawHeader("MUSIC_U","5339640232");
-    requestalbum1.setRawHeader("Referer","http://music.163.com/");
-    requestalbum1.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
-    QNetworkReply *reply1= mangeralbum1.post(requestalbum1,"offset=0&total=true&limit=100&type=1&s="+songencod);
+    reqAlbum1.setUrl(QUrl("http://music.163.com/api/search/pc"));
+    reqAlbum1.setRawHeader("Cookie","os=pc");
+    reqAlbum1.setRawHeader("Host","music.163.com");
+    reqAlbum1.setRawHeader("MUSIC_U","5339640232");
+    reqAlbum1.setRawHeader("Referer","http://music.163.com/");
+    reqAlbum1.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    QNetworkReply *reply1= mangeralbum1.post(reqAlbum1,"offset=0&total=true&limit=100&type=1&s="+songencod);
 
     //loop1
     QEventLoop loop1;
@@ -142,17 +142,17 @@ void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
     if(reply1->error()==QNetworkReply::NoError)
     {
         QJsonDocument doc=QJsonDocument::fromJson(byt1);
-        QJsonObject obj0=doc.object();
-        QJsonObject obj1=obj0.value("result").toObject();
+        QJsonObject jsObj0=doc.object();
+        QJsonObject obj1=jsObj0.value("result").toObject();
         QJsonArray arry=obj1.value("songs").toArray();
         QJsonObject obj3= arry.at(1).toObject();
         QJsonObject obj4=obj3.value("album").toObject();
         QString picurl=obj4.value("picUrl").toString();
 
-        QNetworkRequest requestalbum2;
+        QNetworkRequest reqAlbum2;
         QNetworkAccessManager mangeralbum2;
-        requestalbum2.setUrl(picurl);
-        QNetworkReply *reply2= mangeralbum2.get(requestalbum2);
+        reqAlbum2.setUrl(picurl);
+        QNetworkReply *reply2= mangeralbum2.get(reqAlbum2);
         //loop2
         QEventLoop loop2;
         connect(&mangeralbum2,SIGNAL(finished(QNetworkReply*)),&loop2,SLOT(quit()));
@@ -160,11 +160,11 @@ void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
 
         if(reply2->error()==QNetworkReply::NoError)
         {
-            QByteArray byt=reply2->readAll();
-            emit setpic(byt,name);
+            QByteArray bytArr=reply2->readAll();
+            emit setpic(bytArr,name);
             //save
             QPixmap pix;
-            pix.loadFromData(byt);
+            pix.loadFromData(bytArr);
             pix.save(savelocal);
 
             reply2->deleteLater();
@@ -185,77 +185,74 @@ void MyNetWork::requestalbum(const QString &name,const QString &savelocal)
 
 }
 
-void MyNetWork::requestSong(const QString &str)//请求歌曲
+void MyNetWork::reqSong(const QString &str)//请求歌曲
 {
-    QString songname=str;
-    QByteArray byt=songname.replace("&"," ").toUtf8().toPercentEncoding();
-    QNetworkRequest requestsong;
-    QNetworkAccessManager mangersong;
+    QString strSongName = str;
+    QByteArray bytArr = strSongName.replace("&"," ").toUtf8().toPercentEncoding();
+    QNetworkRequest reqSong;
+    QNetworkAccessManager mangerSong;
 #if USE_NETCLOUD
-    requestsong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
-    requestsong.setRawHeader("Connection","Keep-Alive");
-    requestsong.setUrl(QUrl("http://music.163.com/api/search/pc"));
-    requestsong.setRawHeader("Cookie","os=pc");
-    requestsong.setRawHeader("Host","music.163.com");
-    requestsong.setRawHeader("MUSIC_U","5339640232");
-    requestsong.setRawHeader("Referer","http://music.163.com/");
-    requestsong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
-    QNetworkReply *reply1= mangersong.post(requestsong,"offset=0&total=true&limit=100&type=1&s="+byt);
+    reqSong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    reqSong.setRawHeader("Connection","Keep-Alive");
+    reqSong.setUrl(QUrl("http://music.163.com/api/search/pc"));
+    reqSong.setRawHeader("Cookie","os=pc");
+    reqSong.setRawHeader("Host","music.163.com");
+    reqSong.setRawHeader("MUSIC_U","5339640232");
+    reqSong.setRawHeader("Referer","http://music.163.com/");
+    reqSong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    QNetworkReply *reply1= mangerSong.post(reqSong,"offset=0&total=true&limit=100&type=1&s="+bytArr);
 
 #else
-    QString Url = ITWUSUN.arg(1).arg(songname);
-    requestsong.setUrl(Url);
-    QNetworkReply *reply1= mangersong.get(requestsong);
+    QString Url = ITWUSUN.arg(1).arg(songName);
+    reqSong.setUrl(Url);
+    QNetworkReply *reply1= mangerSong.get(reqSong);
 #endif
 
-    //loop1
-    QEventLoop loop1;
-    connect(reply1,SIGNAL(finished()),&loop1,SLOT(quit()));
-    loop1.exec();
+    QEventLoop eveLoop1;
+    connect(reply1,SIGNAL(finished()),&eveLoop1,SLOT(quit()));
+    eveLoop1.exec();
 
-    if(reply1->error()==QNetworkReply::NoError)
-    {
-        QByteArray arry=reply1->readAll();
+    if(reply1->error() == QNetworkReply::NoError) {
+        QByteArray arry = reply1->readAll();
 
-        emit sig_reqSongfinished(arry);
+        emit sig_reqSongFinished(arry);
     }
-    else
-    {
+    else {
         reply1->deleteLater();
         return;
     }
     reply1->deleteLater();
 
-    m_pageindex=1;
-    m_songname=str;
+    m_pageindex = 1;
+    m_songName = str;
 }
 
-void MyNetWork::requestSongNextPage()
+void MyNetWork::reqSongNextPage()
 {
     m_pageindex++;
-    QByteArray byt=m_songname.replace("&"," ").toUtf8().toPercentEncoding();
-    QNetworkRequest requestsong;
+    QByteArray bytArr=m_songName.replace("&"," ").toUtf8().toPercentEncoding();
+    QNetworkRequest reqSong;
     QNetworkAccessManager mangersong;
 #if USE_NETCLOUD
-    requestsong.setUrl(QUrl("http://music.163.com/api/search/pc"));
-    requestsong.setRawHeader("Cookie","os=pc");
-    requestsong.setRawHeader("Host","music.163.com");
-    requestsong.setRawHeader("MUSIC_U","5339640232");
-    requestsong.setRawHeader("Referer","http://music.163.com/");
-    requestsong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
-    QByteArray bytarray="offset=50&total=true&limit=100&type=1&s="+byt+"?";
+    reqSong.setUrl(QUrl("http://music.163.com/api/search/pc"));
+    reqSong.setRawHeader("Cookie","os=pc");
+    reqSong.setRawHeader("Host","music.163.com");
+    reqSong.setRawHeader("MUSIC_U","5339640232");
+    reqSong.setRawHeader("Referer","http://music.163.com/");
+    reqSong.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    QByteArray bytarray="offset=50&total=true&limit=100&type=1&s="+bytArr+"?";
 
-    QNetworkReply *reply1= mangersong.post(requestsong,bytarray);
+    QNetworkReply *reply1= mangersong.post(reqSong,bytarray);
 #else
-    QString Url = ITWUSUN.arg(m_pageindex).arg(m_songname);
-    requestsong.setUrl(Url);
-    QNetworkReply *reply1= mangersong.get(requestsong);
+    QString Url = ITWUSUN.arg(m_pageindex).arg(m_songName);
+    reqSong.setUrl(Url);
+    QNetworkReply *reply1= mangersong.get(reqSong);
 #endif
-///loop1
+//loop1
     QEventLoop loop1;
     connect(reply1,SIGNAL(finished()),&loop1,SLOT(quit()));
     loop1.exec();
-///
+
     if(reply1->error()==QNetworkReply::NoError)
     {
         QByteArray arry=reply1->readAll();
@@ -263,85 +260,83 @@ void MyNetWork::requestSongNextPage()
     }
     reply1->deleteLater();
 }
-
-void MyNetWork::requestlrc(const QString &lrcname,qint64 totaltime,const QString &lrcloaction)//请求歌词
+/* 请求歌词
+ * lrcName:歌词名
+ * totalTime:歌曲时间
+ * lrcLocation:歌曲存放路径
+ */
+void MyNetWork::reqLrc(const QString &lrcName,qint64 totalTime,const QString &lrcLocation)
 {
-    if(totaltime==0)
+    if(totalTime == 0)
         return;
-    QString songname=lrcname;
-    songname.replace("&"," ");
+    QString songName = lrcName;
+    songName.replace("&"," ");
 
-    QNetworkRequest requestlrc0;
-    QNetworkAccessManager mangerlrc0;
-    requestlrc0.setUrl(QUrl(KGLrcPart0.arg(songname)));
-    QNetworkReply *reply0=mangerlrc0.get(requestlrc0);
+    QNetworkRequest reqLrc0;            //设置请求参数
+    QNetworkAccessManager mangerLrc0;
+    reqLrc0.setUrl(QUrl(KGLrcPart0.arg(songName)));
+    QNetworkReply *reply0 = mangerLrc0.get(reqLrc0);
 
-    QEventLoop loop0;
-    connect(&mangerlrc0,SIGNAL(finished(QNetworkReply*)),&loop0,SLOT(quit()));
-    loop0.exec();
+    QEventLoop eventLoop0;
+    connect(&mangerLrc0,SIGNAL(finished(QNetworkReply*)),&eventLoop0,SLOT(quit()));
+    eventLoop0.exec();
 
-    if(reply0->error()!=QNetworkReply::NoError)
-    {
+    if(reply0->error() != QNetworkReply::NoError) {
         reply0->deleteLater();
         return;
     }
-    QByteArray byt0= reply0->readAll();
-    QJsonDocument doc0=QJsonDocument::fromJson(byt0);
-    QJsonObject obj0=doc0.object();
-    QJsonObject obj01= obj0.value("data").toObject();
-    QJsonArray array0= obj01.value("lists").toArray();
-    QJsonObject obj02= array0.at(0).toObject();
-    QString hash= obj02.value("FileHash").toString();
+    QByteArray bytArr0 = reply0->readAll(); //获取返回信息
+    QJsonDocument jsDoc0 = QJsonDocument::fromJson(bytArr0);
+    QJsonObject jsObj0 = jsDoc0.object();
+    QJsonObject jsObj01 = jsObj0.value("data").toObject();
+    QJsonArray array0 = jsObj01.value("lists").toArray();
+    QJsonObject jsObj02 = array0.at(0).toObject();
+    QString strHash = jsObj02.value("FileHash").toString();
 
-    QNetworkRequest requestlrc1;
+    QNetworkRequest reqLrc1;
     QNetworkAccessManager mangerlrc1;
-    requestlrc1.setUrl(QUrl(KGLrcPart1.arg(songname).arg(totaltime).arg(hash)));
-    QNetworkReply *reply1= mangerlrc1.get(requestlrc1);
-    //loop1
+    reqLrc1.setUrl(QUrl(KGLrcPart1.arg(songName).arg(totalTime).arg(strHash)));
+    QNetworkReply *reply1 = mangerlrc1.get(reqLrc1);
+
     QEventLoop loop1;
     connect(&mangerlrc1,SIGNAL(finished(QNetworkReply*)),&loop1,SLOT(quit()));
     loop1.exec();
 
-    if(reply1->error()!=QNetworkReply::NoError)
-    {
+    if(reply1->error() != QNetworkReply::NoError) {
         reply0->deleteLater();
         reply1->deleteLater();
         return;
     }
-    QByteArray byt=reply1->readAll();
-    QJsonDocument doc=QJsonDocument::fromJson(byt);
-    QJsonObject obj=doc.object();
-    QJsonArray arry=obj.value("candidates").toArray();
-    QJsonObject obj1= arry.at(0).toObject();
-    QString accesskey= obj1.value("accesskey").toString();
-    QString id=obj1.value("id").toString();
+    QByteArray bytArr = reply1->readAll();
+    QJsonDocument jsDoc = QJsonDocument::fromJson(bytArr);
+    QJsonObject obj = jsDoc.object();
+    QJsonArray arry = obj.value("candidates").toArray();
+    QJsonObject obj1 = arry.at(0).toObject();
+    QString strAccKey = obj1.value("strAccKey").toString();
+    QString strId = obj1.value("id").toString();
 
-    QNetworkRequest requestlrc2;
+    QNetworkRequest reqLrc2;
     QNetworkAccessManager mangerlrc2;
-    requestlrc2.setUrl(KGLrcPart2.arg(id).arg(accesskey));
-    QNetworkReply *reply2= mangerlrc2.get(requestlrc2);
-    //loop2
+    reqLrc2.setUrl(KGLrcPart2.arg(strId).arg(strAccKey));
+    QNetworkReply *reply2 = mangerlrc2.get(reqLrc2);
+
     QEventLoop loop2;
     connect(&mangerlrc2,SIGNAL(finished(QNetworkReply*)),&loop2,SLOT(quit()));
     loop2.exec();
 
-    if(reply2->error()==QNetworkReply::NoError)
-    {
-        QByteArray byt=reply2->readAll();
-        QJsonDocument doc=QJsonDocument::fromJson(byt);
-        QJsonObject obj=doc.object();
-        QByteArray utf8byt=obj.value("content").toString().toUtf8();
-        QByteArray bytfrom64=QByteArray::fromBase64(utf8byt);
-        if(bytfrom64.size()!=0)
-        {
-            emit dolrcworkfinished(bytfrom64,lrcname);//发送做完的信号
-            //用于保存
-            QFile file(lrcloaction);
+    if(reply2->error() == QNetworkReply::NoError) {
+        QByteArray bytArr = reply2->readAll();                 //获取字节流
+        QJsonDocument jsDoc = QJsonDocument::fromJson(bytArr);   //读取到json文档
+        QJsonObject jsObj = jsDoc.object();                     //封装json对象
+        QByteArray utf8byt = jsObj.value("content").toString().toUtf8();//转换为UTF-8格式
+        QByteArray bytFrom64 = QByteArray::fromBase64(utf8byt);
+        if(bytFrom64.size() != 0) {
+            emit dolrcworkfinished(bytFrom64,lrcName);  //发送做完的信号
+            QFile file(lrcLocation);                    //用于保存歌词文件
             file.resize(0);
-            if(file.open(QIODevice::WriteOnly))//如果打开失败
-            {
-                file.write(bytfrom64); //write the kugou source krc
-                file.close();
+            if(file.open(QIODevice::WriteOnly)) {       //如果打开成功
+                file.write(bytFrom64);                  //将歌词写入文件
+                file.close();                           //关闭文件
             }
         }
     }
@@ -369,12 +364,12 @@ const QImage &MyNetWork::BgWhiteChange(QImage &image , int brightness)
     return image;
 }
 
-void MyNetWork::requestMv(const QString &mvname)//API无法使用
+void MyNetWork::reqMv(const QString &mvname)//API无法使用
 {
-    QByteArray byt=QString(mvname).replace("&"," ").toUtf8().toPercentEncoding();
+    QByteArray bytArr=QString(mvname).replace("&"," ").toUtf8().toPercentEncoding();
     QNetworkRequest request;
     QNetworkAccessManager manger;
-    request.setUrl(ITWUSUN.arg(1).arg(QString(byt)));
+    request.setUrl(ITWUSUN.arg(1).arg(QString(bytArr)));
     QNetworkReply *reply1= manger.get(request);
     //loop1
     QEventLoop loop1;
@@ -385,12 +380,12 @@ void MyNetWork::requestMv(const QString &mvname)//API无法使用
     {
         QByteArray arry=reply1->readAll();
 
-        QJsonDocument doc=QJsonDocument::fromJson(arry);
-        QJsonArray array=doc.array();
+        QJsonDocument jsDoc=QJsonDocument::fromJson(arry);
+        QJsonArray array=jsDoc.array();
         QJsonObject obj=array.at(0).toObject();
         QString url= obj.value("MvUrl").toString();//添加mp3Url
         if(!url.isEmpty())
-            emit sig_requestMvfinished(url);
+            emit sig_reqMvfinished(url);
     }
     else
     {
@@ -400,7 +395,7 @@ void MyNetWork::requestMv(const QString &mvname)//API无法使用
     reply1->deleteLater();
 }
 
-void MyNetWork::requestBgPic(const QString &author)
+void MyNetWork::reqBgPic(const QString &author)
 {
     QString url=bgurl.arg(author);
     QNetworkAccessManager manger;
@@ -409,11 +404,11 @@ void MyNetWork::requestBgPic(const QString &author)
     QEventLoop loop1;
     connect(&manger,SIGNAL(finished(QNetworkReply*)),&loop1,SLOT(quit()));
     loop1.exec();
-    QByteArray byt=reply->readAll();
+    QByteArray bytArr=reply->readAll();
     reply->deleteLater();
 
-    QJsonDocument doc=QJsonDocument::fromJson(byt);
-    QJsonObject obj=doc.object();
+    QJsonDocument jsDoc=QJsonDocument::fromJson(bytArr);
+    QJsonObject obj=jsDoc.object();
     QJsonArray array=obj.value("array").toArray();
 
     QVector<QPixmap> m_pixvector;

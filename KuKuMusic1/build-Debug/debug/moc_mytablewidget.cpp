@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_myTableWidget_t {
     QByteArrayData data[27];
-    char stringdata0[409];
+    char stringdata0[405];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,39 +30,39 @@ struct qt_meta_stringdata_myTableWidget_t {
 static const qt_meta_stringdata_myTableWidget_t qt_meta_stringdata_myTableWidget = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "myTableWidget"
-QT_MOC_LITERAL(1, 14, 13), // "sig_requestMv"
-QT_MOC_LITERAL(2, 28, 0), // ""
-QT_MOC_LITERAL(3, 29, 16), // "sig_setLoveState"
-QT_MOC_LITERAL(4, 46, 10), // "sig_playMv"
-QT_MOC_LITERAL(5, 57, 8), // "sig_play"
-QT_MOC_LITERAL(6, 66, 12), // "sig_delIndex"
-QT_MOC_LITERAL(7, 79, 17), // "sig_addSongFolder"
-QT_MOC_LITERAL(8, 97, 11), // "sig_addSong"
-QT_MOC_LITERAL(9, 109, 18), // "sig_RowCountChange"
-QT_MOC_LITERAL(10, 128, 14), // "slot_mvclicked"
-QT_MOC_LITERAL(11, 143, 32), // "slot_playingWidgetLoveBtnClicked"
-QT_MOC_LITERAL(12, 176, 19), // "slot_btnloveclicked"
-QT_MOC_LITERAL(13, 196, 20), // "slot_rowCountChanged"
-QT_MOC_LITERAL(14, 217, 12), // "slot_actplay"
-QT_MOC_LITERAL(15, 230, 16), // "slot_cellClicked"
-QT_MOC_LITERAL(16, 247, 19), // "slot_removeHoverRow"
-QT_MOC_LITERAL(17, 267, 14), // "slot_removeRow"
-QT_MOC_LITERAL(18, 282, 14), // "slot_cellEnter"
-QT_MOC_LITERAL(19, 297, 14), // "slot_animation"
-QT_MOC_LITERAL(20, 312, 9), // "QVariant&"
-QT_MOC_LITERAL(21, 322, 13), // "slot_doublick"
-QT_MOC_LITERAL(22, 336, 1), // "r"
-QT_MOC_LITERAL(23, 338, 4), // "isMv"
-QT_MOC_LITERAL(24, 343, 16), // "slot_menuRequest"
-QT_MOC_LITERAL(25, 360, 16), // "slot_moveToPList"
-QT_MOC_LITERAL(26, 377, 31) // "slot_playingWidgetDelBtnClicked"
+QT_MOC_LITERAL(1, 14, 9), // "sig_reqMv"
+QT_MOC_LITERAL(2, 24, 0), // ""
+QT_MOC_LITERAL(3, 25, 16), // "sig_setLoveState"
+QT_MOC_LITERAL(4, 42, 10), // "sig_playMv"
+QT_MOC_LITERAL(5, 53, 8), // "sig_play"
+QT_MOC_LITERAL(6, 62, 12), // "sig_delIndex"
+QT_MOC_LITERAL(7, 75, 17), // "sig_addSongFolder"
+QT_MOC_LITERAL(8, 93, 11), // "sig_addSong"
+QT_MOC_LITERAL(9, 105, 18), // "sig_RowCountChange"
+QT_MOC_LITERAL(10, 124, 14), // "slot_mvclicked"
+QT_MOC_LITERAL(11, 139, 32), // "slot_playingWidgetLoveBtnClicked"
+QT_MOC_LITERAL(12, 172, 19), // "slot_btnloveclicked"
+QT_MOC_LITERAL(13, 192, 20), // "slot_rowCountChanged"
+QT_MOC_LITERAL(14, 213, 12), // "slot_actplay"
+QT_MOC_LITERAL(15, 226, 16), // "slot_cellClicked"
+QT_MOC_LITERAL(16, 243, 19), // "slot_removeHoverRow"
+QT_MOC_LITERAL(17, 263, 14), // "slot_removeRow"
+QT_MOC_LITERAL(18, 278, 14), // "slot_cellEnter"
+QT_MOC_LITERAL(19, 293, 14), // "slot_animation"
+QT_MOC_LITERAL(20, 308, 9), // "QVariant&"
+QT_MOC_LITERAL(21, 318, 13), // "slot_doublick"
+QT_MOC_LITERAL(22, 332, 1), // "r"
+QT_MOC_LITERAL(23, 334, 4), // "isMv"
+QT_MOC_LITERAL(24, 339, 16), // "slot_menuRequest"
+QT_MOC_LITERAL(25, 356, 16), // "slot_moveToPList"
+QT_MOC_LITERAL(26, 373, 31) // "slot_playingWidgetDelBtnClicked"
 
     },
-    "myTableWidget\0sig_requestMv\0\0"
-    "sig_setLoveState\0sig_playMv\0sig_play\0"
-    "sig_delIndex\0sig_addSongFolder\0"
-    "sig_addSong\0sig_RowCountChange\0"
-    "slot_mvclicked\0slot_playingWidgetLoveBtnClicked\0"
+    "myTableWidget\0sig_reqMv\0\0sig_setLoveState\0"
+    "sig_playMv\0sig_play\0sig_delIndex\0"
+    "sig_addSongFolder\0sig_addSong\0"
+    "sig_RowCountChange\0slot_mvclicked\0"
+    "slot_playingWidgetLoveBtnClicked\0"
     "slot_btnloveclicked\0slot_rowCountChanged\0"
     "slot_actplay\0slot_cellClicked\0"
     "slot_removeHoverRow\0slot_removeRow\0"
@@ -148,7 +148,7 @@ void myTableWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         myTableWidget *_t = static_cast<myTableWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sig_requestMv((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->sig_reqMv((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->sig_setLoveState((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 2: _t->sig_playMv((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->sig_play((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -178,7 +178,7 @@ void myTableWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (myTableWidget::*_t)(QString );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&myTableWidget::sig_requestMv)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&myTableWidget::sig_reqMv)) {
                 *result = 0;
                 return;
             }
@@ -272,7 +272,7 @@ int myTableWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void myTableWidget::sig_requestMv(QString _t1)
+void myTableWidget::sig_reqMv(QString _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

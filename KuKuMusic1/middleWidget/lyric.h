@@ -3,14 +3,15 @@
 
 #include <QVector>
 #include <QMap>
+
 class Lyric
 {
 public:
     Lyric() {}
-    void analyzeLrcContent(const QByteArray&,const QString filePath=NULL);
+    void analyzeLrcContent(const QByteArray&, const QString filePath = NULL);
     inline const QString getLineAt(int index)
     {
-        return index<0||index>=m_lrcmap.size()? "":m_lrcmap.values().at(index);
+        return index < 0 || index >= m_lrcmap.size() ? "" : m_lrcmap.values().at(index);
     }
     int getCount()
     {
@@ -25,8 +26,8 @@ public:
     }
     void changeLrcFileTime(int time,bool add=true);
     QString m_filedir;
-    QMap<qint64,QMap<qint64,qint64>> m_lrcintervalmap;
-    QMap<qint64,QMap<qint64,QString>> m_lrcwordsmap;
+    QMap<qint64,QMap<qint64,qint64>> m_lrcIntervalMap;
+    QMap<qint64,QMap<qint64,QString>> m_lrcWordsMap;
     QMap<qint64,QString> m_lrcmap;
 private:
     double offset;

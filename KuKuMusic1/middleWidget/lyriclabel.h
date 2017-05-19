@@ -43,9 +43,9 @@ protected:
     bool event(QEvent*);
 
     int m_currentItem;
-    int m_itemOffset; // 0-itemHeight()
+    int m_itemOffset;
     bool m_isScrolled;
-    bool m_doSignal;//滚动是否触发信号,用于区别是否是人为滚动
+    bool m_doSignal;    //滚动是否触发信号,用于区别是否是人为滚动
 
     QRect m_currentRollrect;
     QFont m_currentMaskFont;
@@ -91,7 +91,7 @@ signals:
     void changeToPosition(qint64 pos);
     void rightClicked();
     void mouseEnter();
-    void sig_currentLrcChange(const QString&,const QString&); //this signal is for desktop lyric
+    void sig_currentLrcChange(const QString&,const QString&);
     void sig_currentPrecentChange(const QString&,float &precent,int &interval);
 
 public slots:

@@ -56,7 +56,7 @@ public:
     void setOriginalStatus();
     void setPlayListConnection();
     void setSwapList( myTablePlayListFinal*begin, myTablePlayListFinal*after);
-    void setListTakeAndInsert( myTablePlayListFinal*start, myTablePlayListFinal*after); //add to butt of myTablePlayListFinal*after
+    void setListTakeAndInsert( myTablePlayListFinal*start, myTablePlayListFinal*after);
 
     inline mainWindow* mainWindows()
     {

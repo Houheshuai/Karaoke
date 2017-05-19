@@ -22,7 +22,7 @@
 #include"mytablewidget.h"
 #include"mainwindow.h"
 
-#define WHEEL_SCROLL_OFFSET 50000  //define a huge number to prevent scroll to the end;
+#define WHEEL_SCROLL_OFFSET 50000
 #define SCROLL_TIME 200
 
 LyricLabel::LyricLabel(bool touch, QWidget *parent)
@@ -32,13 +32,13 @@ LyricLabel::LyricLabel(bool touch, QWidget *parent)
     m_realCurrentText="";
 
     m_lyric = new Lyric();
-    m_lrcFont =QFont("微软雅黑",14,QFont::Medium);
+    m_lrcFont = QFont("微软雅黑",14,QFont::Medium);
     m_lrcHightLight = QColor(255,40,80);
     connect(this, SIGNAL(changeTo(int)), this, SLOT(changeToEvent(int)));
 
     m_menu = new QMenu;
     m_menu->setContentsMargins(4,10,3,10);
-    QMenu *submenu=new QMenu("字体大小设置",m_menu);
+    QMenu *submenu = new QMenu("字体大小设置",m_menu);
     submenu->setContentsMargins(4,10,3,10);
 
     QAction *forwardSecond = new QAction("歌词前进0.5秒", m_menu);
@@ -96,9 +96,9 @@ LyricLabel::LyricLabel(bool touch, QWidget *parent)
 
 void LyricLabel::setCurLrcChangeTime(int time, bool isadding)
 {
-    int time2=time;
+    int time2 = time;
     if(!isadding)
-        time2=(-time2);
+        time2 = (-time2);
     if(m_lyric->m_lrcmap.isEmpty())
         return;
     QMap<qint64,QString> lrcmap;
@@ -109,12 +109,11 @@ void LyricLabel::setCurLrcChangeTime(int time, bool isadding)
     QMap<qint64,QMap<qint64,qint64>> intervalmap;
     foreach (qint64 key, m_lyric->m_lrcmap.keys())
     {
-        intervalmap.insert(key+time2,m_lyric->m_lrcintervalmap.value(key));
+        intervalmap.insert(key+time2,m_lyric->m_lrcIntervalMap.value(key));
     }
 
-    m_lyric->m_lrcmap=lrcmap;
-    m_lyric->m_lrcintervalmap=intervalmap;
-    // m_lyric->changeLrcFileTime(time,isadding);
+    m_lyric->m_lrcmap = lrcmap;
+    m_lyric->m_lrcIntervalMap = intervalmap;
 }
 
 void LyricLabel::setForwardHalfSecond()
@@ -150,8 +149,8 @@ void LyricLabel::setSingerBGShowOrNot()
 
 void LyricLabel::slot_replyLrc(const QByteArray& byt,const QString& songname)
 {
-    QString playsongname= m_mainwindow->middleStack0()->nowPlayFinalTable()->currentSongName();
-    if(songname==playsongname.replace("&"," "))
+    QString playsongname = m_mainwindow->middleStack0()->nowPlayFinalTable()->currentSongName();
+    if(songname == playsongname.replace("&"," "))
     {
         analyzeLrc(byt,QString("D://ExcellentLrc/")+songname+".lrc");
     }
@@ -222,8 +221,8 @@ void LyricLabel::paintItemMask(QPainter *painter)
 void LyricLabel::clearLrc()
 {
     m_lyric->m_lrcmap.clear();
-    m_lyric->m_lrcintervalmap.clear();
-    m_lyric->m_lrcwordsmap.clear();
+    m_lyric->m_lrcIntervalMap.clear();
+    m_lyric->m_lrcWordsMap.clear();
     m_lyric->m_filedir="";
     m_maskLength=-1000;
     m_currentRollrect=QRect(0,0,0,0);

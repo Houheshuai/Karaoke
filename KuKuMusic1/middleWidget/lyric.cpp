@@ -11,12 +11,12 @@ int Lyric::getIndex(qint64 pos)
 {
     //binary search
     //time complexity O(logn)
-    qint64 lt=0;
-    qint64 rt= m_lrcmap.values().count();
-    qint64 mid=0;
+    qint64 lt = 0;
+    qint64 rt = m_lrcmap.values().count();
+    qint64 mid = 0;
     while (lt < rt-1)
     {
-        mid = (lt+rt)/2;
+        mid = (lt + rt)/2;
         if (m_lrcmap.keys().value(mid) > pos)
             rt = mid;
         else
@@ -31,7 +31,7 @@ void Lyric::getItemPrecent(qint64 pos, int &interval, float &precent, QString &s
     qint64 startvalue=getPostion(index);
     qint64 subvalue=pos-startvalue;
 
-    QMap<qint64,qint64> map=m_lrcintervalmap.values().value(index);
+    QMap<qint64,qint64> map=m_lrcIntervalMap.values().value(index);
     qint64 lt2=0;
     qint64 rt2= map.values().count();
     qint64 mid2=0;
@@ -44,11 +44,10 @@ void Lyric::getItemPrecent(qint64 pos, int &interval, float &precent, QString &s
         else
             lt2 = mid2;
     }
-    string=m_lrcwordsmap.values().value(index).values().value(lt2);
+    string=m_lrcWordsMap.values().value(index).values().value(lt2);
     interval=map.values().value(lt2);
     precent=(float)lt2/(map.values().count());
 }
-
 
 void Lyric::changeLrcFileTime(int time, bool isadd)
 {
@@ -131,8 +130,8 @@ void Lyric::changeLrcFileTime(int time, bool isadd)
 void Lyric::analyzeLrcContent(const QByteArray &KlcData,const QString filedir)//爆力解析内容
 {
     m_lrcmap.clear();
-    m_lrcintervalmap.clear();
-    m_lrcwordsmap.clear();
+    m_lrcIntervalMap.clear();
+    m_lrcWordsMap.clear();
 
     QByteArray getByt;
     QByteArray KlcByt=KlcData;
@@ -162,8 +161,8 @@ void Lyric::analyzeLrcContent(const QByteArray &KlcData,const QString filedir)//
             lrctotalstr.append(tinylist.last());
             wordsmap.insert(QString(tinylist.first()).toInt(),QString(tinylist.last()).simplified());
         }
-        m_lrcwordsmap.insert(time.toInt(),wordsmap);
-        m_lrcintervalmap.insert(time.toInt(),map);
+        m_lrcWordsMap.insert(time.toInt(),wordsmap);
+        m_lrcIntervalMap.insert(time.toInt(),map);
         m_lrcmap.insert(time.toInt(),lrctotalstr);
     }
     m_filedir=filedir;

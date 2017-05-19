@@ -47,6 +47,7 @@ void tableCellWidget::init()
     hlyout->addWidget(m_btntabledownload);
     hlyout->setContentsMargins(0,0,0,0);
     setLayout(hlyout);
+    m_btntabledownload->hide();
 }
 
 middleSearchTableWidget::middleSearchTableWidget(QWidget*p):QTableWidget(p),m_prebgItem(-1)
@@ -126,7 +127,8 @@ void middleSearchTableWidget::setItem(int row, int column, QTableWidgetItem *ite
     }
     case 2:
     {
-        playingWidgetBtn *btn=new playingWidgetBtn;
+        playingWidgetBtn* btn = new playingWidgetBtn;
+        btn->setStyleSheet("QPushButton{font-family:微软雅黑}");
         btn->setNormalColor(QColor(88,88,88));
         btn->setHoverColor(QColor(61,61,61));
         btn->setText(item->text());
@@ -137,7 +139,8 @@ void middleSearchTableWidget::setItem(int row, int column, QTableWidgetItem *ite
     }
     case 3:
     {
-        playingWidgetBtn *btn=new playingWidgetBtn;
+        playingWidgetBtn* btn = new playingWidgetBtn;
+        btn->setStyleSheet("QPushButton{font-family:微软雅黑}");
         btn->setNormalColor(QColor(88,88,88));
         btn->setHoverColor(QColor(61,61,61));
         btn->setText(item->text());
@@ -183,10 +186,10 @@ void middleSearchTableWidget::slot_doubleClicked(QTableWidgetItem *it)
     QStringList list_dur;
     QStringList list_url;
 
-    int row= it->row();
+    int row = it->row();
 
-    playingWidgetBtn*btn=(playingWidgetBtn*)cellWidget(row,2);
-    list_name<<btn->text()+"-"+item(row,1)->text();
+    playingWidgetBtn* btn = (playingWidgetBtn*)cellWidget(row,2);
+    list_name<<btn->text() + "-" + item(row,1)->text();
     list_dur<<item(row,4)->text();
     list_url<<p->m_songlist.value(row);
     midstack0Pointer->myTablePlayListFinalVector().value(0)->slot_playSongFromSearchTable(list_name,list_url,list_dur);
